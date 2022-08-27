@@ -4,7 +4,7 @@
 
 ## Add a Customization
 
-`May Change` Add a txt file named the same as your target language(etc. `en_us.json`) under `.minecraft/config/splasher` and include your own translations(also customizations). These files on existence will automatically replace `splashes.txt` if under the correct language.
+`May Change` Add a txt file named the same as your target language(etc. `en_us.json`) under `.minecraft/config/splasher/lang` and include your own translations(also customizations). These files on existence will automatically replace `splashes.txt` if under the correct language.
 
 `Advancement` Splasher is considering an option for players to choose to load either a customized `splashes.txt`(instead of language-specified .json files) or the original `splashes.txt`(with language-spesified .json files), if so, the customized `splashes.txt` should be put under `.minecraft/config/splasher`.
 
@@ -16,11 +16,13 @@ If nothing is under the directory, Splasher will use the built-in `splashes.txt`
 
 ## Feature Schedule
 
+#### Splasher is currently running on `Fabric` | `Minecraft 1.18.2`
+
 - [X] Read Client Language Config
-- [X] *Customize Splash Text by String*
-- [ ] *JSON File Structure I/O*
+- [X] *- Customize Splash Text by String*
+- [ ] *- JSON File Structure I/O*
 - [ ] Handle Mixin to Replace splashes.txt
-- [ ] *Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
+- [ ] *- Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
 - [ ] An Option to Disable Splasher Manually
-- [ ] *ModMenu GUI*
-- [ ] Splasher on More Minecraft Versions...
+- [ ] *- ModMenu GUI*
+- [ ] Splasher on More Platforms...
