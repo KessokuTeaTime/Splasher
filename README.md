@@ -14,7 +14,8 @@ If nothing is under the directory, Splasher will use the built-in splashes.txt f
 
 ## Feature Schedule
 
-- [ ] Read Files in Config
+- [ ] Get Minecraft Mixin and Read Files in Config
 - [ ] Handle Mixin to Translate splashes.txt
 - [ ] Add an Option to Disable Splasher
+- [ ] Make Splashes in Mixin Translatable(etc. Merry X-mas! on every Christmas)
 - [ ] More Versions...
