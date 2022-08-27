@@ -2,8 +2,6 @@
 
 #### Operate splashes.txt on your own!
 
- * * *
-
 ## Add an Translation
 
 `May Change` Add a txt file named the same as your target language(etc. en_us.txt) under `.minecraft/config/splasher` and include your own translations.
