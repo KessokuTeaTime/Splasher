@@ -1,21 +1,26 @@
-# Splasher
+# Splasher🧨
 
-#### Operate splashes.txt on your own!
+#### Customize Minecraft Splash Texts on Your Own!
 
-## Add an Translation
+## Add a Customization
 
-`May Change` Add a txt file named the same as your target language(etc. en_us.txt) under `.minecraft/config/splasher` and include your own translations.
+`May Change` Add a txt file named the same as your target language(etc. `en_us.json`) under `.minecraft/config/splasher` and include your own translations(also customizations). These files on existence will automatically replace `splashes.txt` if under the correct language.
 
-If nothing is under the directory, Splasher will use the built-in splashes.txt from Minecraft.
+`Advancement` Splasher is considering an option for players to choose to load either a customized `splashes.txt`(instead of language-specified .json files) or the original `splashes.txt`(with language-spesified .json files), if so, the customized `splashes.txt` should be put under `.minecraft/config/splasher`.
 
-## Apply an Translation
+## Apply One of Them
 
-`May Change` For now, splashes.txt will be automatically translated into your client language(etc. client language "English(US)" equals to "en_us").
+`May Change` For now, splashes.txt will be automatically replaced by your client language .json file(etc. client language `English(US)` calls a replacement from `en_us.json`).
+
+If nothing is under the directory, Splasher will use the built-in `splashes.txt` from Minecraft.
 
 ## Feature Schedule
 
-- [ ] Get Minecraft Mixin and Read Files in Config
-- [ ] Handle Mixin to Translate splashes.txt
-- [ ] Add an Option to Disable Splasher
-- [ ] Make Splashes in Mixin Translatable(etc. Merry X-mas! on every Christmas)
-- [ ] More Versions...
+- [X] Read Client Language Config
+- [X] *Customize Splash Text by String*
+- [ ] *JSON File Structure I/O*
+- [ ] Handle Mixin to Replace splashes.txt
+- [ ] *Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
+- [ ] An Option to Disable Splasher Manually
+- [ ] *ModMenu GUI*
+- [ ] Splasher on More Minecraft Versions...

@@ -18,7 +18,7 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       "net.krlite.splasher.SplasherMod"
     ]
   },
