@@ -1,9 +1,13 @@
-# Fabric Example Mod
+# Splasher
 
-## Setup
+#### Operate splashes.txt on your own!
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+ * * *
 
-## License
+## Add an Translation
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+`May Change` Add a txt file named the same as your target language(etc. en_us.txt) under `.minecraft/config/splasher` and include your own translations.
+
+## Apply an Translation
+
+`May Change` For now, splashes.txt will be automatically translated into your client language(etc. client language "English(US)" equals to "en_us").
