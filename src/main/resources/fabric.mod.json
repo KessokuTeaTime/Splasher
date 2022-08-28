@@ -4,9 +4,9 @@
   "version": "${version}",
 
   "name": "Splasher",
-  "description": "Translate Splashes.txt on your own!",
+  "description": "Why Don't Splash?",
   "authors": [
-    "Me!"
+    "KrLite"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",

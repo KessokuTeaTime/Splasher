@@ -6,7 +6,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
 import net.minecraft.client.util.Session;
 import net.minecraft.text.TranslatableText;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -14,27 +16,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.*;
 
 @Mixin(SplashTextResourceSupplier.class)
-public class SplashTextResourceSupplierMixin{
-	private final List<String> splashTexts = Lists.newArrayList();
-	private static final Random RANDOM = new Random();
-	private final Session session;
+public class SplashTextResourceSupplierMixin {
+	@Shadow @Final private List<String> splashTexts;
+	private final List<String> customSplashTexts = Lists.newArrayList();
 	private String splashText;
+	private static final Random RANDOM = new Random();
+	private Session session;
 
 	public SplashTextResourceSupplierMixin(Session session) {
 		this.session = session;
 	}
 
-	private void apply() {
-		splashTexts.add("Pog");
-		splashTexts.add("POG!");
-		splashTexts.add("好耶");
+	private void applyCustomSplashTexts() {
+		customSplashTexts.clear();
+		customSplashTexts.add("Pog");
+		customSplashTexts.add("POG!");
+		customSplashTexts.add("好耶");
 	}
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void injected(CallbackInfoReturnable<String> cir) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
-//		apply();
+//		applyCustomSplashTexts();
 
 		if (calendar.get(2) + 1 == 12 && calendar.get(5) == 24) {
 //			splashText = "Merry X-mas!";
@@ -58,8 +62,7 @@ public class SplashTextResourceSupplierMixin{
 			cir.setReturnValue(splashText);
 		} else {
 //			splashText = (String)splashTexts.get(RANDOM.nextInt(splashTexts.size()));
-			splashText = new TranslatableText("splash." + RANDOM.nextInt(splashTexts.size())).getString();
-//			splashText = "Size of " + splashTexts.size() + "!";
+			splashText = new TranslatableText("splash.minecraft." + RANDOM.nextInt(splashTexts.size())).getString();
 			cir.setReturnValue(splashText);
 		}
 

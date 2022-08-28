@@ -51,8 +51,8 @@ namespace Formatter
 							k++;
 						}
 						Console.WriteLine("Writing Line " + i + ": " + result);
-						if (i != arrayList.Count - 1) sw.WriteLine("	\"splash." + i++ + "\": \"" + result + "\",");
-						else sw.WriteLine("	\"splash." + i++ + "\": \"" + result + "\"");
+						if (i != arrayList.Count - 1) sw.WriteLine("    \"splash.minecraft." + i++ + "\": \"" + result + "\",");
+						else sw.WriteLine("    \"splash.minecraft." + i++ + "\": \"" + result + "\"");
 						sw.Flush();
 					}
 					sw.WriteLine("}");
