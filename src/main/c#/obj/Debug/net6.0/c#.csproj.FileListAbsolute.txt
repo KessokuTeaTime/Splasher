@@ -1,0 +1,15 @@
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.csproj.AssemblyReference.cache
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.GeneratedMSBuildEditorConfig.editorconfig
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.AssemblyInfoInputs.cache
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.AssemblyInfo.cs
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.csproj.CoreCompileInputs.cache
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/bin/Debug/net6.0/c#
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/bin/Debug/net6.0/c#.deps.json
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/bin/Debug/net6.0/c#.runtimeconfig.json
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/bin/Debug/net6.0/c#.dll
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/bin/Debug/net6.0/c#.pdb
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.dll
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/refint/c#.dll
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.pdb
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/c#.genruntimeconfig.cache
+/Users/litekr/文件/Mods/Fabric/Splasher/src/main/c#/obj/Debug/net6.0/ref/c#.dll
