@@ -32,6 +32,11 @@ If no available translation for the target language is provided, `en_us.json` wi
 - [X] *- Auto Generated JSON Files*
 - [X] Handle Mixin to Replace splashes.txt
 - [X] *- Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
-- [ ] An Option to Disable Splasher Manually
-- [ ] *- ModMenu GUI*
+- [ ] Automatically Load Customized Splash Texts
+- [ ] Advanced Options
+- [X] *- Disable Splash Texts*
+- [X] *- Pure Vanilla Splash Texts*
+- [ ] *- Unfollow the Client Language*
+- [X] *- 3 Different Splash Modes*
+- [ ] ~~*- ModMenu GUI*~~
 - [ ] Splasher on More Platforms...

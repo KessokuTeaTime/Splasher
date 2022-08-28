@@ -1,10 +1,11 @@
 package net.krlite.splasher;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.krlite.splasher.config.SplasherModConfigs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Objects;
 
 public class SplasherMod implements ClientModInitializer {
 	public static final String MODID = "splasher";
@@ -12,6 +13,7 @@ public class SplasherMod implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("Splash!");
+		SplasherModConfigs.registerConfigs();
+		LOGGER.info("Splasher config loaded!");
 	}
 }
