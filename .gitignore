@@ -28,6 +28,7 @@ bin/
 # macos
 
 *.DS_Store
+*.pxd
 
 # fabric
 
