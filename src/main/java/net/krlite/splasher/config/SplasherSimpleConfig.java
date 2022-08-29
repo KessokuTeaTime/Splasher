@@ -28,6 +28,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -97,7 +98,7 @@ public class SplasherSimpleConfig {
      * @return new config request object
      */
     public static ConfigRequest of( String filename ) {
-        Path path = FabricLoader.getInstance().getConfigDir();
+        Path path = Path.of(FabricLoader.getInstance().getConfigDir() + "/splasher");
         return new ConfigRequest( path.resolve( filename + ".properties" ).toFile(), filename );
     }
 
@@ -108,7 +109,7 @@ public class SplasherSimpleConfig {
         Files.createFile( request.file.toPath() );
 
         // write default config data
-        PrintWriter writer = new PrintWriter(request.file, "UTF-8");
+        PrintWriter writer = new PrintWriter(request.file, StandardCharsets.UTF_8);
         writer.write( request.getConfig() );
         writer.close();
 
@@ -126,7 +127,7 @@ public class SplasherSimpleConfig {
             String[] parts = entry.split("=", 2);
             if( parts.length == 2 ) {
                 config.put( parts[0], parts[1] );
-            }else{
+            } else {
                 throw new RuntimeException("Syntax error in config file on line " + line + "!");
             }
         }

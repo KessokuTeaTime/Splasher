@@ -8,20 +8,31 @@ Translate `assets/splasher/lang/en_us.json` into your favourite language and ren
 
 ## Add a Customization
 
-`On Schedule` Add a txt file named the same as your target language (etc. `en_us.json`) under `.minecraft/config/splasher/customizations` and include your own customizations. 
-One splash takes one line (Ofcourse you can use `§ Formatting Code`). 
+Add a `.txt` file named the same as your target language (etc. `en_us.txt`) under `.minecraft/config/splasher/customizations` and include your own customized splash texts (Every single splash takes a single line, `§ Formatting Code` is under supported).
 These files on existence will be automatically added to the splashes if Minecraft client is under the correct language.
 
-Note that none of the customizations will not be included in the mod. Players should operate them on their own.
+Note that none of the customizations will not be included in the mod. Players should create them on their own.
+*If you are a modpack developer, everything goes on the same way.*
 
 ## Apply One of Them
 
-For now, splashes.txt will be automatically translated into your `client language.json` file(etc. client language `English(US)` calls a translation from `en_us.json`). 
+For now, splashes.txt will be automatically translated into the mod's built-in `client language.json` file(etc. client language `English(US)` calls a translation from `en_us.json`). 
 If no available translation for the target language is provided, `en_us.json` will be loaded.
 
-`Advancement` Splasher is considering an option for players to choose to load either a customized `splashes.txt` (instead of translations) or the original splashes (with translations), or, if you want, to load both of them.
+You can always ignore the language files and unstick to the translations by an option.
 
-`Advancement` There may be an option to disable all splashes conveniently.
+Splasher has an option for players to choose to load either a customized `splashes.txt` (instead of translations) or the original splashes (with translations), or, if you want, to load both of them.
+There is also an option to disable all splashes conveniently.
+
+### Options Graph in `.minecraft/config/splasher/splasher.properties`
+
+#### (Only works when `enable_splash_texts` is `true`)
+
+| `splash_mode`            |           | VANILLA                                      | BOTH                                                                                    | CUSTOM                                   |
+|--------------------------|-----------|----------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------|
+| `follow_client_language` | **false** | Original Minecraft Splashes (`splashes.txt`) | Minecraft Splashes + Custom Splashes (`splashes.txt` + `en_us.txt`)                     | Original Custom Splashes (`en_us.txt`)   |
+| `follow_client_language` | **true**  | Translated Minecraft Splashes (`xx_xx.json`) | Translated Minecraft Splashes + Translated Custom Splashes (`xx_xx.json` + `xx_xx.txt`) | Translated Custom Splashes (`xx_xx.txt`) |
+
 
 ## Feature Schedule
 
@@ -32,11 +43,12 @@ If no available translation for the target language is provided, `en_us.json` wi
 - [X] *- Auto Generated JSON Files*
 - [X] Handle Mixin to Replace splashes.txt
 - [X] *- Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
-- [ ] Automatically Load Customized Splash Texts
-- [ ] Advanced Options
+- [X] Automatically Load Customized Splash Texts (`.minecraft/config/splasher/customizations/xx_xx.txt`)
+- [X] Advanced Options
 - [X] *- Disable Splash Texts*
 - [X] *- Pure Vanilla Splash Texts*
-- [ ] *- Unfollow the Client Language*
+- [X] *- The Ability to Unfollow the Client Language*
 - [X] *- 3 Different Splash Modes*
 - [ ] ~~*- ModMenu GUI*~~
+- [ ] Even More Customizations on Splashes
 - [ ] Splasher on More Platforms...

@@ -5,8 +5,6 @@ import net.krlite.splasher.config.SplasherModConfigs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-
 public class SplasherMod implements ClientModInitializer {
 	public static final String MODID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Splasher");
@@ -14,6 +12,5 @@ public class SplasherMod implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SplasherModConfigs.registerConfigs();
-		LOGGER.info("Splasher config loaded!");
 	}
 }
