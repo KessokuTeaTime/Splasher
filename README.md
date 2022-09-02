@@ -50,5 +50,8 @@ There is also an option to disable all splashes conveniently.
 - [X] *- The Ability to Unfollow the Client Language*
 - [X] *- 3 Different Splash Modes*
 - [ ] ~~*- ModMenu GUI*~~
+- [X] Better Code
 - [ ] Even More Customizations on Splashes
-- [ ] Splasher on More Platforms...
+- [ ] Splasher on More Minecraft Versions...
+- [ ] *- 1.18*
+- [ ] *- 1.19*

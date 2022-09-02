@@ -1,11 +1,11 @@
 {
-	"#1": "MIXIN TRANSLATIONS",
 	"mixin.splasher.x_mas": "Merry X-mas!",
 	"mixin.splasher.new_year": "Happy new year!",
-	"mixin.splasher.spooky": "OOoooOOOoooo! Spooky!",
+	"mixin.splasher.halloween": "OOoooOOOoooo! Spooky!",
 	"mixin.splasher.is_you": " IS YOU!",
-	"#2": "BUILT-IN TRANSLATIONS",
-	"#3": "SPLASH TEXTS",
+
+
+
     "splash.minecraft.0": "As seen on TV!",
     "splash.minecraft.1": "Awesome!",
     "splash.minecraft.2": "100% pure!",

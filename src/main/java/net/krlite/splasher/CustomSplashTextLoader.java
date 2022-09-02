@@ -10,17 +10,20 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
+import static net.krlite.splasher.SplasherMod.LOGGER;
+
 public class CustomSplashTextLoader {
     private static final List<String> result = Lists.newArrayList();
     private static void load(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
+        LOGGER.error("Break");
 
-        while (scanner.hasNextLine()) {
+        while ( scanner.hasNextLine() ) {
             result.add(scanner.nextLine());
         }
 
-        if (result.isEmpty() || !file.exists()) {
-            SplasherMod.LOGGER.warn("Loaded empty custom splashes! If you don't want them to be loaded please switch splash mode to VANILLA in config.");
+        if ( result.isEmpty() ) {
+            LOGGER.warn("Loaded empty custom splashes!");
         }
     }
     public static List<String> ReadCustomSplashText(Path path, String fileName) {
@@ -35,7 +38,7 @@ public class CustomSplashTextLoader {
         try {
             load(file);
         } catch (Exception e) {
-            SplasherMod.LOGGER.trace(String.valueOf(e));
+            LOGGER.trace(String.valueOf(e));
         }
 
         return result;

@@ -7,6 +7,8 @@ namespace Formatter
     {
         static void Main(string[] args)
         {
+            String MOD_ID = "splasher";
+
             try
             {
 				List<String> arrayList = new List<String>();
@@ -23,17 +25,10 @@ namespace Formatter
 					sw.WriteLine("{");
 					sw.Flush();
 
-					sw.WriteLine("	\"#1\": \"MIXIN TRANSLATIONS\",");
-					sw.WriteLine("	\"mixin.splasher.x_mas\": \"Merry X-mas!\",");
-					sw.WriteLine("	\"mixin.splasher.new_year\": \"Happy new year!\",");
-					sw.WriteLine("	\"mixin.splasher.spooky\": \"OOoooOOOoooo! Spooky!\",");
-					sw.WriteLine("	\"mixin.splasher.is_you\": \" IS YOU!\",");
-					sw.Flush();
-
-					sw.WriteLine("	\"#2\": \"BUILT-IN TRANSLATIONS\",");
-					sw.Flush();
-
-					sw.WriteLine("	\"#3\": \"SPLASH TEXTS\",");
+					sw.WriteLine("	\"mixin." + MOD_ID + ".x_mas\": \"Merry X-mas!\",");
+					sw.WriteLine("	\"mixin." + MOD_ID + ".new_year\": \"Happy new year!\",");
+					sw.WriteLine("	\"mixin." + MOD_ID + ".halloween\": \"OOoooOOOoooo! Spooky!\",");
+					sw.WriteLine("	\"mixin." + MOD_ID + ".is_you\": \" IS YOU!\",\r\n\r\n\r\n");
 					sw.Flush();
 
 					int i = 0;
