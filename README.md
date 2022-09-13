@@ -4,11 +4,11 @@
 
 ## Contribute a Translation
 
-Translate `assets/splasher/lang/en_us.json` into your favourite language and rename (etc. `zh_cn.json` ), then create a pull request to contribute!
+Translate `assets/splasher/lang/en_us.json` into your favourite language and rename (`zh_cn.json` etc.), then create a pull request to contribute!
 
 ## Add a Customization
 
-Add a `.txt` file named the same as your target language (etc. `en_us.txt`) under `.minecraft/config/splasher/customizations` and include your own customized splash texts (Every single splash takes a single line, `§ Formatting Code` is under supported).
+Add a `.txt` file named the same as your target language (`en_us.txt` etc.) under `.minecraft/config/splasher/customizations` and include your own customized splash texts (Every single splash takes a single line, `§ Formatting Code` is under supported).
 These files on existence will be automatically added to the splashes if Minecraft client is under the correct language.
 
 Note that none of the customizations will not be included in the mod. Players should create them on their own.
@@ -44,7 +44,7 @@ There is also an option to disable all splashes conveniently.
 - [X] *- Customize Splash Text by String*
 - [X] *- Auto Generated JSON Files*
 - [X] Handle Mixin to Replace splashes.txt
-- [X] *- Make Splashes in Mixin Translatable(etc. make Merry X-mas! splashes on every Christmas translatable)*
+- [X] *- Make Splashes in Mixin Translatable(make Merry X-mas! splashes on every Christmas translatable etc.)*
 - [X] Automatically Load Customized Splash Texts (`.minecraft/config/splasher/customizations/xx_xx.txt`)
 - [X] Advanced Options
 - [X] *- Disable Splash Texts*
