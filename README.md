@@ -1,4 +1,4 @@
-# Splasher🧨
+# Splasher!🧨
 
 #### Customize Minecraft Splash Texts on Your Own!
 
@@ -28,6 +28,8 @@ There is also an option to disable all splashes conveniently.
 
 #### (Only works when `enable_splash_texts` is `true`)
 
+#### (`enable_festivals` decides whether show festival splash texts or not, such as `Merry X-mas!` on Christmas...)
+
 | `splash_mode`            |           | VANILLA                                      | BOTH                                                                                    | CUSTOM                                   |
 |--------------------------|-----------|----------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------|
 | `follow_client_language` | **false** | Original Minecraft Splashes (`splashes.txt`) | Minecraft Splashes + Custom Splashes (`splashes.txt` + `en_us.txt`)                     | Original Custom Splashes (`en_us.txt`)   |
@@ -46,12 +48,12 @@ There is also an option to disable all splashes conveniently.
 - [X] Automatically Load Customized Splash Texts (`.minecraft/config/splasher/customizations/xx_xx.txt`)
 - [X] Advanced Options
 - [X] *- Disable Splash Texts*
-- [X] *- Pure Vanilla Splash Texts*
+- [X] *- Optional Festival Splash Texts*
 - [X] *- The Ability to Unfollow the Client Language*
 - [X] *- 3 Different Splash Modes*
 - [ ] ~~*- ModMenu GUI*~~
-- [X] Better Code
+- [X] Better Code 2.0
 - [ ] Even More Customizations on Splashes
 - [ ] Splasher on More Minecraft Versions...
-- [ ] *- 1.18*
+- [X] *- 1.18*
 - [ ] *- 1.19*

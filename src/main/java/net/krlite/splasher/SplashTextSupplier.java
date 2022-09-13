@@ -33,46 +33,51 @@ public class SplashTextSupplier {
             customSplashTexts.addAll(CustomSplashTextLoader.ReadCustomSplashText(path, language + ".txt"));
         }
 
+
+
         if ( customSplashTexts.isEmpty() ) {
+            if ( SplasherModConfigs.SPLASH_MODE.isVanilla() ){
+                LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
+            }
             LOGGER.error("Empty stack!");
+
             return null;
         }
 
-        final int random = new Random().nextInt(customSplashTexts.size());
+        else {
+            final int random = new Random().nextInt(customSplashTexts.size());
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
 
-        if ( SplasherModConfigs.SPLASH_MODE.isVanilla() && random <= splashTexts.size() ) {
-            if ( splashTexts.isEmpty() ){
-                LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be lost.");
-                return null;
+
+
+            if ( SplasherModConfigs.ENABLE_FESTIVALS ) {
+                if ( calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
+                    return getXmasSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
+                }
+
+                if ( calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
+                    return getNewYearSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
+                }
+
+                if ( calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
+                    return getHalloweenSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
+                }
+
+                if ( session != null && random == 42 ) {
+                    return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
+                }
             }
 
-            else if ( calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
-                return getXmasSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
-            }
-
-            else if ( calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
-                return getNewYearSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
-            }
-
-            else if ( calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
-                return getHalloweenSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
-            }
-
-            else if ( session != null && random == 42 ) {
-                return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);
-            }
-
-            else {
+            if ( SplasherModConfigs.SPLASH_MODE.isVanilla() && random <= splashTexts.size() ) {
                 if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) return new TranslatableText("splash.minecraft." + random).getString();
-                else return splashTexts.get(random);
+                else return customSplashTexts.get(random);
             }
-        }
 
-        if ( SplasherModConfigs.SPLASH_MODE.isCustom() && random > splashTexts.size() ) {
-            return customSplashTexts.get(random);
+            if ( SplasherModConfigs.SPLASH_MODE.isCustom() ) {
+                return customSplashTexts.get(random);
+            }
         }
 
 

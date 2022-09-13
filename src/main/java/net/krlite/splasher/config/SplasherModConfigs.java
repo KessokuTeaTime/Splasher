@@ -30,6 +30,7 @@ public class SplasherModConfigs {
     }
 
     public static boolean ENABLE_SPLASH_TEXTS;
+    public static boolean ENABLE_FESTIVALS;
     public static boolean FOLLOW_CLIENT_LANGUAGE;
     public static SplashMode SPLASH_MODE = SplashMode.DEFAULT;
 
@@ -45,6 +46,7 @@ public class SplasherModConfigs {
 
     private static void createConfigs() {
         configs.addKeyValuePair(new Pair<>("enable_splash_texts", true), "true/false");
+        configs.addKeyValuePair(new Pair<>("enable_festivals", true), "true/false");
         configs.addKeyValuePair(new Pair<>("follow_client_language", true), "true/false");
         configs.addKeyValuePair(new Pair<>("splash_mode", SplashMode.BOTH.name()), "VANILLA/BOTH/CUSTOM");
     }
@@ -53,6 +55,7 @@ public class SplasherModConfigs {
         String splashMode;
 
         ENABLE_SPLASH_TEXTS = CONFIG.getOrDefault("enable_splash_texts", true);
+        ENABLE_FESTIVALS = CONFIG.getOrDefault("enable_festivals", true);
         FOLLOW_CLIENT_LANGUAGE = CONFIG.getOrDefault("follow_client_language", true);
         splashMode = CONFIG.getOrDefault("splash_mode", SplashMode.BOTH.name());
 

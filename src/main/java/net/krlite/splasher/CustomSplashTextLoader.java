@@ -16,14 +16,13 @@ public class CustomSplashTextLoader {
     private static final List<String> result = Lists.newArrayList();
     private static void load(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
-        LOGGER.error("Break");
 
         while ( scanner.hasNextLine() ) {
             result.add(scanner.nextLine());
         }
 
         if ( result.isEmpty() ) {
-            LOGGER.warn("Loaded empty custom splashes!");
+            LOGGER.warn("Loaded empty custom splash.");
         }
     }
     public static List<String> ReadCustomSplashText(Path path, String fileName) {
@@ -40,6 +39,7 @@ public class CustomSplashTextLoader {
         } catch (Exception e) {
             LOGGER.trace(String.valueOf(e));
         }
+        //LOGGER.info(result.toString());
 
         return result;
     }
