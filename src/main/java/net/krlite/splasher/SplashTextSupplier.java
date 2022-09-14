@@ -52,6 +52,8 @@ public class SplashTextSupplier {
 
 
 
+            //LOGGER.warn(customSplashTexts.toString());
+
             if ( SplasherModConfigs.ENABLE_FESTIVALS ) {
                 if ( calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
                     return getXmasSplash(SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE);

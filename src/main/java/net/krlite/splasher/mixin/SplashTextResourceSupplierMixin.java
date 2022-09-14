@@ -21,18 +21,16 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 public class SplashTextResourceSupplierMixin {
 	@Mutable @Shadow @Final private List<String> splashTexts;
 	@Shadow @Final private Session session;
-	private boolean trigger = false;
+	private boolean trigger = true;
+	private String restore = null;
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void injected(CallbackInfoReturnable<String> cir) {
-		if ( !trigger ) {
-			cir.cancel();
-			trigger = true;
+		if ( trigger ) {
+			trigger = false;
 
 			return;
 		}
-
-
 
 		if ( !SplasherModConfigs.ENABLE_SPLASH_TEXTS || (!SplasherModConfigs.SPLASH_MODE.isVanilla() && !SplasherModConfigs.SPLASH_MODE.isCustom()) ) {
 			cir.setReturnValue(null);
@@ -48,21 +46,38 @@ public class SplashTextResourceSupplierMixin {
 			return;
 		}
 
-
-
 		String splashText = new SplashTextSupplier().getSplashes(session, splashTexts);
-		String language = "en_us";
+
+		if ( SplasherModConfigs.RANDOM_RATE.onReload() ) {
+			restore = null;
+		}
+
+		if ( restore != null ) {
+			cir.setReturnValue(restore);
+
+			return;
+		}
+
+		else {
+			restore = splashText;
+		}
 
 		cir.setReturnValue(splashText);
+
+
+
+		String language = "en_us";
 
 		if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) {
 			language = MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
 		}
 
-		if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE);
-		else LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE + " (raw)");
+		if ( !SplasherModConfigs.jeb ) {
+			if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE);
+			else LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE + " (raw)");
 
-		if ( splashText != null ) LOGGER.info("Loaded splash: '" + splashText + "' in language " + language + ".");
-		else LOGGER.warn("Loaded empty splash.");
+			if ( splashText != null ) LOGGER.info("Loaded splash: '" + splashText + "' in language " + language + ".");
+			else LOGGER.warn("Loaded empty splash.");
+		}
 	}
 }

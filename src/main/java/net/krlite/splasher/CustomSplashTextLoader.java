@@ -15,6 +15,10 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 public class CustomSplashTextLoader {
     private static final List<String> result = Lists.newArrayList();
     private static void load(File file) throws FileNotFoundException {
+        if ( !result.isEmpty() ) {
+            result.clear();
+        }
+
         Scanner scanner = new Scanner(file);
 
         while ( scanner.hasNextLine() ) {
@@ -39,7 +43,7 @@ public class CustomSplashTextLoader {
         } catch (Exception e) {
             LOGGER.trace(String.valueOf(e));
         }
-        //LOGGER.info(result.toString());
+        //LOGGER.warn("C: " + result.toString());
 
         return result;
     }
