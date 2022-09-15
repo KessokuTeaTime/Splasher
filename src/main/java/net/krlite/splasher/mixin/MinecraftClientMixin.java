@@ -1,5 +1,6 @@
 package net.krlite.splasher.mixin;
 
+import net.krlite.splasher.SplasherMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +16,7 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 public class MinecraftClientMixin {
     @Inject(method = "reloadResources()Ljava/util/concurrent/CompletableFuture;", at = @At("TAIL"))
     public void injected(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        LOGGER.warn("Injecting...");
-        ((TitleScreenAccessor) new TitleScreen()).setSplashText(MinecraftClient.getInstance().getSplashTextLoader().get());
+        //LOGGER.warn("Injecting...");
+        SplasherMod.shouldReloadSplashText = true;
     }
 }

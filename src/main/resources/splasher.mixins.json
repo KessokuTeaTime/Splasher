@@ -9,7 +9,8 @@
     "SplashTextResourceSupplierMixin",
     "MinecraftClientMixin",
     "TitleScreenAccessor",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
