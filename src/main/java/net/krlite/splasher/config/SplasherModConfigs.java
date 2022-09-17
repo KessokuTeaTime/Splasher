@@ -7,6 +7,7 @@ import net.krlite.splasher.SplasherMod;
 public class SplasherModConfigs {
     public static SplasherSimpleConfig CONFIG;
     public static boolean jeb = false;
+    public static boolean shouldReloadSplashText = false;
     private static SplasherModConfigProvider configs;
     public enum RandomRate {
         NEVER(false, false),

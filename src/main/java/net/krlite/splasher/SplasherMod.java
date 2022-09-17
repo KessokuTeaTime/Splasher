@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 public class SplasherMod implements ClientModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Splasher");
-	public static boolean shouldReloadSplashText = false;
 
 	@Override
 	public void onInitializeClient() {

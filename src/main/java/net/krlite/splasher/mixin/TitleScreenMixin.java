@@ -34,20 +34,20 @@ public class TitleScreenMixin extends Screen {
 
         Screen screen = MinecraftClient.getInstance().currentScreen;
 
-        if ( SplasherMod.shouldReloadSplashText ) {
-            ((TitleScreenAccessor) screen).setSplashText(MinecraftClient.getInstance().getSplashTextLoader().get());
-
-            SplasherMod.shouldReloadSplashText = false;
-        }
-
         if ( SplasherModConfigs.RANDOM_RATE.onClick() ) {
             TextRenderer textRenderer = ((ScreenAccessor) screen).getTextRenderer();
             int splashWidth = this.textRenderer.getWidth(SPLASH);
 
             this.addDrawableChild(new PressableTextWidget(width / 2 - splashWidth / 2, 2, splashWidth, 10, SPLASH, (button -> {
-                //LOGGER.warn("Clicked!");
-                ((TitleScreenAccessor) screen).setSplashText(MinecraftClient.getInstance().getSplashTextLoader().get());
+                LOGGER.warn("Clicked!");
+                SplasherModConfigs.shouldReloadSplashText = true;
             }), textRenderer));
+        }
+
+        if ( SplasherModConfigs.shouldReloadSplashText ) {
+            splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
+
+            SplasherModConfigs.shouldReloadSplashText = false;
         }
     }
 }

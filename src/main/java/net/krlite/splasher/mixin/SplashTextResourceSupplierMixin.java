@@ -1,6 +1,7 @@
 package net.krlite.splasher.mixin;
 
 import net.krlite.splasher.SplashTextSupplier;
+import net.krlite.splasher.SplasherMod;
 import net.krlite.splasher.config.SplasherModConfigs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
@@ -48,7 +49,7 @@ public class SplashTextResourceSupplierMixin {
 
 		String splashText = new SplashTextSupplier().getSplashes(session, splashTexts);
 
-		if ( SplasherModConfigs.RANDOM_RATE.onReload() ) {
+		if ( SplasherModConfigs.shouldReloadSplashText) {
 			restore = null;
 		}
 
