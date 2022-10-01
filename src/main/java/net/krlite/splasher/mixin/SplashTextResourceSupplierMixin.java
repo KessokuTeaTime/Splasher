@@ -20,8 +20,15 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 
 @Mixin(SplashTextResourceSupplier.class)
 public class SplashTextResourceSupplierMixin {
-	@Mutable @Shadow @Final private List<String> splashTexts;
-	@Shadow @Final private Session session;
+	@Mutable
+	@Shadow
+	@Final
+	private List<String> splashTexts;
+
+	@Shadow
+	@Final
+	private Session session;
+
 	private boolean trigger = true;
 	private String restore = null;
 
