@@ -1,6 +1,5 @@
 package net.krlite.splasher.mixin;
 
-import net.krlite.splasher.SplasherMod;
 import net.krlite.splasher.config.SplasherModConfigs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -18,10 +17,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static net.krlite.splasher.SplasherMod.LOGGER;
+
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin extends Screen {
-    @Shadow private @Nullable String splashText;
-    @Shadow @Final private static Logger LOGGER;
+    @Shadow
+    @Nullable
+    private String splashText;
+
     private final Text SPLASH = new LiteralText("Splash!");
 
     protected TitleScreenMixin(Text title) {
