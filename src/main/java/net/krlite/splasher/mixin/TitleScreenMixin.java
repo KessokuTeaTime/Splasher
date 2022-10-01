@@ -35,10 +35,10 @@ public class TitleScreenMixin extends Screen {
     public void injected(CallbackInfo ci) {
         if ( SplasherModConfigs.jeb ) splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
 
-        Screen screen = MinecraftClient.getInstance().currentScreen;
-
         if ( SplasherModConfigs.RANDOM_RATE.onClick() ) {
+            Screen screen = MinecraftClient.getInstance().currentScreen;
             TextRenderer textRenderer = ((ScreenAccessor) screen).getTextRenderer();
+
             int splashWidth = this.textRenderer.getWidth(SPLASH);
 
             this.addDrawableChild(new PressableTextWidget(width / 2 - splashWidth / 2, 2, splashWidth, 10, SPLASH, (button -> {
