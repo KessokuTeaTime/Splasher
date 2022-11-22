@@ -2,6 +2,8 @@
 
 #### Customize Minecraft Splash Texts on Your Own!
 
+![icon](/artwork/banner.png)
+
 ## Contribute a Translation
 
 Translate `assets/splasher/lang/en_us.json` into your favorite language and rename (`zh_cn.json` etc.), then create a pull request to contribute!
