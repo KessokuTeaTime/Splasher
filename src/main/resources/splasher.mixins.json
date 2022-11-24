@@ -8,9 +8,7 @@
   "client": [
     "SplashTextResourceSupplierMixin",
     "MinecraftClientMixin",
-    "TitleScreenAccessor",
-    "TitleScreenMixin",
-    "ScreenAccessor"
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

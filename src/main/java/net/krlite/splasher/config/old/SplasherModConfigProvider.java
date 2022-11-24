@@ -1,4 +1,4 @@
-package net.krlite.splasher.config;
+package net.krlite.splasher.config.old;
 
 import com.mojang.datafixers.util.Pair;
 
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SplasherModConfigProvider implements SplasherSimpleConfig.DefaultConfig {
-
     private String configContents = "";
 
     public List<Pair> getConfigsList() {

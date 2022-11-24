@@ -1,4 +1,4 @@
-package net.krlite.splasher.config;
+package net.krlite.splasher.config.old;
 /*
  * Copyright (c) 2021 magistermaks
  *
@@ -35,7 +35,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SplasherSimpleConfig {
-
     public static final Logger LOGGER = LogManager.getLogger("SimpleConfig");
     private final HashMap<String, String> config = new HashMap<>();
     private final ConfigRequest request;
@@ -50,12 +49,11 @@ public class SplasherSimpleConfig {
     }
 
     public static class ConfigRequest {
-
         private final File file;
         private final String filename;
         private DefaultConfig provider;
 
-        private ConfigRequest(File file, String filename ) {
+        private ConfigRequest( File file, String filename ) {
             this.file = file;
             this.filename = filename;
             this.provider = DefaultConfig::empty;

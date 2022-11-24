@@ -14,7 +14,8 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 
 public class CustomSplashTextLoader {
     private static final List<String> result = Lists.newArrayList();
-    private static void load(File file) throws FileNotFoundException {
+
+    private static void loadFile(File file) throws FileNotFoundException {
         if ( !result.isEmpty() ) {
             result.clear();
         }
@@ -29,6 +30,7 @@ public class CustomSplashTextLoader {
             LOGGER.warn("Loaded empty custom splash.");
         }
     }
+
     public static List<String> ReadCustomSplashText(Path path, String fileName) {
         File file = path.resolve(fileName).toFile();
 
@@ -39,11 +41,11 @@ public class CustomSplashTextLoader {
         }
 
         try {
-            load(file);
+            loadFile(file);
         } catch (Exception e) {
             LOGGER.trace(String.valueOf(e));
         }
-        //LOGGER.warn("C: " + result.toString());
+        //LOGGER.warn("Result: " + result.toString());
 
         return result;
     }

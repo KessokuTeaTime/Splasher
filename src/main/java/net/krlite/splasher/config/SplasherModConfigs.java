@@ -1,14 +1,15 @@
 package net.krlite.splasher.config;
 
-import com.google.gson.annotations.SerializedName;
 import com.mojang.datafixers.util.Pair;
 import net.krlite.splasher.SplasherMod;
+import net.krlite.splasher.config.old.SplasherModConfigProvider;
+import net.krlite.splasher.config.old.SplasherSimpleConfig;
 
-public class SplasherModConfigs {
+public class  SplasherModConfigs {
     public static SplasherSimpleConfig CONFIG;
+    private static SplasherModConfigProvider configs;
     public static boolean jeb = false;
     public static boolean shouldReloadSplashText = false;
-    private static SplasherModConfigProvider configs;
     public enum RandomRate {
         NEVER(false, false),
         RELOAD_CLICK(true, true),
