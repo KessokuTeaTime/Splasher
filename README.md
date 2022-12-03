@@ -26,18 +26,22 @@ You can always ignore the language files and unstick to the translations by an o
 Splasher has an option for players to choose to load either a customized `splashes.txt` (instead of translations) or the original splashes (with translations), or, if you want, to load both of them.
 There is also an option to disable all splashes conveniently.
 
-### Options Graph in `.minecraft/config/splasher/splasher.properties`
+### Options in `.minecraft/config/splasher/config.json5`
 
-#### (Only works when `enable_splash_texts` is `true`)
+#### `enable_festivals` decides whether to show festival splash texts or not, such as `Merry X-mas!` on Christmas and so on.
 
-#### (`enable_festivals` decides whether show festival splash texts or not, such as `Merry X-mas!` on Christmas...)
+#### `disable_debug_info` decides whether to log debug info or not, such as current splash mode and splash text.
+
+#### Options Graph of `splash_mode` and `follow_client_language`
+
+**(Only works when `enable_splash_texts` is set to `true`)**
 
 | `splash_mode`<br /> \ <br />`follow_client_language` | VANILLA                                      | BOTH                                                                                    | CUSTOM                                   |
 |------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------|
 | **false**                                            | Original Minecraft Splashes (`splashes.txt`) | Minecraft Splashes + Custom Splashes (`splashes.txt` + `en_us.txt`)                     | Original Custom Splashes (`en_us.txt`)   |
 | **true**                                             | Translated Minecraft Splashes (`xx_xx.json`) | Translated Minecraft Splashes + Translated Custom Splashes (`xx_xx.json` + `xx_xx.txt`) | Translated Custom Splashes (`xx_xx.txt`) |
 
-### Graph of `random_rate`
+#### Options Graph of `random_rate`
 
 | NEVER                   | ON_RELOAD                                                                          | ON_CLICK                                                                                    | RELOAD_CLICK                                 |
 |-------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------|
@@ -47,7 +51,7 @@ There is also an option to disable all splashes conveniently.
 
 ## Feature Schedule
 
-#### Splasher is currently running on `Fabric` | `Minecraft 1.18.2`
+#### Splasher is currently running on `Fabric / Quilt` `Minecraft 1.18.2`
 
 - [X] Read Client Language Config
 - [X] *- Customize Splash Text by String*
