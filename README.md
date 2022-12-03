@@ -43,7 +43,7 @@ There is also an option to disable all splashes conveniently.
 |-------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------|
 | Load only after launch. | Reload after every reload actions (return from another gui, texture reload, etc.). | Reload only when the tiny yellow `⚡️`[^1] on the left side of Credit Info has been clicked. | Reload both after reload actions and clicks. |
 
-[^1]: ![Flash](/artwork/content/flash.png) Click the flash icon to refresh splashes.
+[^1]: Click the flash icon to refresh splashes. <br> ![Flash](/artwork/content/flash.png)
 
 ## Feature Schedule
 
