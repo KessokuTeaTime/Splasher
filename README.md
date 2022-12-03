@@ -1,4 +1,4 @@
-# Splasher!🧨
+# [Splasher! 💥](https://modrinth.com/mod/splasher)
 
 #### Customize Minecraft Splash Texts on Your Own!
 
@@ -48,6 +48,10 @@ There is also an option to disable all splashes conveniently.
 | Load only after launch. | Reload after every reload actions (return from another gui, texture reload, etc.). | Reload only when the tiny yellow `⚡️`[^1] on the left side of Credit Info has been clicked. | Reload both after reload actions and clicks. |
 
 [^1]: Click the flash icon to refresh splashes. <br /> ![Flash](/artwork/content/flash.png)
+
+## Dependencies
+
+Splasher! is depending on [Plume Config](https://github.com/KrLite/Plume-Config) [(Modrinth).](https://modrinth.com/mod/plumeconfig)
 
 ## Feature Schedule
 
