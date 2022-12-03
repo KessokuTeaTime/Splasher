@@ -1,55 +1,59 @@
 package net.krlite.splasher.mixin;
 
-import net.krlite.splasher.config.SplasherModConfigs;
+import net.krlite.splasher.SplasherMod;
+import net.krlite.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.PressableTextWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static net.krlite.splasher.SplasherMod.LOGGER;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin extends Screen {
-    @Shadow @Nullable private String splashText;
-    private final Text SPLASH = new LiteralText("Splash!");
+    @Shadow @Nullable @Mutable private String splashText;
+    @Shadow @Final public static Text COPYRIGHT;
+
     protected TitleScreenMixin(Text title) {
         super(title);
     }
 
-    @Inject(method = "render", at = @At("HEAD"))
-    public void injected(CallbackInfo ci) {
-        if ( SplasherModConfigs.jeb ) splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
+    @Inject(method = "init()V", at = @At("TAIL"))
+    private void init(CallbackInfo ci) {
+        if ( ((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onReload() ) {
+            SplasherMod.reloadSplashText();
+        }
 
-        if ( SplasherModConfigs.RANDOM_RATE.onClick() ) {
-            TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-
-            int splashWidth = this.textRenderer.getWidth(SPLASH);
-
+        if ( ((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onClick() ) {
             this.addDrawableChild(
                     new PressableTextWidget(
-                            width / 2 - splashWidth / 2,
-                            2, splashWidth, 10,
-                            SPLASH, (button -> {
-                                LOGGER.warn("Clicked!");
-                                SplasherModConfigs.shouldReloadSplashText = true;
-                            }), textRenderer
+                            this.width - 12 - this.textRenderer.getWidth(COPYRIGHT),
+                            this.height - 10, 10, 10,
+                            new LiteralText("⚡").styled(style -> style.withColor(0xFFFF00)),
+                            (button) -> SplasherMod.reloadSplashText(),
+                            this.textRenderer
                     )
             );
         }
+    }
 
-        if ( SplasherModConfigs.shouldReloadSplashText ) {
+    @Inject(method = "render", at = @At("HEAD"))
+    private void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        if ( SplasherMod.shouldReloadSplashText() ) {
             splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
-            SplasherModConfigs.shouldReloadSplashText = false;
+            SplasherMod.keepSplashText();
         }
     }
 }

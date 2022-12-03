@@ -2,7 +2,7 @@ package net.krlite.splasher.mixin;
 
 import net.krlite.splasher.SplashTextSupplier;
 import net.krlite.splasher.SplasherMod;
-import net.krlite.splasher.config.SplasherModConfigs;
+import net.krlite.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
 import net.minecraft.client.util.Session;
@@ -22,34 +22,38 @@ import static net.krlite.splasher.SplasherMod.LOGGER;
 public class SplashTextResourceSupplierMixin {
 	@Mutable @Shadow @Final private List<String> splashTexts;
 	@Shadow @Final private Session session;
-	private boolean trigger = true;
+	private int trigger = 0;
 	private String restore = null;
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void injected(CallbackInfoReturnable<String> cir) {
-		if ( trigger ) {
-			trigger = false;
+		if ( trigger < 1 + (((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onReload() ? 1 : 0) ) {
+			trigger++;
 
 			return;
 		}
 
-		if ( !SplasherModConfigs.ENABLE_SPLASH_TEXTS || (!SplasherModConfigs.SPLASH_MODE.isVanilla() && !SplasherModConfigs.SPLASH_MODE.isCustom()) ) {
+		if ( !SplasherConfig.ENABLE_SPLASH_TEXTS.getValue() || (!((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() && !((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom()) ) {
 			cir.setReturnValue(null);
-			LOGGER.warn("Splash mode: DISABLED");
+			if ( !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
+				LOGGER.warn("Splash mode: DISABLED");
+			}
 
 			return;
 		}
 
-		if ( SplasherModConfigs.SPLASH_MODE.isVanilla() && !SplasherModConfigs.SPLASH_MODE.isCustom() && !SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) {
+		if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() && !((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom() && !SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) {
 			cir.cancel();
-			LOGGER.info("Splash mode: VANILLA (raw)");
+			if ( !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
+				LOGGER.info("Splash mode: VANILLA (raw)");
+			}
 
 			return;
 		}
 
 		String splashText = new SplashTextSupplier().getSplashes(session, splashTexts);
 
-		if ( SplasherModConfigs.shouldReloadSplashText) {
+		if ( SplasherMod.shouldReloadSplashText() ) {
 			restore = null;
 		}
 
@@ -69,13 +73,13 @@ public class SplashTextResourceSupplierMixin {
 
 		String language = "en_us";
 
-		if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) {
+		if ( SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) {
 			language = MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
 		}
 
-		if ( !SplasherModConfigs.jeb ) {
-			if ( SplasherModConfigs.FOLLOW_CLIENT_LANGUAGE ) LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE);
-			else LOGGER.info("Splash mode: " + SplasherModConfigs.SPLASH_MODE + " (raw)");
+		if ( !(SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.Jens_Bergensten) && !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
+			if ( SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw());
+			else LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw() + " (raw)");
 
 			if ( splashText != null ) LOGGER.info("Loaded splash: '" + splashText + "' in language " + language + ".");
 			else LOGGER.warn("Loaded empty splash.");

@@ -20,6 +20,9 @@
   "entrypoints": {
     "client": [
       "net.krlite.splasher.SplasherMod"
+    ],
+    "plumeconfig": [
+      "net.krlite.splasher.config.SplasherConfig"
     ]
   },
   "mixins": [

@@ -32,18 +32,18 @@ There is also an option to disable all splashes conveniently.
 
 #### (`enable_festivals` decides whether show festival splash texts or not, such as `Merry X-mas!` on Christmas...)
 
-| `splash_mode →`<br/>`follow_client_language ↓` | VANILLA                                      | BOTH                                                                                    | CUSTOM                                   |
-|------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------|
-| **false**                                      | Original Minecraft Splashes (`splashes.txt`) | Minecraft Splashes + Custom Splashes (`splashes.txt` + `en_us.txt`)                     | Original Custom Splashes (`en_us.txt`)   |
-| **true**                                       | Translated Minecraft Splashes (`xx_xx.json`) | Translated Minecraft Splashes + Translated Custom Splashes (`xx_xx.json` + `xx_xx.txt`) | Translated Custom Splashes (`xx_xx.txt`) |
+| `splash_mode→`<br/>`follow_client_language↓` | VANILLA                                      | BOTH                                                                                    | CUSTOM                                   |
+|----------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------|
+| **false**                                    | Original Minecraft Splashes (`splashes.txt`) | Minecraft Splashes + Custom Splashes (`splashes.txt` + `en_us.txt`)                     | Original Custom Splashes (`en_us.txt`)   |
+| **true**                                     | Translated Minecraft Splashes (`xx_xx.json`) | Translated Minecraft Splashes + Translated Custom Splashes (`xx_xx.json` + `xx_xx.txt`) | Translated Custom Splashes (`xx_xx.txt`) |
 
 ### Graph of `random_rate`
 
-| NEVER                   | ON_RELOAD                                                                          | ON_CLICK                                                             | RELOAD_CLICK                                 |
-|-------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------|
-| Load only after launch. | Reload after every reload actions (return from another gui, texture reload, etc.). | Reload only when text `Splash!` on Minecraft title has been clicked. | Reload both after reload actions and clicks. |
+| NEVER                   | ON_RELOAD                                                                          | ON_CLICK                                                                                    | RELOAD_CLICK                                 |
+|-------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------|
+| Load only after launch. | Reload after every reload actions (return from another gui, texture reload, etc.). | Reload only when the tiny yellow `⚡️`[^1] on the left side of Credit Info has been clicked. | Reload both after reload actions and clicks. |
 
-
+[^1]: ![Flash](/artwork/content/flash.png) Click the flash icon to refresh splashes.
 
 ## Feature Schedule
 

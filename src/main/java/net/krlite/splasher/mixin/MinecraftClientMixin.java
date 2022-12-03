@@ -1,6 +1,6 @@
 package net.krlite.splasher.mixin;
 
-import net.krlite.splasher.config.SplasherModConfigs;
+import net.krlite.splasher.SplasherMod;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +13,6 @@ import java.util.concurrent.CompletableFuture;
 public class MinecraftClientMixin {
     @Inject(method = "reloadResources()Ljava/util/concurrent/CompletableFuture;", at = @At("TAIL"))
     public void injected(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        //LOGGER.warn("Injecting...");
-        SplasherModConfigs.shouldReloadSplashText = true;
+        SplasherMod.reloadSplashText();
     }
 }
