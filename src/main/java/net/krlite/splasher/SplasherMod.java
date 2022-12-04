@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 public class SplasherMod implements ClientModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Splasher");
-	private static boolean shouldReloadSplashText = (SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.Jens_Bergensten);
+	private static boolean shouldReloadSplashText = (SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.JEB);
 
 	public static boolean shouldReloadSplashText() {
 		return shouldReloadSplashText;
@@ -19,7 +19,7 @@ public class SplasherMod implements ClientModInitializer {
 	}
 
 	public static void keepSplashText() {
-		shouldReloadSplashText = (SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.Jens_Bergensten);
+		shouldReloadSplashText = (SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.JEB);
 	}
 
 	@Override

@@ -27,25 +27,25 @@ public class SplashTextResourceSupplierMixin {
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void injected(CallbackInfoReturnable<String> cir) {
-		if ( trigger < 1 + (((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onReload() ? 1 : 0) ) {
+		if ( trigger < 1 + (SplasherConfig.RANDOM_RATE.getValue().onReload() ? 1 : 0) ) {
 			trigger++;
 
 			return;
 		}
 
-		if ( !SplasherConfig.ENABLE_SPLASH_TEXTS.getValue() || (!((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() && !((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom()) ) {
+		if ( !SplasherConfig.ENABLE_SPLASH_TEXTS.getValue() || (!SplasherConfig.SPLASH_MODE.getValue().isVanilla() && !SplasherConfig.SPLASH_MODE.getValue().isCustom()) ) {
 			cir.setReturnValue(null);
 			if ( !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
-				LOGGER.warn("Splash mode: DISABLED");
+				LOGGER.warn("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw().toUpperCase());
 			}
 
 			return;
 		}
 
-		if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() && !((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom() && !SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) {
+		if ( SplasherConfig.SPLASH_MODE.getValue().isVanilla() && !SplasherConfig.SPLASH_MODE.getValue().isCustom() && !SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) {
 			cir.cancel();
 			if ( !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
-				LOGGER.info("Splash mode: VANILLA (raw)");
+				LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw().toUpperCase() + " (raw)");
 			}
 
 			return;
@@ -77,9 +77,9 @@ public class SplashTextResourceSupplierMixin {
 			language = MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
 		}
 
-		if ( !(SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.Jens_Bergensten) && !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
-			if ( SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw());
-			else LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw() + " (raw)");
+		if ( !(SplasherConfig.RANDOM_RATE.getValue() == SplasherConfig.RandomRate.JEB) && !SplasherConfig.DISABLE_DEBUG_INFO.getValue() ) {
+			if ( SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw().toUpperCase());
+			else LOGGER.info("Splash mode: " + SplasherConfig.SPLASH_MODE.getValueRaw().toUpperCase() + " (raw)");
 
 			if ( splashText != null ) LOGGER.info("Loaded splash: '" + splashText + "' in language " + language + ".");
 			else LOGGER.warn("Loaded empty splash.");

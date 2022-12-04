@@ -32,11 +32,11 @@ public class TitleScreenMixin extends Screen {
 
     @Inject(method = "init()V", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        if ( ((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onReload() ) {
+        if ( SplasherConfig.RANDOM_RATE.getValue().onReload() ) {
             SplasherMod.reloadSplashText();
         }
 
-        if ( ((SplasherConfig.RandomRate) SplasherConfig.RANDOM_RATE.getValue()).onClick() ) {
+        if ( SplasherConfig.RANDOM_RATE.getValue().onClick() ) {
             this.addDrawableChild(
                     new PressableTextWidget(
                             this.width - 12 - this.textRenderer.getWidth(COPYRIGHT),

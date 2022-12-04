@@ -25,18 +25,18 @@ public class SplashTextSupplier {
 
         List<String> customSplashTexts = Lists.newArrayList();
 
-        if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() ) {
+        if ( SplasherConfig.SPLASH_MODE.getValue().isVanilla() ) {
             customSplashTexts.addAll(splashTexts);
         }
 
-        if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom() ) {
+        if ( SplasherConfig.SPLASH_MODE.getValue().isCustom() ) {
             customSplashTexts.addAll(CustomSplashTextLoader.ReadCustomSplashText(path, language + ".txt"));
         }
 
 
 
         if ( customSplashTexts.isEmpty() ) {
-            if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() ){
+            if ( SplasherConfig.SPLASH_MODE.getValue().isVanilla() ){
                 LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
             }
             LOGGER.error("Empty stack!");
@@ -72,12 +72,12 @@ public class SplashTextSupplier {
                 }
             }
 
-            if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isVanilla() && random <= splashTexts.size() ) {
+            if ( SplasherConfig.SPLASH_MODE.getValue().isVanilla() && random <= splashTexts.size() ) {
                 if ( SplasherConfig.FOLLOW_CLIENT_LANGUAGE.getValue() ) return new TranslatableText("splash.minecraft." + random).getString();
                 else return customSplashTexts.get(random);
             }
 
-            if ( ((SplasherConfig.SplashMode) SplasherConfig.SPLASH_MODE.getValue()).isCustom() ) {
+            if ( SplasherConfig.SPLASH_MODE.getValue().isCustom() ) {
                 return customSplashTexts.get(random);
             }
         }

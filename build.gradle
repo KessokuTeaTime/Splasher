@@ -30,7 +30,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modApi include("maven.modrinth:plumeconfig:cetaHGEc")
+
+	// Plume Config 1.18.2-1.0.1
+	modApi include("maven.modrinth:plumeconfig:x3Qozm1G")
 }
 
 processResources {
