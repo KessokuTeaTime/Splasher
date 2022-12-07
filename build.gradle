@@ -3,6 +3,7 @@ plugins {
 	id 'maven-publish'
 }
 
+
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -12,16 +13,16 @@ group = project.maven_group
 
 repositories {
 	exclusiveContent {
-	forRepository {
-		maven {
-			name = "Modrinth"
-			url = "https://api.modrinth.com/maven"
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
 		}
 	}
-	filter {
-		includeGroup "maven.modrinth"
-	}
-}
 }
 
 dependencies {
@@ -31,8 +32,7 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Plume Config 1.18.X-1.0.1
-	modApi include("maven.modrinth:plumeconfig:ph80R4Ub")
+	modImplementation "maven.modrinth:plumeconfig:RVlCoWTu"
 }
 
 processResources {
