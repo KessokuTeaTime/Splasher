@@ -11,6 +11,18 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+	/* Modrinth Maven */
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 dependencies {
@@ -19,6 +31,10 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	/* Plume Config v3.2.0 */
+	modApi include("maven.modrinth:plumeconfig:z9sRsmg6")
+	implementation "org.tomlj:tomlj:1.1.0"
 }
 
 processResources {
