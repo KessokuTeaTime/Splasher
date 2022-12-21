@@ -22,8 +22,10 @@ classes/
 .settings/
 .vscode/
 bin/
+obj/
 .classpath
 .project
+*.csproj
 
 # macos
 
@@ -32,4 +34,3 @@ bin/
 # fabric
 
 run/
-
