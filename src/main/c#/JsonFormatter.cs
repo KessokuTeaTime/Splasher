@@ -5,31 +5,40 @@ namespace Formatter
 {
     class Program
     {
+        public static String MOD_ID = "splasher";
+
+		static String format(int key, String content) {
+			return "	\"splash.minecraft." + key + "\": \"" + content + "\"";
+		}
+
+		static String formatFestival(String key, String content) {
+			return "	\"festival." + MOD_ID + "." + key + "\": \"" + content + "\"";
+		}
+
         static void Main(string[] args)
         {
-            String MOD_ID = "splasher";
-
             try
             {
 				List<String> arrayList = new List<String>();
                 using (StreamReader sr = new StreamReader("splashes.txt"))
                 {
-					String line;
+					String? line;
                     while ((line = sr.ReadLine()) != null)
                     {
 						arrayList.Add(line);
 					}
-				}	
+				}
 				using StreamWriter sw = new StreamWriter("en_us.json", false);
 				{
+					sw.AutoFlush = true;
 					sw.WriteLine("{");
-					sw.Flush();
 
-					sw.WriteLine("	\"mixin." + MOD_ID + ".x_mas\": \"Merry X-mas!\",");
-					sw.WriteLine("	\"mixin." + MOD_ID + ".new_year\": \"Happy new year!\",");
-					sw.WriteLine("	\"mixin." + MOD_ID + ".halloween\": \"OOoooOOOoooo! Spooky!\",");
-					sw.WriteLine("	\"mixin." + MOD_ID + ".is_you\": \" IS YOU!\",\r\n\r\n\r\n");
-					sw.Flush();
+					sw.WriteLine(formatFestival("x_mas", "Merry X-mas!") + ",");
+					sw.WriteLine(formatFestival("new_year", "Happy new year!") + ",");
+					sw.WriteLine(formatFestival("halloween", "OOoooOOOoooo! Spooky!") + ",");
+					sw.WriteLine(formatFestival("is_you", "IS YOU!") + ",");
+
+					sw.WriteLine("");
 
 					int i = 0;
 					foreach(String s in arrayList)
@@ -46,9 +55,7 @@ namespace Formatter
 							k++;
 						}
 						Console.WriteLine("Writing Line " + i + ": " + result);
-						if (i != arrayList.Count - 1) sw.WriteLine("    \"splash.minecraft." + i++ + "\": \"" + result + "\",");
-						else sw.WriteLine("    \"splash.minecraft." + i++ + "\": \"" + result + "\"");
-						sw.Flush();
+						sw.WriteLine(format(i++, result) + (i < arrayList.Count ? "," : ""));
 					}
 					sw.WriteLine("}");
 					sw.Close();
