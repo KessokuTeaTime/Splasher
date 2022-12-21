@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "splasher",
   "version": "${version}",
 
   "name": "Splasher",
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/splasher/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.krlite.splasher.Splasher"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "splasher.mixins.json"
   ],
 
   "depends": {
