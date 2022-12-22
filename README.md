@@ -1,4 +1,4 @@
-![icon](artwork/banner.png)
+![Banner](artwork/banner.png)
 
 **Customize Minecraft's Splash Texts at Your Will!**
 [`Modrinth →`](https://modrinth.com/mod/splasher)
