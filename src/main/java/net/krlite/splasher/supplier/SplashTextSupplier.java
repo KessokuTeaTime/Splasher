@@ -40,19 +40,19 @@ public class SplashTextSupplier {
 		//LOGGER.warn(customSplashTexts.toString());
 
 		if (splasherConfig.enableFestivals) {
-			if ( calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
+			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
 				return getXmasSplash(splasherConfig.followClientLanguage);
 			}
 
-			if ( calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
+			if (calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
 				return getNewYearSplash(splasherConfig.followClientLanguage);
 			}
 
-			if ( calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
+			if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
 				return getHalloweenSplash(splasherConfig.followClientLanguage);
 			}
 
-			if ( session != null && random == 42 ) {
+			if (session != null && random == 42) {
 				return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(splasherConfig.followClientLanguage);
 			}
 		}
@@ -68,22 +68,22 @@ public class SplashTextSupplier {
 	}
 
 	private String getXmasSplash(boolean translate) {
-		if ( translate ) return Text.translatable("festival." + Splasher.MOD_ID + ".x_mas").getString();
+		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".x_mas").getString();
 		else return "Merry X-mas!";
 	}
 
 	private String getNewYearSplash(boolean translate) {
-		if ( translate ) return Text.translatable("festival." + Splasher.MOD_ID + ".new_year").getString();
+		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".new_year").getString();
 		else return "Happy new year!";
 	}
 
 	private String getHalloweenSplash(boolean translate) {
-		if ( translate ) return Text.translatable("festival." + Splasher.MOD_ID + ".halloween").getString();
+		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".halloween").getString();
 		else return "OOoooOOOoooo! Spooky!";
 	}
 
 	private String getPlayerSplash(boolean translate) {
-		if ( translate ) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you").getString();
+		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you").getString();
 		else return " IS YOU";
 	}
 }
