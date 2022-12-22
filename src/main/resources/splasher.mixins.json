@@ -6,6 +6,9 @@
   "mixins": [
   ],
   "client": [
+    "ResourceReloader",
+    "SplashTextResourceSupplierReplacer",
+    "TitleScreenWidget"
   ],
   "injectors": {
     "defaultRequire": 1

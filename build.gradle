@@ -12,16 +12,8 @@ group = project.maven_group
 
 repositories {
 	/* Modrinth Maven */
-	exclusiveContent {
-		forRepository {
-			maven {
-				name = "Modrinth"
-				url = "https://api.modrinth.com/maven"
-			}
-		}
-		filter {
-			includeGroup "maven.modrinth"
-		}
+	maven {
+		url = "https://api.modrinth.com/maven"
 	}
 }
 
@@ -34,7 +26,9 @@ dependencies {
 
 	/* Plume Config v3.2.0 */
 	modApi include("maven.modrinth:plumeconfig:z9sRsmg6")
-	implementation "org.tomlj:tomlj:1.1.0"
+
+	/* Tomlj 1.1.0 for mod local runtime */
+	modLocalRuntime("org.tomlj:tomlj:1.1.0")
 }
 
 processResources {
