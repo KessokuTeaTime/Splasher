@@ -6,7 +6,7 @@
   "name": "Splasher",
   "description": "Why Don't Splash?",
   "authors": [
-    "Me!"
+    "KrLite"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric-api": "*",
-    "minecraft": "~1.19.3",
+    "minecraft": ">=1.19",
     "java": ">=17"
   },
   "suggests": {
