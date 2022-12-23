@@ -4,6 +4,7 @@ import net.krlite.plumeconfig.annotation.Category;
 import net.krlite.plumeconfig.annotation.Comment;
 import net.krlite.plumeconfig.annotation.Option;
 import net.krlite.plumeconfig.api.EnumLocalizable;
+import net.krlite.plumeconfig.io.LineBreak;
 
 public class SplasherConfig {
 	public @Option(key = "enable_splash_texts") boolean enableSplashTexts = true;
@@ -16,15 +17,24 @@ public class SplasherConfig {
 
 	/* Enum */
 	@Category("enum")
+
+	@Comment("Never            - Never show random splash texts")
+	@Comment("Reload           - Refresh splash texts after reloading resources")
+	@Comment("Click            - Refresh splash texts when clicking the lightning icon")
+	@Comment(value = "Reload and Click - Refresh splash texts when reloading and clicking", newLine = LineBreak.AFTER)
+
 	@Option(key = "random_rate", name = "Splash Texts Refresh Rate")
 	public RandomRate randomRate = RandomRate.RELOAD_CLICK;
+
 	@Category("enum")
-	private final @Comment String randomRateComment = "Never            - Never show random splash texts\nReload           - Refresh splash texts after reloading resources\nClick            - Refresh splash texts when clicking the lightning icon\nReload and Click - Refresh splash texts when reloading and clicking";
-	@Category("enum")
+
+	@Comment("Disabled - Disable splash texts")
+	@Comment("Vanilla  - Only show vanilla splash texts")
+	@Comment("Custom   - Only show custom splash texts")
+	@Comment("Both     - Show both vanilla and custom splash texts")
+
 	@Option(key = "splash_mode", name = "Splash Texts Display Mode")
 	public SplashMode splashMode = SplashMode.BOTH;
-	@Category("enum")
-	private final @Comment String splashModeComment = "Disabled - Disable splash texts\nVanilla  - Show vanilla splash texts\nCustom   - Show custom splash texts\nBoth     - Show both vanilla and custom splash texts";
 
 	public enum RandomRate implements EnumLocalizable {
 		NEVER(false, false, "Never"),

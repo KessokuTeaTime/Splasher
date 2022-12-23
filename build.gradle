@@ -24,8 +24,8 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	/* Plume Config v3.2.0 */
-	modApi include("maven.modrinth:plumeconfig:X8cuwF24")
+	/* Plume Config v3.2.1 */
+	modApi include("maven.modrinth:plumeconfig:Qp5IwyeB")
 	modLocalRuntime("org.tomlj:tomlj:1.1.0")
 }
 
