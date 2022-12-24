@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.PressableTextWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,7 +38,7 @@ public class TitleScreenWidget extends Screen {
                     new PressableTextWidget(
                             this.width - 12 - this.textRenderer.getWidth(COPYRIGHT),
                             this.height - 10, 10, 10,
-                            Text.literal("⚡").styled(style -> style.withColor(0xFFFF00)),
+                            Text.literal("⚡").formatted(Formatting.YELLOW),
                             (button) -> Splasher.reloadSplashText(),
                             this.textRenderer
                     )
