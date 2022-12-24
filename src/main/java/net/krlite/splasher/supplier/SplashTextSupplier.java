@@ -3,9 +3,11 @@ package net.krlite.splasher.supplier;
 import net.fabricmc.loader.api.FabricLoader;
 import net.krlite.splasher.Splasher;
 import net.krlite.splasher.SplasherConfig;
+import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Session;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;
 
@@ -15,16 +17,21 @@ import java.util.*;
 public class SplashTextSupplier {
 	public String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.MOD_ID);
-		SplasherConfig splasherConfig = Splasher.config.load(SplasherConfig.class);
+		SplasherConfig config = Splasher.config.load(SplasherConfig.class);
 
-		String language = !splasherConfig.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
+		if (config.colorful) {
+			double formatting = new Random().nextDouble(1);
+			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
+		}
+
+		String language = !config.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
 		List<String> customSplashTexts = Lists.newArrayList();
 
-		if (splasherConfig.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
-		if (splasherConfig.splashMode.isCustom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
+		if (config.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
+		if (config.splashMode.isCustom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
 
 		if (customSplashTexts.isEmpty()) {
-			if (splasherConfig.splashMode.isVanilla()){
+			if (config.splashMode.isVanilla()){
 				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
 			}
 			Splasher.LOGGER.error("Empty stack!");
@@ -39,30 +46,30 @@ public class SplashTextSupplier {
 
 		//LOGGER.warn(customSplashTexts.toString());
 
-		if (splasherConfig.enableFestivals) {
+		if (config.enableFestivals) {
 			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
-				return getXmasSplash(splasherConfig.followClientLanguage);
+				return getXmasSplash(config.followClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
-				return getNewYearSplash(splasherConfig.followClientLanguage);
+				return getNewYearSplash(config.followClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
-				return getHalloweenSplash(splasherConfig.followClientLanguage);
+				return getHalloweenSplash(config.followClientLanguage);
 			}
 
 			if (session != null && random == 42) {
-				return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(splasherConfig.followClientLanguage);
+				return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(config.followClientLanguage);
 			}
 		}
 
-		if (splasherConfig.splashMode.isVanilla() && random <= splashTexts.size()) {
-			if (splasherConfig.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
+		if (config.splashMode.isVanilla() && random <= splashTexts.size()) {
+			if (config.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
 			else return customSplashTexts.get(random);
 		}
 
-		if (splasherConfig.splashMode.isCustom()) return customSplashTexts.get(random);
+		if (config.splashMode.isCustom()) return customSplashTexts.get(random);
 
 		return null;
 	}

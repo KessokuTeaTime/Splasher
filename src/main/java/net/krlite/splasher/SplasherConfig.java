@@ -10,6 +10,7 @@ public class SplasherConfig {
 	public @Option(key = "enable_splash_texts") boolean enableSplashTexts = true;
 	public @Option(key = "enable_festivals") boolean enableFestivals = true;
 	public @Option(key = "follow_client_language") boolean followClientLanguage = true;
+	public @Option(comment = "Make splash texts a little colorful") boolean colorful = false;
 
 	/* Debug */
 	@Category("debug")
