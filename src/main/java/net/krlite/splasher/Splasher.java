@@ -53,8 +53,8 @@ public class Splasher implements ModInitializer {
 	}
 
 	public record Pusher(AtomicBoolean ready) {
-		Pusher(boolean reload) {
-			this(new AtomicBoolean(reload));
+		Pusher(boolean ready) {
+			this(new AtomicBoolean(ready));
 		}
 
 		public void let() {
