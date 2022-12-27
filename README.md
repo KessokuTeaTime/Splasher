@@ -39,7 +39,3 @@ Splasher is licensed under [GNU General Public License](LICENSE).
 ![Custom Splash Text](artwork/content/custom_splash.png)
 
 > Splasher displaying custom splash text `Splasher!`
-
-![Flash](artwork/content/flash.png)
-
-> Flash icon enabled in the title screen, by clicking which you can change the splash text. You can see the icon by changing `random_rate` into `Click` or `Reload and Click` in the config.
