@@ -25,7 +25,7 @@ public class SplashTextResourceSupplierReplacer {
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void get(CallbackInfoReturnable<String> cir) {
-		SplasherConfig splasherConfig = Splasher.config.load(SplasherConfig.class);
+		SplasherConfig splasherConfig = Splasher.CONFIG.load(SplasherConfig.class);
 
 		if (trigger < 1 + (splasherConfig.randomRate.onReload() ? 1 : 0)) {
 			trigger++;
@@ -44,14 +44,10 @@ public class SplashTextResourceSupplierReplacer {
 			return;
 		}
 
-		if (Splasher.shouldReloadSplashText()) restore = null;
+		if (Splasher.PUSHER.shouldReload()) restore = null;
 		String splashText = new SplashTextSupplier().getSplashes(session, splashTexts);
 
-		if ( restore != null ) {
-			cir.setReturnValue(restore);
-			return;
-		} else restore = splashText;
-
+		if (restore == null) restore = splashText;
 		cir.setReturnValue(restore);
 
 		if (!(splasherConfig.randomRate == SplasherConfig.RandomRate.JEB) && !splasherConfig.disableDebugInfo) {

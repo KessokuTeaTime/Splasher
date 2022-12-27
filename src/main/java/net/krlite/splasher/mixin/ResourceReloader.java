@@ -13,6 +13,6 @@ import java.util.concurrent.CompletableFuture;
 public class ResourceReloader {
     @Inject(method = "reloadResources()Ljava/util/concurrent/CompletableFuture;", at = @At("TAIL"))
     public void reload(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        Splasher.reloadSplashText();
+        Splasher.PUSHER.letReload();
     }
 }

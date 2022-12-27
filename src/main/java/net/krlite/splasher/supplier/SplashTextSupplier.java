@@ -7,7 +7,6 @@ import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Session;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;
 
@@ -17,7 +16,7 @@ import java.util.*;
 public class SplashTextSupplier {
 	public String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.MOD_ID);
-		SplasherConfig config = Splasher.config.load(SplasherConfig.class);
+		SplasherConfig config = Splasher.CONFIG.load(SplasherConfig.class);
 
 		if (config.colorful) {
 			double formatting = new Random().nextDouble(1);
