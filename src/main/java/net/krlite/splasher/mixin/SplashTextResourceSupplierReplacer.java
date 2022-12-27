@@ -25,7 +25,7 @@ public class SplashTextResourceSupplierReplacer {
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
 	private void get(CallbackInfoReturnable<String> cir) {
-		if (!Splasher.PUSHER.accessReload() || !Splasher.isReady) {
+		if (!Splasher.PUSHER.access() || !Splasher.isReady) {
 			cir.setReturnValue(null);
 			return;
 		}

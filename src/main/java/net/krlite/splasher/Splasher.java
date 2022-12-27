@@ -52,21 +52,21 @@ public class Splasher implements ModInitializer {
 		}
 	}
 
-	public record Pusher(AtomicBoolean reload) {
+	public record Pusher(AtomicBoolean ready) {
 		Pusher(boolean reload) {
 			this(new AtomicBoolean(reload));
 		}
 
-		public void letReload() {
-			reload.set(true);
+		public void let() {
+			ready.set(true);
 		}
 
-		public boolean shouldReload() {
-			return reload.get();
+		public boolean queue() {
+			return ready.get();
 		}
 
-		public boolean accessReload() {
-			return reload.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+		public boolean access() {
+			return ready.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class Splasher implements ModInitializer {
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.letReload();});
+						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.let();});
 			}
 		});
 	}
