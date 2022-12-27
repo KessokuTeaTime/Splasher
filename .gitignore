@@ -34,3 +34,7 @@ obj/
 # fabric
 
 run/
+
+# rust
+
+src/main/rust/formatter/target
