@@ -77,12 +77,13 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-			if (screen instanceof TitleScreen) {
-				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY))) PUSHER.letReload();});
-			}
-		});
+		if (CONFIG.load(SplasherConfig.class).randomRate.onClick())
+			ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+				if (screen instanceof TitleScreen) {
+					ScreenMouseEvents.beforeMouseClick(screen)
+							.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY))) PUSHER.letReload();});
+				}
+			});
 	}
 
 	public static boolean isMouseOverSplashText(Node origin, Node mouse) {
