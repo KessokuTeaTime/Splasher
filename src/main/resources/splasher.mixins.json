@@ -6,8 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "SplashTextColorer",
     "ResourceReloader",
+    "SplashTextColorer",
     "SplashTextResourceSupplierReplacer",
     "TitleScreenWidget"
   ],

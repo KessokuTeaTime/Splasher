@@ -25,7 +25,7 @@ public class SplashTextColorer extends DrawableHelper {
 	private void colorSplashText(MatrixStack matrixStack, TextRenderer textRenderer, String text, int xCentered, int y, int color) {
 		drawCenteredText(
 				matrixStack, textRenderer, Splasher.getFormattedSplashText(text),
-				xCentered, y, Splasher.CONFIG.load(SplasherConfig.class).colorful ? Splasher.getColor() : color
+				xCentered, y, Splasher.CONFIG.colorful ? Splasher.getColor() : color
 		);
 	}
 }

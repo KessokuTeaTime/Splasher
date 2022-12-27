@@ -18,8 +18,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final ConfigFile CONFIG = new ConfigFile(MOD_ID);
-	public static final Pusher PUSHER = new Pusher(CONFIG.loadAndSave(SplasherConfig.class).randomRate == SplasherConfig.RandomRate.JEB);
+	public static final SplasherConfig CONFIG = new ConfigFile(MOD_ID).loadAndSave(SplasherConfig.class);
+	public static final Pusher PUSHER = new Pusher(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
 	record Node(double x, double y) {
 		double getCross(Node p1, Node p2) {
@@ -66,24 +66,24 @@ public class Splasher implements ModInitializer {
 		}
 
 		public boolean accessReload() {
-			return reload.getAndSet(CONFIG.load(SplasherConfig.class).randomRate == SplasherConfig.RandomRate.JEB);
+			return reload.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 		}
 	}
 
 	// Splash text data
-	private static final ArrayList<Formatting> formattings = new ArrayList<>();
+	private static final ArrayList<Formatting> FORMATTINGS = new ArrayList<>();
 	private static int color = 0xFFFF00;
-	public static float height = 0, width = 0;
+	private static float height = 0, width = 0;
+	public static boolean isReady = false;
 
 	@Override
 	public void onInitialize() {
-		if (CONFIG.load(SplasherConfig.class).randomRate.onClick())
-			ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-				if (screen instanceof TitleScreen) {
-					ScreenMouseEvents.beforeMouseClick(screen)
-							.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY))) PUSHER.letReload();});
-				}
-			});
+		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+			if (screen instanceof TitleScreen) {
+				ScreenMouseEvents.beforeMouseClick(screen)
+						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.letReload();});
+			}
+		});
 	}
 
 	public static boolean isMouseOverSplashText(Node origin, Node mouse) {
@@ -99,18 +99,18 @@ public class Splasher implements ModInitializer {
 	}
 
 	public static void updateFormatting(ArrayList<Formatting> formattings, int color) {
-		if (CONFIG.load(SplasherConfig.class).colorful) {
+		if (CONFIG.colorful) {
 			Splasher.color = color;
 			if (formattings != null) {
-				Splasher.formattings.clear();
-				Splasher.formattings.addAll(formattings.stream().filter(Objects::nonNull).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+				Splasher.FORMATTINGS.clear();
+				Splasher.FORMATTINGS.addAll(formattings.stream().filter(Objects::nonNull).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 			}
 		}
 	}
 
 	public static Text getFormattedSplashText(String text) {
 		MutableText splashText = Text.literal(text);
-		formattings.forEach(splashText::formatted);
+		FORMATTINGS.forEach(splashText::formatted);
 		return splashText;
 	}
 

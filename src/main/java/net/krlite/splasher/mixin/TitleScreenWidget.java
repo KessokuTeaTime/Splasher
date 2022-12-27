@@ -26,12 +26,16 @@ public class TitleScreenWidget extends Screen {
 
     @Inject(method = "init()V", at = @At("TAIL"))
     private void init(CallbackInfo ci) {
-        if (Splasher.CONFIG.load(SplasherConfig.class).randomRate.onReload()) Splasher.PUSHER.letReload();
+        if ((Splasher.CONFIG.randomRate.onReload() && Splasher.isReady)) Splasher.PUSHER.letReload();
+        if (!Splasher.isReady) {
+            if (Splasher.CONFIG.randomRate.onClick() && !Splasher.CONFIG.randomRate.onReload()) Splasher.PUSHER.letReload();
+            Splasher.isReady = true;
+        }
     }
 
     @Inject(method = "render", at = @At("HEAD"))
     private void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (Splasher.PUSHER.accessReload()) splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
+        if (Splasher.PUSHER.shouldReload()) splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
     }
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V"), index = 0)

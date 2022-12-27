@@ -23,7 +23,7 @@ public class SplashTextLoader {
 		Scanner scanner = new Scanner(file);
 		while (scanner.hasNextLine()) result.add(scanner.nextLine());
 
-		if (result.isEmpty() && !(Splasher.CONFIG.load(SplasherConfig.class).randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.warn("Loaded empty custom splash text.");
+		if (result.isEmpty() && !(Splasher.CONFIG.randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.warn("Loaded empty custom splash text.");
 		return result;
 	}
 
@@ -32,10 +32,10 @@ public class SplashTextLoader {
 			try {
 				return loadFromFile();
 			} catch (Exception exception) {
-				if (!(Splasher.CONFIG.load(SplasherConfig.class).randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.debug("Failed to load custom splash texts: ", exception);
+				if (!(Splasher.CONFIG.randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.debug("Failed to load custom splash texts: ", exception);
 			}
 		}
-		if (!(Splasher.CONFIG.load(SplasherConfig.class).randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.error("Failed to load custom splash texts: File " + file.getName() + " not found.");
+		if (!(Splasher.CONFIG.randomRate == SplasherConfig.RandomRate.JEB)) Splasher.LOGGER.error("Failed to load custom splash texts: File " + file.getName() + " not found.");
 		return new ArrayList<>();
 	}
 }

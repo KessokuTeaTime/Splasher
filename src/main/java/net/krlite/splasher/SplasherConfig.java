@@ -19,17 +19,17 @@ public class SplasherConfig {
 	/* Enum */
 	@Category("enum")
 
-	@Comment("Never            - Never show random splash texts")
-	@Comment("Reload           - Refresh splash texts after reloading resources")
-	@Comment("Click            - Refresh splash texts when clicking the lightning icon")
-	@Comment(value = "Reload and Click - Refresh splash texts when reloading and clicking", newLine = LineBreak.AFTER)
+	@Comment("Never  - Never show random splash texts")
+	@Comment("Reload - Refresh after reloading resources")
+	@Comment("Click  - Refresh when clicking the splash text")
+	@Comment(value = "Both   - Refresh splash texts when reloading and clicking", newLine = LineBreak.AFTER)
 
 	@Option(key = "random_rate", name = "Splash Texts Refresh Rate")
-	public RandomRate randomRate = RandomRate.RELOAD_CLICK;
+	public RandomRate randomRate = RandomRate.BOTH;
 
 	@Category("enum")
 
-	@Comment("Disabled - Disable splash texts")
+	@Comment("Disabled - Disable splash texts, only show debug info")
 	@Comment("Vanilla  - Only show vanilla splash texts")
 	@Comment("Custom   - Only show custom splash texts")
 	@Comment("Both     - Show both vanilla and custom splash texts")
@@ -39,7 +39,7 @@ public class SplasherConfig {
 
 	public enum RandomRate implements EnumLocalizable {
 		NEVER(false, false, "Never"),
-		RELOAD_CLICK(true, true, "Reload and Click"),
+		BOTH(true, true, "Both"),
 		ON_RELOAD(true, false, "Reload"),
 		ON_CLICK(false, true, "Click"),
 		JEB(false, false, "Jens Bergensten");
