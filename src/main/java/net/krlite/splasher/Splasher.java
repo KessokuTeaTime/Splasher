@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final SplasherConfig CONFIG = new ConfigFile(MOD_ID).loadAndSave(SplasherConfig.class);
+	public static final SplasherConfig CONFIG = new ConfigFile<>(SplasherConfig.class, MOD_ID).operate();
 	public static final Pusher PUSHER = new Pusher(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
 	record Node(double x, double y) {

@@ -22,7 +22,7 @@ public class SplasherConfig {
 	@Comment("Never  - Never show random splash texts")
 	@Comment("Reload - Refresh after reloading resources")
 	@Comment("Click  - Refresh when clicking the splash text")
-	@Comment(value = "Both   - Refresh splash texts when reloading and clicking", newLine = LineBreak.AFTER)
+	@Comment(value = "Both   - Refresh splash texts when reloading and clicking", end = LineBreak.AFTER)
 
 	@Option(key = "random_rate", name = "Splash Texts Refresh Rate")
 	public RandomRate randomRate = RandomRate.BOTH;
