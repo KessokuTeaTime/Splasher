@@ -21,52 +21,52 @@ public class Splasher implements ModInitializer {
 	public static final SplasherConfig CONFIG = new ConfigFile<>(SplasherConfig.class, MOD_ID).operate();
 	public static final Pusher PUSHER = new Pusher(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
-	record Node(double x, double y) {
-		double getCross(Node p1, Node p2) {
+	public record Node(double x, double y) {
+		public double getCross(Node p1, Node p2) {
 			return (p2.x - p1.x) * (this.y - p1.y) - (this.x - p1.x) * (p2.y - p1.y);
 		}
 
-		Node rotate(Node origin, double clockwiseDegree) {
+		public Node rotate(Node origin, double clockwiseDegree) {
 			return new Node(
 					(this.x - origin.x) * Math.cos(Math.toRadians(clockwiseDegree)) - (this.y - origin.y) * Math.sin(Math.toRadians(clockwiseDegree)) + origin.x,
 					(this.x - origin.x) * Math.sin(Math.toRadians(clockwiseDegree)) + (this.y - origin.y) * Math.cos(Math.toRadians(clockwiseDegree)) + origin.y
 			);
 		}
 
-		Node append(Node node) {
+		public Node append(Node node) {
 			return new Node(this.x + node.x, this.y + node.y);
 		}
 	}
 
-	record Rect(Node lu, Node ld, Node rd, Node ru) {
-		Rect(Node lu, Node rd) {
+	public record Rect(Node lu, Node ld, Node rd, Node ru) {
+		public Rect(Node lu, Node rd) {
 			this(lu, new Node(lu.x, rd.y), rd, new Node(rd.x, lu.y));
 		}
 
-		boolean contains(Node node) {
+		public boolean contains(Node node) {
 			return node.getCross(ld, lu) * node.getCross(ru, rd) >= 0 && node.getCross(lu, ru) * node.getCross(rd, ld) >= 0;
 		}
 
-		Rect rotate(Node origin, double clockwiseDegree) {
+		public Rect rotate(Node origin, double clockwiseDegree) {
 			return new Rect(lu.rotate(origin, clockwiseDegree), ld.rotate(origin, clockwiseDegree), rd.rotate(origin, clockwiseDegree), ru.rotate(origin, clockwiseDegree));
 		}
 	}
 
 	public record Pusher(AtomicBoolean ready) {
-		Pusher(boolean ready) {
+		public Pusher(boolean ready) {
 			this(new AtomicBoolean(ready));
 		}
 
-		public void let() {
+		public void push() {
 			ready.set(true);
 		}
 
-		public boolean queue() {
-			return ready.get();
+		public boolean pull() {
+			return ready.get() && ready.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 		}
 
-		public boolean access() {
-			return ready.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+		public void run(Runnable runnable) {
+			if (pull()) runnable.run();
 		}
 	}
 
@@ -74,14 +74,14 @@ public class Splasher implements ModInitializer {
 	private static final ArrayList<Formatting> FORMATTINGS = new ArrayList<>();
 	private static int color = 0xFFFF00;
 	private static float height = 0, width = 0;
-	public static boolean isReady = false;
+	public static boolean initialized = false;
 
 	@Override
 	public void onInitialize() {
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.let();});
+						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.push();});
 			}
 		});
 	}

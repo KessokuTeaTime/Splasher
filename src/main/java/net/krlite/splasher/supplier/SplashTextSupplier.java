@@ -2,7 +2,6 @@ package net.krlite.splasher.supplier;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.krlite.splasher.Splasher;
-import net.krlite.splasher.SplasherConfig;
 import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
@@ -16,7 +15,9 @@ import java.util.*;
 import static net.krlite.splasher.Splasher.CONFIG;
 
 public class SplashTextSupplier {
-	public String getSplashes(Session session, List<String> splashTexts) {
+	private static int lastRandomIndex = -1;
+
+	public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.MOD_ID);
 		
 		if (CONFIG.colorful) {
@@ -37,14 +38,11 @@ public class SplashTextSupplier {
 			Splasher.LOGGER.error("Empty stack!");
 			return null;
 		}
-		final int random = new Random().nextInt(customSplashTexts.size());
+
+		final int random = nextRandomIndex(customSplashTexts.size());
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
-
-
-
-		//LOGGER.warn(customSplashTexts.toString());
 
 		if (CONFIG.enableFestivals) {
 			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
@@ -74,22 +72,30 @@ public class SplashTextSupplier {
 		return null;
 	}
 
-	private String getXmasSplash(boolean translate) {
+	private static int nextRandomIndex(int size) {
+		if (size < 0) return -1;
+		int index = new Random().nextInt(size);
+
+		if (index == lastRandomIndex) return nextRandomIndex(size);
+		return lastRandomIndex = index;
+	}
+
+	private static String getXmasSplash(boolean translate) {
 		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".x_mas").getString();
 		else return "Merry X-mas!";
 	}
 
-	private String getNewYearSplash(boolean translate) {
+	private static String getNewYearSplash(boolean translate) {
 		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".new_year").getString();
 		else return "Happy new year!";
 	}
 
-	private String getHalloweenSplash(boolean translate) {
+	private static String getHalloweenSplash(boolean translate) {
 		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".halloween").getString();
 		else return "OOoooOOOoooo! Spooky!";
 	}
 
-	private String getPlayerSplash(boolean translate) {
+	private static String getPlayerSplash(boolean translate) {
 		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you").getString();
 		else return " IS YOU";
 	}

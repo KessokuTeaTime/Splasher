@@ -15,6 +15,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Mixin(MinecraftClient.class)
+class MinecraftClientTrigger {
+    @Inject(method = "setScreen", at = @At("TAIL"))
+    private void trigger(Screen screen, CallbackInfo ci) {
+        if (screen instanceof TitleScreen) {
+            if ((Splasher.CONFIG.randomRate.onReload() && Splasher.initialized)) Splasher.PUSHER.push();
+            else if (!Splasher.initialized) Splasher.initialized = true;
+        }
+    }
+}
+
 @Mixin(TitleScreen.class)
 public class TitleScreenWidget extends Screen {
     @Shadow @Nullable @Mutable private String splashText;
@@ -23,18 +34,9 @@ public class TitleScreenWidget extends Screen {
         super(title);
     }
 
-    @Inject(method = "init()V", at = @At("TAIL"))
-    private void init(CallbackInfo ci) {
-        if ((Splasher.CONFIG.randomRate.onReload() && Splasher.isReady)) Splasher.PUSHER.let();
-        if (!Splasher.isReady) {
-            if (Splasher.CONFIG.randomRate.onClick() && !Splasher.CONFIG.randomRate.onReload()) Splasher.PUSHER.let();
-            Splasher.isReady = true;
-        }
-    }
-
     @Inject(method = "render", at = @At("HEAD"))
     private void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (Splasher.PUSHER.queue()) splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
+        Splasher.PUSHER.run(() -> splashText = MinecraftClient.getInstance().getSplashTextLoader().get());
     }
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V"), index = 0)

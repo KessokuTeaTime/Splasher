@@ -14,27 +14,27 @@ public class SplasherConfig {
 
 	/* Debug */
 	@Category("debug")
-	public @Option(key = "disable_debug_info", comment = "Debug info will not be logged if true") boolean disableDebugInfo = false;
+	public @Option(key = "debug_info", comment = "Whether to show debug info") boolean debugInfo = true;
 
 	/* Enum */
 	@Category("enum")
 
-	@Comment("Never  - Never show random splash texts")
-	@Comment("Reload - Refresh after reloading resources")
-	@Comment("Click  - Refresh when clicking the splash text")
-	@Comment(value = "Both   - Refresh splash texts when reloading and clicking", end = LineBreak.AFTER)
+	@Comment("Never  - Never reload splash texts")
+	@Comment("Reload - Reload after reloading resources")
+	@Comment("Click  - Reload when clicking on the splash text")
+	@Comment(value = "Both   - Reload both at reloading and clicking", end = LineBreak.AFTER)
 
-	@Option(key = "random_rate", name = "Splash Texts Refresh Rate")
+	@Option(key = "random_rate", name = "Controls the rate of randomization")
 	public RandomRate randomRate = RandomRate.BOTH;
 
 	@Category("enum")
 
-	@Comment("Disabled - Disable splash texts, only show debug info")
-	@Comment("Vanilla  - Only show vanilla splash texts")
-	@Comment("Custom   - Only show custom splash texts")
+	@Comment("Disabled - Disable splash texts")
+	@Comment("Vanilla  - Show only vanilla splash texts")
+	@Comment("Custom   - Show only custom splash texts")
 	@Comment("Both     - Show both vanilla and custom splash texts")
 
-	@Option(key = "splash_mode", name = "Splash Texts Display Mode")
+	@Option(key = "splash_mode", name = "Controls the display contents")
 	public SplashMode splashMode = SplashMode.BOTH;
 
 	public enum RandomRate implements EnumLocalizable {
