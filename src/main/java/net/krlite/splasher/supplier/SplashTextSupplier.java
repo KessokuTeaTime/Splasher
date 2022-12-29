@@ -6,7 +6,7 @@ import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Session;
-import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import org.apache.commons.compress.utils.Lists;
 
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class SplashTextSupplier {
 		}
 
 		if (CONFIG.splashMode.isVanilla() && random <= splashTexts.size()) {
-			if (CONFIG.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
+			if (CONFIG.followClientLanguage) return new TranslatableText("splash.minecraft." + random).getString();
 			else return customSplashTexts.get(random);
 		}
 
@@ -81,22 +81,22 @@ public class SplashTextSupplier {
 	}
 
 	private static String getXmasSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".x_mas").getString();
+		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".x_mas").getString();
 		else return "Merry X-mas!";
 	}
 
 	private static String getNewYearSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".new_year").getString();
+		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".new_year").getString();
 		else return "Happy new year!";
 	}
 
 	private static String getHalloweenSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".halloween").getString();
+		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".halloween").getString();
 		else return "OOoooOOOoooo! Spooky!";
 	}
 
 	private static String getPlayerSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you").getString();
+		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".is_you").getString();
 		else return " IS YOU";
 	}
 }
