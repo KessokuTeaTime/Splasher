@@ -1,7 +1,8 @@
+### <p align=right>[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
+
 ![Banner](artwork/banner.png)
 
 **Customize Minecraft's Splash Texts at Your Will!**
-[`Modrinth →`](https://modrinth.com/mod/splasher)
 
 ## Contributing a Translation
 
