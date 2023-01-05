@@ -3,9 +3,6 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_19
-targetCompatibility = JavaVersion.VERSION_19
-
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
@@ -20,9 +17,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	/* Plume Config v3.2.2 */
-	modApi include("maven.modrinth:plumeconfig:HSWWSnSj")
-	modLocalRuntime("org.tomlj:tomlj:1.1.0")
+	modImplementation include("maven.modrinth:plumeconfig:${project.plumeconfig_version}")
 }
 
 processResources {
@@ -38,6 +33,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
 	withSourcesJar()
 }
 
