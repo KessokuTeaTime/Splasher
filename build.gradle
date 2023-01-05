@@ -17,7 +17,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation include("maven.modrinth:plumeconfig:qSZ0Q9ek")
+	modImplementation include("maven.modrinth:plumeconfig:${project.plumeconfig_version}")
 }
 
 processResources {
