@@ -71,8 +71,7 @@ public class Splasher implements ModInitializer {
 				ScreenMouseEvents.beforeMouseClick(screen)
 						.register((currentScreen, mouseX, mouseY, button) -> {
 							if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 6), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) {
-								PUSHER.push();
-								playClickingSound();
+								PUSHER.push(Splasher::playClickingSound);
 							}
 						});
 			}
