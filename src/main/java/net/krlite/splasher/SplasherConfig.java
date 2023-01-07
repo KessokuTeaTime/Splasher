@@ -1,40 +1,49 @@
 package net.krlite.splasher;
 
-import net.krlite.plumeconfig.annotation.Category;
-import net.krlite.plumeconfig.annotation.Comment;
-import net.krlite.plumeconfig.annotation.Option;
-import net.krlite.plumeconfig.api.EnumLocalizable;
-import net.krlite.plumeconfig.io.LineBreak;
+import net.krlite.pierced.annotation.Category;
+import net.krlite.pierced.annotation.Comment;
+import net.krlite.pierced.config.Pierced;
+import net.krlite.pierced.core.EnumLocalizable;
 
-public class SplasherConfig {
-	public @Option(key = "enable_splash_texts") boolean enableSplashTexts = true;
-	public @Option(key = "enable_festivals") boolean enableFestivals = true;
-	public @Option(key = "follow_client_language") boolean followClientLanguage = true;
-	public @Option(comment = "Make splash texts a little colorful") boolean colorful = false;
+import java.io.File;
+
+public class SplasherConfig extends Pierced {
+	public SplasherConfig(File file) {
+		super(SplasherConfig.class, file);
+	}
+
+	public boolean enableSplashTexts = true;
+	public boolean enableFestivals = true;
+	public boolean followClientLanguage = true;
 
 	/* Debug */
 	@Category("debug")
-	public @Option(key = "debug_info", comment = "Whether to show debug info") boolean debugInfo = true;
+	@Comment("Show debug info")
+	public boolean debugInfo = true;
 
-	/* Enum */
-	@Category("enum")
+	/* Splash */
+	@Category("splash")
+	@Comment("Make splash texts a little colorful")
+	public boolean colorful = false;
 
+	@Category("splash")
+
+	@Comment("Controls the splash text random rate")
+	@Comment
 	@Comment("Never  - Never reload splash texts")
 	@Comment("Reload - Reload after reloading resources")
 	@Comment("Click  - Reload when clicking on the splash text")
-	@Comment(value = "Both   - Reload both at reloading and clicking", end = LineBreak.AFTER)
-
-	@Option(key = "random_rate", name = "Controls the rate of randomization")
+	@Comment("Both   - Reload both at reloading and clicking")
 	public RandomRate randomRate = RandomRate.BOTH;
 
-	@Category("enum")
+	@Category("splash")
 
+	@Comment("Controls the splash text contents")
+	@Comment
 	@Comment("Disabled - Disable splash texts")
 	@Comment("Vanilla  - Show only vanilla splash texts")
 	@Comment("Custom   - Show only custom splash texts")
 	@Comment("Both     - Show both vanilla and custom splash texts")
-
-	@Option(key = "splash_mode", name = "Controls the display contents")
 	public SplashMode splashMode = SplashMode.BOTH;
 
 	public enum RandomRate implements EnumLocalizable {
