@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.krlite.equator.util.Pusher;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -50,24 +51,6 @@ public class Splasher implements ModInitializer {
 
 		public Rect rotate(Node origin, double clockwiseDegree) {
 			return new Rect(lu.rotate(origin, clockwiseDegree), ld.rotate(origin, clockwiseDegree), rd.rotate(origin, clockwiseDegree), ru.rotate(origin, clockwiseDegree));
-		}
-	}
-
-	public record Pusher(AtomicBoolean ready) {
-		public Pusher(boolean ready) {
-			this(new AtomicBoolean(ready));
-		}
-
-		public void push() {
-			ready.set(true);
-		}
-
-		public boolean pull() {
-			return ready.get() && ready.getAndSet(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
-		}
-
-		public void run(Runnable runnable) {
-			if (pull()) runnable.run();
 		}
 	}
 

@@ -37,7 +37,7 @@ public class TitleScreenWidget extends Screen {
 
     @Inject(method = "render", at = @At("HEAD"))
     private void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        Splasher.PUSHER.run(() -> splashText = MinecraftClient.getInstance().getSplashTextLoader().get());
+        Splasher.PUSHER.pull(() -> splashText = MinecraftClient.getInstance().getSplashTextLoader().get());
     }
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V"), index = 0)
