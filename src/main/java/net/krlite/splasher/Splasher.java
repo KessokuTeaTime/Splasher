@@ -5,7 +5,10 @@ import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.krlite.equator.util.Pusher;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -66,9 +69,17 @@ public class Splasher implements ModInitializer {
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) PUSHER.push();});
+						.register((currentScreen, mouseX, mouseY, button) -> {
+							if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 8), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick())
+								PUSHER.push(Splasher::playClickingSound);
+						});
 			}
 		});
+	}
+
+	public static void playClickingSound() {
+		if (MinecraftClient.getInstance() != null)
+			MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
 	}
 
 	public static boolean isMouseOverSplashText(Node origin, Node mouse) {
