@@ -3,7 +3,7 @@ package net.krlite.splasher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.krlite.plumeconfig.base.ConfigFile;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final SplasherConfig CONFIG = new ConfigFile<>(SplasherConfig.class, MOD_ID).operate();
+	public static final SplasherConfig CONFIG = new SplasherConfig(FabricLoader.getInstance().getConfigDir().resolve("splasher.toml").toFile());
 	public static final Pusher PUSHER = new Pusher(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
 	public record Node(double x, double y) {
@@ -79,6 +79,7 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		CONFIG.load();
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
