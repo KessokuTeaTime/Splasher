@@ -1,8 +1,8 @@
 package net.krlite.splasher;
 
 
-import net.krlite.pierced.annotation.Category;
 import net.krlite.pierced.annotation.Comment;
+import net.krlite.pierced.annotation.Table;
 import net.krlite.pierced.config.Pierced;
 import net.krlite.pierced.core.EnumLocalizable;
 
@@ -18,16 +18,16 @@ public class SplasherConfig extends Pierced {
 	public boolean followClientLanguage = true;
 
 	/* Debug */
-	@Category("debug")
+	@Table("debug")
 	@Comment("Show debug info")
-	public boolean debugInfo = true;
+	public boolean debugInfo = false;
 
 	/* Splash */
-	@Category("splash")
+	@Table("splash")
 	@Comment("Make splash texts a little colorful")
 	public boolean colorful = false;
 
-	@Category("splash")
+	@Table("splash")
 
 	@Comment("Controls the splash text random rate")
 	@Comment
@@ -37,7 +37,7 @@ public class SplasherConfig extends Pierced {
 	@Comment("Both   - Reload both at reloading and clicking")
 	public RandomRate randomRate = RandomRate.BOTH;
 
-	@Category("splash")
+	@Table("splash")
 
 	@Comment("Controls the splash text contents")
 	@Comment
@@ -45,7 +45,7 @@ public class SplasherConfig extends Pierced {
 	@Comment("Vanilla  - Show only vanilla splash texts")
 	@Comment("Custom   - Show only custom splash texts")
 	@Comment("Both     - Show both vanilla and custom splash texts")
-	public SplashMode splashMode = SplashMode.BOTH;
+	public SplashMode splashMode = SplashMode.VANILLA;
 
 	public enum RandomRate implements EnumLocalizable {
 		NEVER(false, false, "Never"),
