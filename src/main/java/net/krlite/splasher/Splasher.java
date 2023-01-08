@@ -66,6 +66,7 @@ public class Splasher implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		CONFIG.load();
+		CONFIG.save();
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
