@@ -20,7 +20,7 @@ mod info {
         },
         Festival {
             key: "is_you",
-            content: "%s IS YOU!",
+            content: "%s IS YOU",
         },
     ];
 
@@ -80,7 +80,7 @@ mod formatter {
 
         for festival in FESTIVALS.iter() {
             json.push_str(&format!(
-                "  \"{}.{}.{}\": \"{}\",\n",
+                "	\"{}.{}.{}\": \"{}\",\n",
                 "festival",
                 MOD_ID,
                 festival.key,
@@ -99,7 +99,7 @@ mod formatter {
             }
 
             json.push_str(&format!(
-                "  \"{}.{}.{}\": \"{}\",\n",
+                "	\"{}.{}.{}\": \"{}\",\n",
                 "splash", "minecraft", line_index, line
             ));
             line_index += 1;
