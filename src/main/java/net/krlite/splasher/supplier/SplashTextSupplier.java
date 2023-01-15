@@ -58,7 +58,7 @@ public class SplashTextSupplier {
 			}
 
 			if (session != null && random == 42) {
-				return session.getUsername().toUpperCase(Locale.ROOT) + getPlayerSplash(CONFIG.followClientLanguage);
+				return getPlayerSplash(CONFIG.followClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
 			}
 		}
 
@@ -95,8 +95,8 @@ public class SplashTextSupplier {
 		else return "OOoooOOOoooo! Spooky!";
 	}
 
-	private static String getPlayerSplash(boolean translate) {
-		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".is_you").getString();
-		else return " IS YOU";
+	private static String getPlayerSplash(boolean translate, String playerName) {
+		if (translate) return new TranslatableText("festival." + Splasher.MOD_ID + ".is_you", playerName).getString();
+		else return playerName + " IS YOU";
 	}
 }
