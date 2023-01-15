@@ -20,7 +20,7 @@ mod info {
         },
         Festival {
             key: "is_you",
-            content: "IS YOU!",
+            content: "%s IS YOU!",
         },
     ];
 
