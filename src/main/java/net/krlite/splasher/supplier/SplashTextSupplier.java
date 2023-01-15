@@ -97,6 +97,6 @@ public class SplashTextSupplier {
 
 	private static String getPlayerSplash(boolean translate, String playerName) {
 		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you", playerName).getString();
-		else return " IS YOU";
+		else return playerName + " IS YOU";
 	}
 }
