@@ -2,8 +2,8 @@ use std::{fs::OpenOptions, path::Path};
 
 mod info {
     pub const MOD_ID: &'static str = "splasher";
-    pub const SOURCE_FILE_PATH: &'static str = "src/in/splashes.txt";
-    pub const TARGET_FILE_PATH: &'static str = "src/out/en_us.json";
+    pub const SOURCE_FILE_PATH: &'static str = "src/1.19/splashes.txt";
+    pub const TARGET_FILE_PATH: &'static str = "src/1.19/en_us.json";
 
     pub const FESTIVALS: [Festival; 4] = [
         Festival {
