@@ -2,4 +2,4 @@
 
 ### <p align=right>[Main Branch `←`](https://github.com/Krlite/Splasher)&emsp;[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
 
-# This branch is for Splasher on Minecraft `1.18+`
+# Branch for Splasher on Minecraft `1.18+`
