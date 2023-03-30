@@ -4,12 +4,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.equator.util.Pusher;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -19,12 +16,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Splasher implements ModInitializer {
 	public static final String MOD_ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final SplasherConfig CONFIG = new SplasherConfig(FabricLoader.getInstance().getConfigDir().resolve(MOD_ID + ".toml").toFile());
-	public static final Pusher PUSHER = new Pusher(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
 	public record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
@@ -57,6 +55,14 @@ public class Splasher implements ModInitializer {
 		}
 	}
 
+	public static void push() {
+		shouldSplash.set(true);
+	}
+
+	public static boolean shouldSplash() {
+		return shouldSplash.getAndSet(false);
+	}
+
 	// Splash text data
 	private static final ArrayList<Formatting> FORMATTINGS = new ArrayList<>();
 	private static int color = 0xFFFF00;
@@ -71,8 +77,9 @@ public class Splasher implements ModInitializer {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
 						.register((currentScreen, mouseX, mouseY, button) -> {
-							if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + 90, 70 - 6), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) {
-								PUSHER.push(Splasher::playClickingSound);
+							if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + (CONFIG.lefty ? -90 : 90), 70 - 6), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) {
+								push();
+								playClickingSound();
 							}
 						});
 			}
@@ -88,7 +95,7 @@ public class Splasher implements ModInitializer {
 		return new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
-		).rotate(origin, -20).contains(mouse);
+		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
 	}
 
 	public static void updateSize(float width, float height) {

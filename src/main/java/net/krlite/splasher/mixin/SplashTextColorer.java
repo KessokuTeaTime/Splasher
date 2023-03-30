@@ -1,7 +1,6 @@
 package net.krlite.splasher.mixin;
 
 import net.krlite.splasher.Splasher;
-import net.krlite.splasher.SplasherConfig;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.TitleScreen;

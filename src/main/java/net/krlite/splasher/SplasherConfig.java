@@ -27,7 +27,10 @@ public class SplasherConfig extends Pierced {
 	public boolean colorful = false;
 
 	@Table("splash")
+	@Comment("Moves splash texts to the left")
+	public boolean lefty = false;
 
+	@Table("splash")
 	@Comment("Controls the splash text random rate")
 	@Comment
 	@Comment("Never  - Never reload splash texts")
