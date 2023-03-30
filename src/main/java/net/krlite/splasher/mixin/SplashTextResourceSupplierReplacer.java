@@ -55,7 +55,7 @@ public abstract class SplashTextResourceSupplierReplacer {
 
 			if (splashText != null) Splasher.LOGGER.info(
 					"Loaded splash: '" + splashText + "' in language "
-							+ (!CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode()) + "."
+							+ (!CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage()) + "."
 			);
 			else Splasher.LOGGER.warn("Loaded empty splash.");
 		}

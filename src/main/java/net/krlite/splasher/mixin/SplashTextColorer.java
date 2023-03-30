@@ -17,13 +17,13 @@ public class SplashTextColorer extends DrawableHelper {
 			method = "render",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawCenteredText(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"
+					target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"
 			), slice = @Slice(
 					to = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;isDemo()Z")
 			)
 	)
 	private void colorSplashText(MatrixStack matrixStack, TextRenderer textRenderer, String text, int xCentered, int y, int color) {
-		drawCenteredText(
+		drawCenteredTextWithShadow(
 				matrixStack, textRenderer, Splasher.getFormattedSplashText(text),
 				xCentered, y, Splasher.CONFIG.colorful ? Splasher.getColor() : color
 		);

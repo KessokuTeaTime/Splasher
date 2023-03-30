@@ -25,7 +25,7 @@ public class SplashTextSupplier {
 			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
 		}
 
-		String language = !CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage().getCode();
+		String language = !CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();
 
 		if (CONFIG.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
