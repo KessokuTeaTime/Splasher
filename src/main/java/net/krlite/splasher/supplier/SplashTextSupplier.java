@@ -18,7 +18,7 @@ public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
 
 	public static String getSplashes(Session session, List<String> splashTexts) {
-		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.MOD_ID);
+		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
 		
 		if (CONFIG.colorful) {
 			double formatting = new Random().nextDouble(1);
@@ -81,22 +81,22 @@ public class SplashTextSupplier {
 	}
 
 	private static String getXmasSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".x_mas").getString();
+		if (translate) return Text.translatable("festival." + Splasher.ID + ".x_mas").getString();
 		else return "Merry X-mas!";
 	}
 
 	private static String getNewYearSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".new_year").getString();
+		if (translate) return Text.translatable("festival." + Splasher.ID + ".new_year").getString();
 		else return "Happy new year!";
 	}
 
 	private static String getHalloweenSplash(boolean translate) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".halloween").getString();
+		if (translate) return Text.translatable("festival." + Splasher.ID + ".halloween").getString();
 		else return "OOoooOOOoooo! Spooky!";
 	}
 
 	private static String getPlayerSplash(boolean translate, String playerName) {
-		if (translate) return Text.translatable("festival." + Splasher.MOD_ID + ".is_you", playerName).getString();
+		if (translate) return Text.translatable("festival." + Splasher.ID + ".is_you", playerName).getString();
 		else return playerName + " IS YOU";
 	}
 }

@@ -3,7 +3,6 @@ package net.krlite.splasher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -19,12 +18,12 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Splasher implements ModInitializer {
-	public static final String MOD_ID = "splasher";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final SplasherConfig CONFIG = new SplasherConfig(FabricLoader.getInstance().getConfigDir().resolve(MOD_ID + ".toml").toFile());
+	public static final String NAME = "Splasher", ID = "splasher";
+	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
+	public static final SplasherConfig CONFIG = new SplasherConfig();
 	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
 
-	public record Node(double x, double y) {
+	record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
 			return (p2.x - p1.x) * (this.y - p1.y) - (this.x - p1.x) * (p2.y - p1.y);
 		}
@@ -41,7 +40,7 @@ public class Splasher implements ModInitializer {
 		}
 	}
 
-	public record Rect(Node lu, Node ld, Node rd, Node ru) {
+	record Rect(Node lu, Node ld, Node rd, Node ru) {
 		public Rect(Node lu, Node rd) {
 			this(lu, new Node(lu.x, rd.y), rd, new Node(rd.x, lu.y));
 		}
@@ -71,13 +70,11 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG.load();
-		CONFIG.save();
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
 						.register((currentScreen, mouseX, mouseY, button) -> {
-							if (isMouseOverSplashText(new Node(scaledWidth / 2.0 + (CONFIG.lefty ? -90 : 90), 70 - 6), new Node(mouseX, mouseY)) && CONFIG.randomRate.onClick()) {
+							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
 								push();
 								playClickingSound();
 							}
@@ -91,7 +88,12 @@ public class Splasher implements ModInitializer {
 			MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
 	}
 
-	public static boolean isMouseOverSplashText(Node origin, Node mouse) {
+	public static boolean isMouseHovering(double width, double mouseX, double mouseY) {
+		// Public so other mods can use
+		return isMouseHovering(new Node(width / 2.0 + (CONFIG.lefty ? -90 : 90), 70 - 6), new Node(mouseX, mouseY));
+	}
+
+	static boolean isMouseHovering(Node origin, Node mouse) {
 		return new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
