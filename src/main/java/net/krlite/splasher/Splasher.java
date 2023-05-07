@@ -3,6 +3,8 @@ package net.krlite.splasher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.krlite.bounced.Bounced;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -70,10 +72,17 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
+
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
 			if (screen instanceof TitleScreen) {
 				ScreenMouseEvents.beforeMouseClick(screen)
 						.register((currentScreen, mouseX, mouseY, button) -> {
+							if (isBouncedLoaded) {
+								// Linkage with Bounced
+								mouseY -= Bounced.primaryPos();
+							}
+
 							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
 								push();
 								playClickingSound();

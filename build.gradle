@@ -9,6 +9,7 @@ group = project.maven_group
 
 repositories {
 	maven { url 'https://jitpack.io' }
+	maven { url 'https://api.modrinth.com/maven' }
 }
 
 dependencies {
@@ -18,6 +19,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	implementation include("com.github.KrLite:Pierced:${project.pierced_version}")
+
+	compileOnly "maven.modrinth:bounced:${project.bounced_version}"
 }
 
 processResources {
