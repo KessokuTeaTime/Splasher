@@ -11,12 +11,14 @@ import net.krlite.splasher.Splasher;
 import java.io.File;
 
 public class SplasherConfig extends Pierced {
-	public SplasherConfig() {
-		super(SplasherConfig.class, config);
-	}
-
 	@Silent
-	private static final File config = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID + ".toml").toFile();
+	private static final File file = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID + ".toml").toFile();
+
+	public SplasherConfig() {
+		super(SplasherConfig.class, file);
+		load();
+		save();
+	}
 
 	public boolean enableSplashTexts = true;
 	public boolean enableFestivals = true;

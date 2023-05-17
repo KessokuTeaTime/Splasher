@@ -73,9 +73,6 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG.load();
-		CONFIG.save();
-
 		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
 
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
