@@ -2,7 +2,7 @@ package net.krlite.splasher.loader;
 
 import com.google.common.collect.Lists;
 import net.krlite.splasher.Splasher;
-import net.krlite.splasher.SplasherConfig;
+import net.krlite.splasher.config.SplasherConfig;
 
 import java.io.File;
 import java.io.FileNotFoundException;

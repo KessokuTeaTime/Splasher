@@ -1,4 +1,4 @@
-package net.krlite.splasher;
+package net.krlite.splasher.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.krlite.pierced.annotation.Comment;
@@ -6,6 +6,7 @@ import net.krlite.pierced.annotation.Silent;
 import net.krlite.pierced.annotation.Table;
 import net.krlite.pierced.config.Pierced;
 import net.krlite.pierced.core.EnumLocalizable;
+import net.krlite.splasher.Splasher;
 
 import java.io.File;
 
@@ -16,11 +17,6 @@ public class SplasherConfig extends Pierced {
 
 	@Silent
 	private static final File config = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID + ".toml").toFile();
-
-	{
-		load();
-		save(); // Format config
-	}
 
 	public boolean enableSplashTexts = true;
 	public boolean enableFestivals = true;

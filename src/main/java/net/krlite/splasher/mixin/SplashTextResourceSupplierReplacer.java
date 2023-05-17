@@ -1,7 +1,7 @@
 package net.krlite.splasher.mixin;
 
 import net.krlite.splasher.Splasher;
-import net.krlite.splasher.SplasherConfig;
+import net.krlite.splasher.config.SplasherConfig;
 import net.krlite.splasher.supplier.SplashTextSupplier;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
