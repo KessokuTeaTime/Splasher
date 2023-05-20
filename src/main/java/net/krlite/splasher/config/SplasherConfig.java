@@ -17,7 +17,6 @@ public class SplasherConfig extends Pierced {
 	public SplasherConfig() {
 		super(SplasherConfig.class, file);
 		load();
-		save();
 	}
 
 	public boolean enableSplashTexts = true;

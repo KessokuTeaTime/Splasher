@@ -73,6 +73,8 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		CONFIG.save();
+
 		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
 
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
@@ -104,7 +106,7 @@ public class Splasher implements ModInitializer {
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
-		return new Rect(
+		return CONFIG.enableSplashTexts && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
 		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
