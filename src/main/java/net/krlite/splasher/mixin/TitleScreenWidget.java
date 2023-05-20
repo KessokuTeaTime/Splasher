@@ -45,7 +45,7 @@ public class TitleScreenWidget extends Screen {
         return Splasher.CONFIG.lefty ? MinecraftClient.getInstance().getWindow().getScaledWidth() - x : x;
     }
 
-    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;"))
+    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/Vec3f;getDegreesQuaternion(F)Lnet/minecraft/util/math/Quaternion;"))
     private float rotate(float angle) {
         return Splasher.CONFIG.lefty ? -angle : angle;
     }
