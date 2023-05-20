@@ -4,7 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.bounced.Bounced;
 import net.krlite.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -81,7 +80,7 @@ public class Splasher implements ModInitializer {
 						.register((currentScreen, mouseX, mouseY, button) -> {
 							if (isBouncedLoaded) {
 								// Linkage with Bounced
-								mouseY -= Bounced.primaryPos();
+								//mouseY -= Bounced.primaryPos();
 							}
 
 							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
