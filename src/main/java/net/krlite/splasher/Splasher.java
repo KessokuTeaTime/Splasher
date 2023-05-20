@@ -9,6 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -125,7 +126,7 @@ public class Splasher implements ModInitializer {
 	}
 
 	public static Text getFormattedSplashText(String text) {
-		MutableText splashText = Text.literal(text);
+		MutableText splashText = new LiteralText(text);
 		FORMATTINGS.forEach(splashText::formatted);
 		return splashText;
 	}

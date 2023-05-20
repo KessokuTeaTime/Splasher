@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -53,7 +54,7 @@ public class TitleScreenWidget extends Screen {
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V"), index = 0)
     private float scale(float h) {
         Splasher.updateSize(
-                (splashText != null ? this.textRenderer.getWidth(Text.literal(splashText)) : 0) * h,
+                (splashText != null ? this.textRenderer.getWidth(new LiteralText(splashText)) : 0) * h,
                 10 * h
         );
         return h;
