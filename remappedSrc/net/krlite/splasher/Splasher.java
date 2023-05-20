@@ -81,7 +81,7 @@ public class Splasher implements ModInitializer {
 						.register((currentScreen, mouseX, mouseY, button) -> {
 							if (isBouncedLoaded) {
 								// Linkage with Bounced
-								//mouseY -= Bounced.primaryPos();
+								mouseY -= Bounced.primaryPos();
 							}
 
 							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {

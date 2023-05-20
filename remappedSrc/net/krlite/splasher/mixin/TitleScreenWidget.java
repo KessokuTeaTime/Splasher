@@ -40,8 +40,8 @@ public class TitleScreenWidget extends Screen {
             splashText = MinecraftClient.getInstance().getSplashTextLoader().get();
     }
 
-    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(DDD)V"), index = 0)
-    private double translateX(double x) {
+    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V"), index = 0)
+    private float translateX(float x) {
         return Splasher.CONFIG.lefty ? MinecraftClient.getInstance().getWindow().getScaledWidth() - x : x;
     }
 
