@@ -4,7 +4,6 @@ import net.krlite.splasher.Splasher;
 import net.krlite.splasher.config.SplasherConfig;
 import net.krlite.splasher.supplier.SplashTextSupplier;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
 import net.minecraft.client.util.Session;
 import org.spongepowered.asm.mixin.Final;
@@ -30,7 +29,7 @@ public abstract class SplashTextResourceSupplierReplacer {
 	private Session session;
 
 	@Inject(method = "get", at = @At("RETURN"), cancellable = true)
-	private void get(CallbackInfoReturnable<SplashTextRenderer> cir) {
+	private void get(CallbackInfoReturnable<String> cir) {
 		if (!Splasher.initialized) return;
 
 		if (!CONFIG.enableSplashTexts || (!CONFIG.splashMode.isVanilla() && !CONFIG.splashMode.isCustom())) {
@@ -46,7 +45,7 @@ public abstract class SplashTextResourceSupplierReplacer {
 		}
 
 		String splashText = SplashTextSupplier.getSplashes(session, splashTexts);
-		cir.setReturnValue(new SplashTextRenderer(splashText));
+		cir.setReturnValue(splashText);
 
 		if (CONFIG.debugInfo && !(CONFIG.randomRate == SplasherConfig.RandomRate.JEB) && CONFIG.enableSplashTexts) {
 			if (CONFIG.followClientLanguage) Splasher.LOGGER.info("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase());

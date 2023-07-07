@@ -5,7 +5,6 @@ import net.krlite.splasher.Splasher;
 import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;

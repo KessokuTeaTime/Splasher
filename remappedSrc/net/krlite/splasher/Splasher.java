@@ -101,7 +101,7 @@ public class Splasher implements ModInitializer {
 
 	public static boolean isMouseHovering(double width, double mouseX, double mouseY) {
 		// Public so other mods can use
-		return isMouseHovering(new Node(width / 2.0 + (CONFIG.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
+		return isMouseHovering(new Node(width / 2.0 + (CONFIG.lefty ? -90 : 90), 70 - 6), new Node(mouseX, mouseY));
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {

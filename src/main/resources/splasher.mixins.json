@@ -6,13 +6,14 @@
   "mixins": [
   ],
   "client": [
-    "MinecraftClientTrigger",
-    "ResourceReloader",
-    "SplashTextColorer",
-    "SplashTextResourceSupplierReplacer",
-    "TitleScreenWidget"
+	"MinecraftClientTrigger",
+	"ResourceReloader",
+	"SplashTextColorer",
+	"SplashTextRendererMixin",
+	"SplashTextResourceSupplierReplacer",
+	"TitleScreenMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+	"defaultRequire": 1
   }
 }
