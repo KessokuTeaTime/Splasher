@@ -1,6 +1,6 @@
-![Banner](/artwork/banner.png)
-
 ### <p align=right>[Main Branch `←`](https://github.com/Krlite/Splasher)&emsp;[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
+
+![Banner](artwork/banner.png)
 
 # Branch for Splasher on Minecraft `1.19+`
 
