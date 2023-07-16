@@ -2,7 +2,7 @@
 
 ![Banner](artwork/banner.png)
 
-# Splasher for `1.19+`
+### Splasher for `1.19+`
 
 > **Note**
 > This version of Splasher is outdated. Newer modifies will only be made to the latst few versions.
