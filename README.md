@@ -3,4 +3,4 @@
 ### Splasher for `1.18+`
 
 > **Note**
-> This version of Splasher is outdated. Newer modifies will only be made to the latst few versions.
+> This version of **Splasher** is outdated. Newer modifies will only be made to the latst few versions.
