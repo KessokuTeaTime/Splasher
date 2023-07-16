@@ -2,6 +2,7 @@
 
 ![Banner](artwork/banner.png)
 
-# Branch for Splasher on Minecraft `1.19+`
+# Splasher for `1.19+`
 
-### `Notice:` This version of Splasher is outdated. Newer modifies will only be made to the latst few versions.
+> **Note**
+> This version of Splasher is outdated. Newer modifies will only be made to the latst few versions.
