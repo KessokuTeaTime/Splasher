@@ -1,6 +1,6 @@
 ### <p align=right>[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
 
-![Banner](artwork/banner.png)
+![Banner](https://github.com/KrLite/Splasher/blob/artwork/banner.png)
 
 **Customize Minecraft's Splash Texts at Your Will!**
 
