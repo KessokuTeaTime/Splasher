@@ -37,6 +37,6 @@ Splasher is licensed under [GNU General Public License](LICENSE).
 
 ## Screenshots
 
-![Custom Splash Text](artwork/content/splash.png)
+![Custom Splash Text](https://github.com/KrLite/Splasher/blob/artwork/content/splash.png)
 
 > Splasher displaying custom splash text `Splasher!`
