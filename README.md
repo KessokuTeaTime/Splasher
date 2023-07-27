@@ -22,7 +22,7 @@ In these files, every single splash takes a single line, and `§ Formatting Code
 
 ## Configuring Splasher
 
-Splasher is using [Plume Config](https://github.com/KrLite/Plume-Config) and is fully configurable, you can find the config file under `.minecraft/config/splasher.toml`.
+Splasher is using **[Pierced](https://github.com/KrLite/Pierced)** and is fully configurable, you can find the config file under `.minecraft/config/splasher.toml`.
 
 Every option is well documented, and you can achieve different effects by changing the values, for example:
 
