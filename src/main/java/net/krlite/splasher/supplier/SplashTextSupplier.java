@@ -10,6 +10,7 @@ import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.*;
@@ -19,7 +20,7 @@ import static net.krlite.splasher.Splasher.CONFIG;
 public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
 
-	@NotNull public static String getSplashes(Session session, List<String> splashTexts) {
+	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
 		
 		if (CONFIG.colorful) {
@@ -38,7 +39,7 @@ public class SplashTextSupplier {
 				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
 			}
 			Splasher.LOGGER.error("Empty stack!");
-			return "";
+			return null;
 		}
 
 		final int random = nextRandomIndex(customSplashTexts.size());
@@ -71,7 +72,7 @@ public class SplashTextSupplier {
 
 		if (CONFIG.splashMode.isCustom()) return customSplashTexts.get(random);
 
-		return "";
+		return null;
 	}
 
 	private static int nextRandomIndex(int size) {

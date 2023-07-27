@@ -46,7 +46,7 @@ public abstract class SplashTextResourceSupplierReplacer {
 		}
 
 		String splashText = SplashTextSupplier.getSplashes(session, splashTexts);
-		cir.setReturnValue(new SplashTextRenderer(splashText));
+		cir.setReturnValue(new SplashTextRenderer(splashText == null ? "" : splashText));
 
 		if (CONFIG.debugInfo && !(CONFIG.randomRate == SplasherConfig.RandomRate.JEB) && CONFIG.enableSplashTexts) {
 			if (CONFIG.followClientLanguage) Splasher.LOGGER.info("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase());
