@@ -9,6 +9,7 @@ import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import org.apache.commons.compress.utils.Lists;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.*;
@@ -18,7 +19,7 @@ import static net.krlite.splasher.Splasher.CONFIG;
 public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
 
-	public static String getSplashes(Session session, List<String> splashTexts) {
+	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
 		
 		if (CONFIG.colorful) {
@@ -75,6 +76,7 @@ public class SplashTextSupplier {
 
 	private static int nextRandomIndex(int size) {
 		if (size < 0) return -1;
+		if (size == 1) return 0;
 		int index = new Random().nextInt(size);
 
 		if (index == lastRandomIndex) return nextRandomIndex(size);
