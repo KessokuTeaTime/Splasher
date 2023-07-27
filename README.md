@@ -33,7 +33,7 @@ Every option is well documented, and you can achieve different effects by changi
 
 ## License
 
-Splasher is licensed under [GNU General Public License](LICENSE).
+**Splasher** is licensed under [GNU General Public License](LICENSE).
 
 ## Screenshots
 
