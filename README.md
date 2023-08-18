@@ -10,7 +10,7 @@ Splasher turns Minecraft `splashes.txt` into `.json` files, and supports multi l
 
 You will find `en_us.json` under `assets/splasher/lang/` and feel free translate it into your favorite language.
 
-After translation, rename it to `xx_xx.json` (etc. `zh_cn.json`), and enjoy! You can also create a pull request to contribute.
+After translation, rename it to `xx_xx.json` (e.g., `zh_cn.json`), and enjoy! You can also create a pull request to contribute.
 
 ## Adding a Customization
 
