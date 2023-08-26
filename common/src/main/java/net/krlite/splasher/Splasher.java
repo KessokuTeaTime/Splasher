@@ -72,8 +72,6 @@ public class Splasher {
 
 	public static void onInitClient() {
 		CONFIG.save();
-
-
 	}
 
 	public static void playClickingSound() {
