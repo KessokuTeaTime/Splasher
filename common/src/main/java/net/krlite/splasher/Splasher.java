@@ -20,6 +20,7 @@ public class Splasher {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 	public static final SplasherConfig CONFIG = new SplasherConfig();
 	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	
 	public static final boolean isBouncedLoaded = Platform.isModLoaded("bounced");
 
 	record Node(double x, double y) {
