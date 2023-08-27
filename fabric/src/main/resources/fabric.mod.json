@@ -2,35 +2,29 @@
   "schemaVersion": 1,
   "id": "splasher",
   "version": "${version}",
-
   "name": "Splasher",
   "description": "Why Don't Splash?",
   "authors": [
-    "KrLite"
+    "KrLite", "TexTrue"
   ],
   "contact": {
     "homepage": "https://github.com/KrLite",
     "sources": "https://github.com/KrLite/Splasher"
   },
-
   "license": "GPL-3.0",
-  "icon": "assets/splasher/icon.png",
-
-  "environment": "*",
+  "icon": "icon.png",
+  "environment": "client",
   "entrypoints": {
-    "main": [
-      "net.krlite.splasher.Splasher"
+    "client": [
+      "net.krlite.splasher.fabric.SplasherClientFabric"
     ]
   },
-  "mixins": [
-    "splasher.mixins.json"
-  ],
-
   "depends": {
-    "fabricloader": ">=0.14.19",
-    "fabric-api": "*",
-    "minecraft": "~1.19.3"
+    "fabric": "*",
+    "minecraft": "1.19.3",
+    "architectury": "*"
   },
-  "suggests": {
-  }
+  "mixins": [
+    "splasher.common.mixins.json"
+  ]
 }
