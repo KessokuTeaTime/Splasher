@@ -1,5 +1,6 @@
 package net.krlite.splasher.fabric;
 
+import dev.architectury.event.EventResult;
 import dev.architectury.event.events.client.ClientGuiEvent;
 import dev.architectury.event.events.client.ClientScreenInputEvent;
 import net.fabricmc.api.ClientModInitializer;
@@ -24,7 +25,7 @@ public class SplasherClientFabric implements ClientModInitializer {
                         Splasher.push();
                         Splasher.playClickingSound();
                     }
-                    return null;
+                    return EventResult.pass();
                 });
             }
         });

@@ -1,5 +1,6 @@
 package net.krlite.splasher.forge;
 
+import dev.architectury.event.EventResult;
 import dev.architectury.event.events.client.ClientGuiEvent;
 import dev.architectury.event.events.client.ClientScreenInputEvent;
 import dev.architectury.platform.forge.EventBuses;
@@ -29,12 +30,12 @@ public class SplasherClientForge {
 
             ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
                 if (screen instanceof TitleScreen) {
-                    ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client1, currentScreen, mouseX, mouseY, button) -> {
+                    ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
                         if (Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
                             Splasher.push();
                             Splasher.playClickingSound();
                         }
-                        return null;
+                        return EventResult.pass();
                     });
                 }
             });
