@@ -10,7 +10,6 @@ architectury {
 loom {
     forge {
         mixinConfig "splasher.common.mixins.json"
-        //mixinConfig "examplemod.mixins.json"
     }
 }
 
