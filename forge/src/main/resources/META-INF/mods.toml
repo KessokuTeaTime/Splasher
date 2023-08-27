@@ -7,7 +7,7 @@ modId = "splasher"
 version = "${version}"
 displayName = "Splasher"
 displayURL = "https://github.com/KrLite/Splasher"
-authors = "KrLite"
+authors = "KrLite, TexTrue"
 description = '''
 Why Don't Splash?
 '''
