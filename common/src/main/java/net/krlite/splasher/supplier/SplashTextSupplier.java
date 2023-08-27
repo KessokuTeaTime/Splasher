@@ -1,15 +1,13 @@
 package net.krlite.splasher.supplier;
 
-import net.fabricmc.loader.api.FabricLoader;
+import dev.architectury.platform.Platform;
 import net.krlite.splasher.Splasher;
 import net.krlite.splasher.base.FormattingType;
 import net.krlite.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
@@ -21,7 +19,7 @@ public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
 
 	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
-		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
+		Path path = Platform.getConfigFolder().resolve(Splasher.ID);
 		
 		if (CONFIG.colorful) {
 			double formatting = new Random().nextDouble(1);

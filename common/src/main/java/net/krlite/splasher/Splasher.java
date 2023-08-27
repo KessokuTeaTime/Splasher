@@ -1,11 +1,8 @@
 package net.krlite.splasher;
 
-import dev.architectury.event.events.client.ClientGuiEvent;
-import dev.architectury.event.events.client.ClientScreenInputEvent;
 import dev.architectury.platform.Platform;
 import net.krlite.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
