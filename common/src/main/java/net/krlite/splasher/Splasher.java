@@ -1,13 +1,8 @@
 package net.krlite.splasher;
 
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.bounced.Bounced;
+import dev.architectury.platform.Platform;
 import net.krlite.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
@@ -20,11 +15,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Splasher implements ModInitializer {
+public class Splasher {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 	public static final SplasherConfig CONFIG = new SplasherConfig();
 	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+
+	public static final boolean isBouncedLoaded = Platform.isModLoaded("bounced");
 
 	record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
@@ -71,28 +68,8 @@ public class Splasher implements ModInitializer {
 	private static float height = 0, width = 0;
 	public static boolean initialized = false;
 
-	@Override
-	public void onInitialize() {
+	public static void onInitClient() {
 		CONFIG.save();
-
-		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
-
-		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-			if (screen instanceof TitleScreen) {
-				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {
-							if (isBouncedLoaded) {
-								// Linkage with Bounced
-								mouseY -= Bounced.primaryPos();
-							}
-
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
-								push();
-								playClickingSound();
-							}
-						});
-			}
-		});
 	}
 
 	public static void playClickingSound() {
