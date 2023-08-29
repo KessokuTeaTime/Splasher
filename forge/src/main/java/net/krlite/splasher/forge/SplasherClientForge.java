@@ -18,8 +18,14 @@ import net.minecraftforge.network.NetworkConstants;
 public class SplasherClientForge {
     public SplasherClientForge() {
         EventBuses.registerModEventBus(Splasher.ID, FMLJavaModLoadingContext.get().getModEventBus());
+
         IEventBus modEventBus = EventBuses.getModEventBus(Splasher.ID).get();
-        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        ModLoadingContext.get().registerExtensionPoint(
+                IExtensionPoint.DisplayTest.class,
+                () -> new IExtensionPoint.DisplayTest(
+                        () -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true
+                )
+        );
 
         modEventBus.addListener(this::onInitializeClient);
     }
@@ -31,7 +37,10 @@ public class SplasherClientForge {
             ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
                 if (screen instanceof TitleScreen) {
                     ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
-                        if (Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
+                        if (Splasher.isMouseHovering(
+                                screenAccess.getScreen().width, mouseX, mouseY)
+                                    && Splasher.CONFIG.randomRate.onClick()
+                        ) {
                             Splasher.push();
                             Splasher.playClickingSound();
                         }
@@ -40,6 +49,5 @@ public class SplasherClientForge {
                 }
             });
         });
-
     }
 }
