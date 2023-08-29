@@ -28,7 +28,10 @@ public class SplasherClientForge {
             ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
                 if (screen instanceof TitleScreen) {
                     ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
-                        if (Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
+                        if (
+                                Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY)
+                                        && Splasher.CONFIG.randomRate.onClick()
+                        ) {
                             Splasher.push();
                             Splasher.playClickingSound();
                         }
