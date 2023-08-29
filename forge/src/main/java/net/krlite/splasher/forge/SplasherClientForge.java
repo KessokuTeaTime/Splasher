@@ -22,9 +22,7 @@ public class SplasherClientForge {
         IEventBus modEventBus = EventBuses.getModEventBus(Splasher.ID).get();
         ModLoadingContext.get().registerExtensionPoint(
                 IExtensionPoint.DisplayTest.class,
-                () -> new IExtensionPoint.DisplayTest(
-                        () -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true
-                )
+                () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true)
         );
 
         modEventBus.addListener(this::onInitializeClient);
