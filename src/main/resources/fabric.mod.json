@@ -16,7 +16,7 @@
   "license": "GPL-3.0",
   "icon": "assets/splasher/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "net.krlite.splasher.Splasher"
