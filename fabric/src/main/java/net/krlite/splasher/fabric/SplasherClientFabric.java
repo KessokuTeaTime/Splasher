@@ -20,8 +20,8 @@ public class SplasherClientFabric implements ClientModInitializer {
                         // Linkage with Bounced
                         mouseY -= Bounced.primaryPos();
                     }
-
-                    if (Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
+                    double scaledWidth = screenAccess.getScreen().width;
+                    if (Splasher.isMouseHovering(scaledWidth, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
                         Splasher.push();
                         Splasher.playClickingSound();
                     }
