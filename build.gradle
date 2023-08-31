@@ -10,10 +10,6 @@ architectury {
 subprojects {
     apply plugin: "dev.architectury.loom"
 
-    loom {
-        silentMojangMappingsLicense()
-    }
-
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
