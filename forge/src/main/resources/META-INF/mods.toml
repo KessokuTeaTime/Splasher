@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[39,)"
+license = "GPL-3.0"
+
+[[mods]]
+modId = "splasher"
+version = "${version}"
+displayName = "Splasher"
+displayURL = "https://github.com/KrLite/Splasher"
+authors = "KrLite, TexTrue"
+description = '''
+Why Don't Splash?
+'''
+logoFile = "icon.png"
+
+[[dependencies.splasher]]
+modId = "forge"
+mandatory = true
+versionRange = "[39,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.splasher]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18,1.18.2]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.splasher]]
+modId = "architectury"
+mandatory = true
+versionRange = "[4,)"
+ordering = "AFTER"
+side = "BOTH"
