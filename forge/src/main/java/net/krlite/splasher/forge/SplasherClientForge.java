@@ -31,12 +31,13 @@ public class SplasherClientForge {
         ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
             if (screen instanceof TitleScreen) {
                 ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
+                    double scaledWidth = screenAccess.getScreen().width;
                     if (Splasher.isBouncedLoaded) {
                         // Linkage with Bounced
                         mouseY -= Bounced.primaryPos();
                     }
 
-                    if (Splasher.isMouseHovering(screenAccess.getScreen().width, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
+                    if (Splasher.isMouseHovering(scaledWidth, mouseX, mouseY) && Splasher.CONFIG.randomRate.onClick()) {
                         Splasher.push();
                         Splasher.playClickingSound();
                     }
