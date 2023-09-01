@@ -28,6 +28,7 @@ dependencies {
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
     implementation include("com.github.KrLite:Pierced:${project.pierced_version}")
+    compileOnly "maven.modrinth:bounced:forge-${project.bounced_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
