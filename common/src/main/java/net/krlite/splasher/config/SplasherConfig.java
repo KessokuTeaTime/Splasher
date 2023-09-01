@@ -1,6 +1,6 @@
 package net.krlite.splasher.config;
 
-import net.fabricmc.loader.api.FabricLoader;
+import dev.architectury.platform.Platform;
 import net.krlite.pierced.annotation.Comment;
 import net.krlite.pierced.annotation.Silent;
 import net.krlite.pierced.annotation.Table;
@@ -12,7 +12,7 @@ import java.io.File;
 
 public class SplasherConfig extends Pierced {
 	@Silent
-	private static final File file = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID + ".toml").toFile();
+	private static final File file = Platform.getConfigFolder().resolve(Splasher.ID + ".toml").toFile();
 
 	public SplasherConfig() {
 		super(SplasherConfig.class, file);
