@@ -12,7 +12,8 @@
     "sources": "https://github.com/KrLite/Splasher"
   },
   "license": "GPL-3.0",
-  "icon": "icon.png",
+  "icon": "assets/splasher/icon.png",
+
   "environment": "client",
   "entrypoints": {
     "client": [
