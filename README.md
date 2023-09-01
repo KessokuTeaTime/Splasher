@@ -1,6 +1,6 @@
 ### <p align=right>[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
 
-![Banner](https://github.com/KrLite/Splasher/blob/artwork/banner.png)
+![Banner](https://github.com/KessokuTeaTime/Splasher/blob/artwork/banner.png)
 
 **Customize Minecraft's Splash Texts at Your Will!**
 
@@ -37,6 +37,6 @@ Every option is well documented, and you can achieve different effects by changi
 
 ## Screenshots
 
-![Custom Splash Text](https://github.com/KrLite/Splasher/blob/artwork/content/splash.png)
+![Custom Splash Text](https://github.com/KessokuTeaTime/Splasher/blob/artwork/content/splash.png)
 
 > Splasher displaying custom splash text `Splasher!`
