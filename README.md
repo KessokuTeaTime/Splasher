@@ -1,7 +1,5 @@
 ### <p align=right>[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
 
-###### <p align=right>This is an [Architectury](https://modrinth.com/mod/architectury-api) Port. [`←` Original Project](https://github.com/KrLite/Splasher)</p>
-
 ![Banner](https://github.com/KrLite/Splasher/blob/artwork/banner.png)
 
 **Customize Minecraft's Splash Texts at Your Will!**
