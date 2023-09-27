@@ -4,5 +4,5 @@
 
 ### Splasher for `1.18~1.18.2`
 
-> **Note**
+> [!WARNING]
 > This version of **Splasher** is outdated. Newer modifies will only be made to the latst few versions.
