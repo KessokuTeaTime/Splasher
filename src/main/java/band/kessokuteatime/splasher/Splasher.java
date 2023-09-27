@@ -1,10 +1,10 @@
 package band.kessokuteatime.splasher;
 
+import band.kessokuteatime.bounced.Bounced;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.bounced.Bounced;
 import band.kessokuteatime.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
