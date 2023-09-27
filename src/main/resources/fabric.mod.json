@@ -6,11 +6,11 @@
   "name": "Splasher",
   "description": "Why Don't Splash?",
   "authors": [
-    "KrLite"
+    "Kessoku Tea Time"
   ],
   "contact": {
-    "homepage": "https://github.com/KrLite",
-    "sources": "https://github.com/KrLite/Splasher"
+    "homepage": "https://github.com/KessokuTeaTime",
+    "sources": "https://github.com/KessokuTeaTime/Splasher"
   },
 
   "license": "GPL-3.0",
@@ -19,7 +19,7 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "net.krlite.splasher.Splasher"
+      "band.kessokuteatime.splasher.Splasher"
     ]
   },
   "mixins": [
@@ -27,9 +27,9 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.21",
+    "fabricloader": "*",
     "fabric-api": "*",
-    "minecraft": ["~1.20", "~1.20.1"]
+    "minecraft": "1.20.x"
   },
   "suggests": {
   }

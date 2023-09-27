@@ -1,12 +1,12 @@
-package net.krlite.splasher.config;
+package band.kessokuteatime.splasher.config;
 
+import band.kessokuteatime.splasher.Splasher;
 import net.fabricmc.loader.api.FabricLoader;
 import net.krlite.pierced.annotation.Comment;
 import net.krlite.pierced.annotation.Silent;
 import net.krlite.pierced.annotation.Table;
 import net.krlite.pierced.config.Pierced;
 import net.krlite.pierced.core.EnumLocalizable;
-import net.krlite.splasher.Splasher;
 
 import java.io.File;
 

@@ -1,21 +1,17 @@
-package net.krlite.splasher.supplier;
+package band.kessokuteatime.splasher.supplier;
 
+import band.kessokuteatime.splasher.Splasher;
+import band.kessokuteatime.splasher.base.FormattingType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.splasher.Splasher;
-import net.krlite.splasher.base.FormattingType;
-import net.krlite.splasher.loader.SplashTextLoader;
+import band.kessokuteatime.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
 import org.apache.commons.compress.utils.Lists;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.*;
-
-import static net.krlite.splasher.Splasher.CONFIG;
 
 public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
@@ -23,19 +19,19 @@ public class SplashTextSupplier {
 	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
 		
-		if (CONFIG.colorful) {
+		if (Splasher.CONFIG.colorful) {
 			double formatting = new Random().nextDouble(1);
 			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
 		}
 
-		String language = !CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
+		String language = !Splasher.CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();
 
-		if (CONFIG.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
-		if (CONFIG.splashMode.isCustom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
+		if (Splasher.CONFIG.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
+		if (Splasher.CONFIG.splashMode.isCustom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
 
 		if (customSplashTexts.isEmpty()) {
-			if (CONFIG.splashMode.isVanilla()){
+			if (Splasher.CONFIG.splashMode.isVanilla()){
 				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
 			}
 			Splasher.LOGGER.error("Empty stack!");
@@ -47,30 +43,30 @@ public class SplashTextSupplier {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 
-		if (CONFIG.enableFestivals) {
+		if (Splasher.CONFIG.enableFestivals) {
 			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
-				return getXmasSplash(CONFIG.followClientLanguage);
+				return getXmasSplash(Splasher.CONFIG.followClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
-				return getNewYearSplash(CONFIG.followClientLanguage);
+				return getNewYearSplash(Splasher.CONFIG.followClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
-				return getHalloweenSplash(CONFIG.followClientLanguage);
+				return getHalloweenSplash(Splasher.CONFIG.followClientLanguage);
 			}
 
 			if (session != null && random == 42) {
-				return getPlayerSplash(CONFIG.followClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
+				return getPlayerSplash(Splasher.CONFIG.followClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
 			}
 		}
 
-		if (CONFIG.splashMode.isVanilla() && random <= splashTexts.size()) {
-			if (CONFIG.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
+		if (Splasher.CONFIG.splashMode.isVanilla() && random <= splashTexts.size()) {
+			if (Splasher.CONFIG.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
 			else return customSplashTexts.get(random);
 		}
 
-		if (CONFIG.splashMode.isCustom()) return customSplashTexts.get(random);
+		if (Splasher.CONFIG.splashMode.isCustom()) return customSplashTexts.get(random);
 
 		return null;
 	}

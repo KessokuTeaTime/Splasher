@@ -1,4 +1,4 @@
-package net.krlite.splasher.base;
+package band.kessokuteatime.splasher.base;
 
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;

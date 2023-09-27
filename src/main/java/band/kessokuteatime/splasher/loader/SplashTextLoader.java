@@ -1,8 +1,8 @@
-package net.krlite.splasher.loader;
+package band.kessokuteatime.splasher.loader;
 
+import band.kessokuteatime.splasher.Splasher;
 import com.google.common.collect.Lists;
-import net.krlite.splasher.Splasher;
-import net.krlite.splasher.config.SplasherConfig;
+import band.kessokuteatime.splasher.config.SplasherConfig;
 
 import java.io.File;
 import java.io.FileNotFoundException;

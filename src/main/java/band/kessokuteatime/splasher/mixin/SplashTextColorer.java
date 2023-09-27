@@ -1,6 +1,6 @@
-package net.krlite.splasher.mixin;
+package band.kessokuteatime.splasher.mixin;
 
-import net.krlite.splasher.Splasher;
+import band.kessokuteatime.splasher.Splasher;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.SplashTextRenderer;

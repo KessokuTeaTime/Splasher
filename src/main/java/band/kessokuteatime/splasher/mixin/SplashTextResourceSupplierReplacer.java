@@ -1,8 +1,8 @@
-package net.krlite.splasher.mixin;
+package band.kessokuteatime.splasher.mixin;
 
-import net.krlite.splasher.Splasher;
-import net.krlite.splasher.config.SplasherConfig;
-import net.krlite.splasher.supplier.SplashTextSupplier;
+import band.kessokuteatime.splasher.Splasher;
+import band.kessokuteatime.splasher.config.SplasherConfig;
+import band.kessokuteatime.splasher.supplier.SplashTextSupplier;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
@@ -16,8 +16,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-
-import static net.krlite.splasher.Splasher.CONFIG;
 
 @Mixin(SplashTextResourceSupplier.class)
 public abstract class SplashTextResourceSupplierReplacer {
@@ -33,28 +31,28 @@ public abstract class SplashTextResourceSupplierReplacer {
 	private void get(CallbackInfoReturnable<SplashTextRenderer> cir) {
 		if (!Splasher.initialized) return;
 
-		if (!CONFIG.enableSplashTexts || (!CONFIG.splashMode.isVanilla() && !CONFIG.splashMode.isCustom())) {
+		if (!Splasher.CONFIG.enableSplashTexts || (!Splasher.CONFIG.splashMode.isVanilla() && !Splasher.CONFIG.splashMode.isCustom())) {
 			cir.setReturnValue(null);
-			if (CONFIG.debugInfo) Splasher.LOGGER.warn("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase());
+			if (Splasher.CONFIG.debugInfo) Splasher.LOGGER.warn("Splash mode: " + Splasher.CONFIG.splashMode.getLocalizedName().toUpperCase());
 			return;
 		}
 
-		if (CONFIG.splashMode.isVanilla() && !CONFIG.splashMode.isCustom() && !CONFIG.followClientLanguage) {
+		if (Splasher.CONFIG.splashMode.isVanilla() && !Splasher.CONFIG.splashMode.isCustom() && !Splasher.CONFIG.followClientLanguage) {
 			cir.cancel();
-			if (CONFIG.debugInfo) Splasher.LOGGER.info("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase() + " (raw)");
+			if (Splasher.CONFIG.debugInfo) Splasher.LOGGER.info("Splash mode: " + Splasher.CONFIG.splashMode.getLocalizedName().toUpperCase() + " (raw)");
 			return;
 		}
 
 		String splashText = SplashTextSupplier.getSplashes(session, splashTexts);
 		cir.setReturnValue(new SplashTextRenderer(splashText == null ? "" : splashText));
 
-		if (CONFIG.debugInfo && !(CONFIG.randomRate == SplasherConfig.RandomRate.JEB) && CONFIG.enableSplashTexts) {
-			if (CONFIG.followClientLanguage) Splasher.LOGGER.info("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase());
-			else Splasher.LOGGER.info("Splash mode: " + CONFIG.splashMode.getLocalizedName().toUpperCase() + " (raw)");
+		if (Splasher.CONFIG.debugInfo && !(Splasher.CONFIG.randomRate == SplasherConfig.RandomRate.JEB) && Splasher.CONFIG.enableSplashTexts) {
+			if (Splasher.CONFIG.followClientLanguage) Splasher.LOGGER.info("Splash mode: " + Splasher.CONFIG.splashMode.getLocalizedName().toUpperCase());
+			else Splasher.LOGGER.info("Splash mode: " + Splasher.CONFIG.splashMode.getLocalizedName().toUpperCase() + " (raw)");
 
 			if (splashText != null) Splasher.LOGGER.info(
 					"Loaded splash: '" + splashText + "' in language "
-							+ (!CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage()) + "."
+							+ (!Splasher.CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage()) + "."
 			);
 			else Splasher.LOGGER.warn("Loaded empty splash.");
 		}
