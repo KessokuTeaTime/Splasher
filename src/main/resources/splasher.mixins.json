@@ -1,19 +1,19 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.krlite.splasher.mixin",
+  "package": "band.kessokuteatime.splasher.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
 	"MinecraftClientTrigger",
-    "band.kessokuteatime.splasher.mixin.ResourceReloader",
-    "band.kessokuteatime.splasher.mixin.SplashTextColorer",
-    "band.kessokuteatime.splasher.mixin.SplashTextRendererMixin",
-    "band.kessokuteatime.splasher.mixin.SplashTextResourceSupplierReplacer",
+    "ResourceReloader",
+    "SplashTextColorer",
+    "SplashTextRendererMixin",
+    "SplashTextResourceSupplierReplacer",
 	"TitleScreenMixin"
   ],
   "injectors": {
-	"defaultRequire": 1
+	"defaultRequire": 0
   }
 }
