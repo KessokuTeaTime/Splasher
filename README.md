@@ -5,4 +5,4 @@
 ### Splasher for Fabric `1.19+`
 
 > [!WARNING]
-> This version of **Splasher** is outdated. Newer modifies will only be made to the latst few versions.
+> This version of **Splasher** is outdated. Newer modifications will only be made to the latst few versions.
