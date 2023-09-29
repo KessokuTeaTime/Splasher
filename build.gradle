@@ -18,9 +18,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	implementation include("com.github.KrLite:Pierced:${project.pierced_version}")
+	api include("com.github.KrLite:Pierced:${project.pierced_version}")
 
-	compileOnly "maven.modrinth:bounced:${project.bounced_version}-${project.minecraft_version}"
+	modCompileOnly "maven.modrinth:bounced:${project.bounced_version}-mc${project.minecraft_version}"
 }
 
 processResources {
