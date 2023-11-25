@@ -12,4 +12,4 @@ include("common")
 include("forge")
 include("neoforge")
 
-rootProject.name = "KTT-Template-Mod-Architectury"
+rootProject.name = "Splasher"
