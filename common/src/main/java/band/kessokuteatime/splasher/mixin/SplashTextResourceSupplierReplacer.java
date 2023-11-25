@@ -6,7 +6,7 @@ import band.kessokuteatime.splasher.supplier.SplashTextSupplier;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.SplashTextRenderer;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
-import net.minecraft.client.util.Session;
+import net.minecraft.client.session.Session;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

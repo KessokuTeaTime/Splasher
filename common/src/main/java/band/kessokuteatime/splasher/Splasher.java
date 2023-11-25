@@ -1,11 +1,11 @@
 package band.kessokuteatime.splasher;
 
-import band.kessokuteatime.bounced.Bounced;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.loader.api.FabricLoader;
+//import band.kessokuteatime.bounced.Bounced;
 import band.kessokuteatime.splasher.config.SplasherConfig;
+import dev.architectury.event.EventResult;
+import dev.architectury.event.events.client.ClientGuiEvent;
+import dev.architectury.event.events.client.ClientScreenInputEvent;
+import dev.architectury.platform.Platform;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Splasher implements ModInitializer {
+public class Splasher {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 	public static final SplasherConfig CONFIG = new SplasherConfig();
@@ -71,25 +71,26 @@ public class Splasher implements ModInitializer {
 	private static float height = 0, width = 0;
 	public static boolean initialized = false;
 
-	@Override
-	public void onInitialize() {
+	public static void onInitialize() {
 		CONFIG.save();
 
-		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
+		boolean isBouncedLoaded = Platform.isModLoaded("bounced");
 
-		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+		ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
+			double scaledWidth = screenAccess.getScreen().width;
 			if (screen instanceof TitleScreen) {
-				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {
+				ClientScreenInputEvent.MOUSE_CLICKED_POST
+						.register((client, screen1, mouseX, mouseY, button) -> {
 							// Linkage with Bounced
-							if (isBouncedLoaded)
-								mouseY -= Bounced.primaryPos();
+							//if (isBouncedLoaded)
+							//	mouseY -= Bounced.primaryPos();
 
 							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
 								push();
 								playClickingSound();
 							}
-						});
+                            return EventResult.pass();
+                        });
 			}
 		});
 	}

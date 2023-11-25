@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "GPL-3.0"
+
+[[mods]]
+modId = "splasher"
+version = "${version}"
+displayName = "Splasher for NeoForge"
+displayURL = "https://github.com/KessokuTeaTime/Splasher"
+authors = "Kessoku Tea Time"
+description = '''
+Why Don't Splash?
+'''
+logoFile = "icon.png"
+
+[[mixins]]
+config = "splasher.mixins.json"
+
+[[dependencies.splasher]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.splasher]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.splasher]]
+modId = "architectury"
+mandatory = true
+versionRange = "[10,)"
+ordering = "AFTER"
+side = "BOTH"
