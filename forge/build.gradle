@@ -13,7 +13,7 @@ loom {
     }
 }
 
-project.archivesBaseName = rootProject.archivesBaseName + "-forge"
+project.archivesBaseName = rootProject.archivesBaseName + "-lexforge"
 
 configurations {
     common
@@ -27,6 +27,7 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    modCompileOnly "maven.modrinth:bounced:${project.bounced_version}-lexforge"
     include("com.github.KrLite:Pierced:${project.pierced_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

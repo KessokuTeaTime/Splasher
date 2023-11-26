@@ -1,6 +1,6 @@
 package band.kessokuteatime.splasher;
 
-//import band.kessokuteatime.bounced.Bounced;
+import band.kessokuteatime.bounced.Bounced;
 import band.kessokuteatime.splasher.config.SplasherConfig;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.client.ClientGuiEvent;
@@ -82,8 +82,8 @@ public class Splasher {
 				ClientScreenInputEvent.MOUSE_CLICKED_POST
 						.register((client, screen1, mouseX, mouseY, button) -> {
 							// Linkage with Bounced
-							//if (isBouncedLoaded)
-							//	mouseY -= Bounced.primaryPos();
+							if (isBouncedLoaded)
+								mouseY -= Bounced.primaryPos();
 
 							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
 								push();
