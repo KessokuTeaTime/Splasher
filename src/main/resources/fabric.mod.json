@@ -9,8 +9,9 @@
     "Kessoku Tea Time"
   ],
   "contact": {
-    "homepage": "https://github.com/KessokuTeaTime",
-    "sources": "https://github.com/KessokuTeaTime/Splasher"
+    "homepage": "https://modrinth.com/mod/splasher",
+    "sources": "https://github.com/KessokuTeaTime/Splasher",
+    "issues": "https://github.com/KessokuTeaTime/Splasher/issues"
   },
 
   "license": "GPL-3.0",
