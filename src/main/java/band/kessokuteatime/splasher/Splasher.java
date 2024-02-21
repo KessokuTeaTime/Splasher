@@ -1,11 +1,12 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
+import band.kessokuteatime.splasher.config.SplasherConfig;
+import band.kessokuteatime.splasher.config.SplasherWithPickle;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import band.kessokuteatime.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -23,8 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ModInitializer {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
-	public static final SplasherConfig CONFIG = new SplasherConfig();
-	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	private static final AtomicBoolean shouldSplash = new AtomicBoolean(SplasherWithPickle.get().texts.randomRate == SplasherConfig.RandomRate.JENS);
 
 	record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
@@ -73,7 +73,8 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG.save();
+		SplasherWithPickle.load();
+		SplasherWithPickle.save();
 
 		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
 
@@ -85,7 +86,7 @@ public class Splasher implements ModInitializer {
 							if (isBouncedLoaded)
 								mouseY -= Bounced.primaryPos();
 
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
+							if (isMouseHovering(scaledWidth, mouseX, mouseY) && SplasherWithPickle.get().texts.randomRate.onClick()) {
 								push();
 								playClickingSound();
 							}
@@ -101,14 +102,14 @@ public class Splasher implements ModInitializer {
 
 	public static boolean isMouseHovering(double width, double mouseX, double mouseY) {
 		// Public so other mods can use
-		return isMouseHovering(new Node(width / 2.0 + (CONFIG.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
+		return isMouseHovering(new Node(width / 2.0 + (SplasherWithPickle.get().texts.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
-		return CONFIG.enableSplashTexts && new Rect(
+		return SplasherWithPickle.get().splashTextsEnabled && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
-		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
+		).rotate(origin, SplasherWithPickle.get().texts.lefty ? 20 : -20).contains(mouse);
 	}
 
 	public static void updateSize(float width, float height) {
@@ -117,7 +118,7 @@ public class Splasher implements ModInitializer {
 	}
 
 	public static void updateFormatting(ArrayList<Formatting> formattings, int color) {
-		if (CONFIG.colorful) {
+		if (SplasherWithPickle.get().texts.colorful) {
 			Splasher.color = color;
 			if (formattings != null) {
 				Splasher.FORMATTINGS.clear();

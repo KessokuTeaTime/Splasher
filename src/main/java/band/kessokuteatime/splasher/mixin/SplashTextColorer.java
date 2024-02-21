@@ -1,6 +1,7 @@
 package band.kessokuteatime.splasher.mixin;
 
 import band.kessokuteatime.splasher.Splasher;
+import band.kessokuteatime.splasher.config.SplasherWithPickle;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.SplashTextRenderer;
@@ -20,7 +21,7 @@ public class SplashTextColorer {
 	private void colorSplashText(DrawContext context, TextRenderer textRenderer, String text, int xCentered, int y, int color) {
 		context.drawCenteredTextWithShadow(
 				textRenderer, Splasher.getFormattedSplashText(text),
-				xCentered, y, Splasher.CONFIG.colorful ? Splasher.getColor() : color
+				xCentered, y, SplasherWithPickle.get().texts.colorful ? Splasher.getColor() : color
 		);
 	}
 }

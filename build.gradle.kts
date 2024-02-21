@@ -1,6 +1,7 @@
 plugins {
 	base
 	java
+	idea
 	`maven-publish`
 
 	alias(libs.plugins.fabric.loom)
