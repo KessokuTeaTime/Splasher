@@ -1,0 +1,38 @@
+@ModuleInfo { minPklVersion = "0.25.1" }
+module SplasherConfig
+
+// Whether the splash texts are visible.
+splashTextsEnabled: Boolean = true
+
+// Whether to show festival-specific splash texts on certain dates.
+festivalsEnabled: Boolean = true
+
+// Whether to use localization files to make splash texts translatable.
+followsClientLanguage: Boolean = true
+
+debug: Debug
+
+texts: Texts
+
+class Debug {
+  // Whether to print extra information to the console.
+  debugInfoEnabled: Boolean = false
+}
+
+class Texts {
+  // Whether to make the texts randomly colored and formatted.
+  colorful: Boolean = false
+
+  // Whether to mirror the texts' position to the left.
+  lefty: Boolean = false
+
+  // Decides at which rate should the texts reload.
+  randomRate: RandomRate = "on reload and click"
+
+  // Decides which source the splash texts use.
+  source: Source = "vanilla and custom"
+}
+
+typealias RandomRate = "never"|"on reload"|"on click"|"on reload and click"|"jens"
+
+typealias Source = "disabled"|"vanilla"|"custom"|"vanilla and custom"
