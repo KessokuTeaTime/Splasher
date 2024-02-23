@@ -19,8 +19,11 @@
 
   "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "band.kessokuteatime.splasher.Splasher"
+    ],
+    "modmenu": [
+      "band.kessokuteatime.splasher.config.SplasherModMenuIntegration"
     ]
   },
   "mixins": [

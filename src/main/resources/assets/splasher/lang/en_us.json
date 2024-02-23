@@ -1,4 +1,25 @@
 {
+	"text.autoconfig.splasher.title": "Splasher!",
+	"text.autoconfig.splasher.category.default": "General",
+	"text.autoconfig.splasher.category.texts": "Texts",
+
+	"text.autoconfig.splasher.option.splashTextsEnabled": "Splash Texts Enabled",
+
+	"text.autoconfig.splasher.option.festivalsEnabled": "Festivals Enabled",
+
+	"text.autoconfig.splasher.option.followsClientLanguage": "Follows Client Language",
+	"text.autoconfig.splasher.option.followsClientLanguage.@Tooltip": "Make splash texts localizable, otherwise they will always be English except for the greetings",
+
+	"text.autoconfig.splasher.option.debugInfoEnabled": "Print Debug Info",
+
+	"text.autoconfig.splasher.option.colorful": "Colorful Splash Texts",
+
+	"text.autoconfig.splasher.option.lefty": "Stick to Left",
+
+	"text.autoconfig.splasher.option.randomRate": "Random Generation Rate",
+
+	"text.autoconfig.splasher.option.source": "Splash Texts Source",
+
 	"festival.splasher.x_mas": "Merry X-mas!",
 	"festival.splasher.new_year": "Happy new year!",
 	"festival.splasher.halloween": "OOoooOOOOooo! Spooky!",

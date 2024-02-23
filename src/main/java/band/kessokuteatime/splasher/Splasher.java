@@ -1,7 +1,9 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
-import net.fabricmc.api.ModInitializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -20,11 +22,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Splasher implements ModInitializer {
+public class Splasher implements ClientModInitializer {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
-	public static final SplasherConfig CONFIG = new SplasherConfig();
-	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	public static final SplasherConfig CONFIG;
+	private static final AtomicBoolean shouldSplash = new AtomicBoolean(true);
+
+	static {
+		AutoConfig.register(SplasherConfig.class, Toml4jConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class).getConfig();
+	}
 
 	record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
@@ -62,19 +69,17 @@ public class Splasher implements ModInitializer {
 	}
 
 	public static boolean shouldSplash() {
-		return shouldSplash.getAndSet(false);
+		return CONFIG.randomRate == SplasherConfig.RandomRate.JEB || shouldSplash.getAndSet(false);
 	}
 
 	// Splash text data
-	private static final ArrayList<Formatting> FORMATTINGS = new ArrayList<>();
+	private static final ArrayList<Formatting> formattings = new ArrayList<>();
 	private static int color = 0xFFFF00;
 	private static float height = 0, width = 0;
 	public static boolean initialized = false;
 
 	@Override
-	public void onInitialize() {
-		CONFIG.save();
-
+	public void onInitializeClient() {
 		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
 
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
@@ -105,7 +110,7 @@ public class Splasher implements ModInitializer {
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
-		return CONFIG.enableSplashTexts && new Rect(
+		return CONFIG.splashTextsEnabled && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
 		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
@@ -120,15 +125,15 @@ public class Splasher implements ModInitializer {
 		if (CONFIG.colorful) {
 			Splasher.color = color;
 			if (formattings != null) {
-				Splasher.FORMATTINGS.clear();
-				Splasher.FORMATTINGS.addAll(formattings.stream().filter(Objects::nonNull).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+				Splasher.formattings.clear();
+				Splasher.formattings.addAll(formattings.stream().filter(Objects::nonNull).distinct().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 			}
 		}
 	}
 
 	public static Text getFormattedSplashText(String text) {
 		MutableText splashText = Text.literal(text);
-		FORMATTINGS.forEach(splashText::formatted);
+		formattings.forEach(splashText::formatted);
 		return splashText;
 	}
 
