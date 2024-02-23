@@ -1,4 +1,24 @@
 {
+	"text.autoconfig.splasher.category.default": "通用",
+	"text.autoconfig.splasher.category.texts": "文字",
+
+	"text.autoconfig.splasher.option.splashTextsEnabled": "启用闪烁文本",
+
+	"text.autoconfig.splasher.option.festivalsEnabled": "启用节假日文本",
+
+	"text.autoconfig.splasher.option.followsClientLanguage": "跟随客户端语言",
+	"text.autoconfig.splasher.option.followsClientLanguage.@Tooltip": "让闪烁文本本地化，否则除各语言的欢迎文本外所有闪烁文本都将为英文",
+
+	"text.autoconfig.splasher.option.debugInfoEnabled": "打印调试信息",
+
+	"text.autoconfig.splasher.option.colorful": "多彩的闪烁文本",
+
+	"text.autoconfig.splasher.option.lefty": "放置在标题左侧",
+
+	"text.autoconfig.splasher.option.randomRate": "随机生成闪烁文本的时机",
+
+	"text.autoconfig.splasher.option.source": "闪烁文本来源",
+
 	"modmenu.descriptionTranslation.splasher": "为什么不闪烁呢？通过Splasher，你可以完全自定义Minecraft标题旁的闪烁文本。",
 
 	"festival.splasher.x_mas"    : "圣诞快乐！",

@@ -18,11 +18,6 @@ public class SplashTextSupplier {
 
 	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
-		
-		if (Splasher.CONFIG.colorful) {
-			double formatting = new Random().nextDouble(1);
-			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
-		}
 
 		String language = !Splasher.CONFIG.followsClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();

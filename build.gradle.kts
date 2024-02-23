@@ -17,7 +17,8 @@ repositories {
 	mavenCentral()
 	maven { url = uri("https://jitpack.io") }
 	maven { url = uri("https://api.modrinth.com/maven") }
-	maven { url = uri("https://maven.shedaniel.me/") }
+	maven { url = uri("https://maven.shedaniel.me/") } // Cloth Config
+	maven { url = uri("https://maven.terraformersmc.com/releases/") } // Mod Menu
 }
 
 dependencies {
@@ -26,6 +27,7 @@ dependencies {
 	modImplementation(libs.bundles.fabric)
 
 	modApi(libs.cloth.config)
+	modApi(libs.modmenu)
 	modCompileOnly(libs.bounced)
 }
 
@@ -38,10 +40,8 @@ java {
 
 tasks {
 	processResources {
-		inputs.property("version", version)
-
 		filesMatching("fabric.mod.json") {
-			expand(mapOf("version" to version))
+			expand(mapOf("version" to libs.versions.mod.get()))
 		}
 	}
 

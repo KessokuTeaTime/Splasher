@@ -8,8 +8,8 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 public class SplasherConfig implements ConfigData {
 	public boolean splashTextsEnabled = true;
 	public boolean festivalsEnabled = true;
-	public boolean followsClientLanguage = true;
-
+	@ConfigEntry.Gui.Tooltip
+	public boolean followsClientLanguage = false;
 	public boolean debugInfoEnabled = false;
 
 	@ConfigEntry.Category("texts")
@@ -19,26 +19,26 @@ public class SplasherConfig implements ConfigData {
 	public boolean lefty = false;
 
 	@ConfigEntry.Category("texts")
-	public RandomRate randomRate = RandomRate.BOTH;
+	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+	public RandomRate randomRate = RandomRate.ON_RELOAD_AND_CLICK;
 
 	@ConfigEntry.Category("texts")
+	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
 	public Source source = Source.VANILLA;
 
 	public enum RandomRate {
-		NEVER(false, false, "never"),
-		ON_RELOAD(true, false, "reload"),
-		ON_CLICK(false, true, "click"),
-		BOTH(true, true, "reload and click"),
-		JEB(false, false, "jeb");
+		NEVER(false, false),
+		ON_RELOAD(true, false),
+		ON_CLICK(false, true),
+		ON_RELOAD_AND_CLICK(true, true),
+		JEB(false, false);
 
 		private final boolean reload;
 		private final boolean click;
-		private final String name;
 
-		RandomRate(boolean reload, boolean click, String name) {
+		RandomRate(boolean reload, boolean click) {
 			this.reload = reload;
 			this.click = click;
-			this.name = name;
 		}
 
 		public boolean onReload() {
@@ -47,27 +47,20 @@ public class SplasherConfig implements ConfigData {
 		public boolean onClick() {
 			return click;
 		}
-
-		@Override
-		public String toString() {
-			return name;
-		}
 	}
 
 	public enum Source {
-		VANILLA(true, false, "vanilla"),
-		CUSTOM(false, true, "custom"),
-		BOTH(true, true, "vanilla and custom"),
-		DEFAULT(false, false, "disabled");
+		VANILLA(true, false),
+		CUSTOM(false, true),
+		VANILLA_AND_CUSTOM(true, true),
+		DEFAULT(false, false);
 
 		private final boolean vanilla;
 		private final boolean custom;
-		private final String name;
 
-		Source(boolean vanilla, boolean custom, String name) {
+		Source(boolean vanilla, boolean custom) {
 			this.vanilla = vanilla;
 			this.custom = custom;
-			this.name = name;
 		}
 
 		public boolean vanilla() {
@@ -75,11 +68,6 @@ public class SplasherConfig implements ConfigData {
 		}
 		public boolean custom() {
 			return custom;
-		}
-
-		@Override
-		public String toString() {
-			return name;
 		}
 	}
 }
