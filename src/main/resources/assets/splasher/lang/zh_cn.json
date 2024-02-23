@@ -1,12 +1,23 @@
 {
+	"config.splasher.texts.random_rate.never"              : "从不",
+	"config.splasher.texts.random_rate.on_reload"          : "重新加载页面时",
+	"config.splasher.texts.random_rate.on_click"           : "点击时",
+	"config.splasher.texts.random_rate.on_reload_and_click": "重新加载页面和点击时",
+	"config.splasher.texts.random_rate.jeb"                : "Jens Bergensten",
+
+	"config.splasher.texts.source.vanilla"           : "仅原版",
+	"config.splasher.texts.source.custom"            : "仅自定义",
+	"config.splasher.texts.source.vanilla_and_custom": "原版和自定义",
+	"config.splasher.texts.source.none"              : "无",
+
 	"text.autoconfig.splasher.category.default": "通用",
-	"text.autoconfig.splasher.category.texts": "文字",
+	"text.autoconfig.splasher.category.texts"  : "文字",
 
 	"text.autoconfig.splasher.option.splashTextsEnabled": "启用闪烁文本",
 
 	"text.autoconfig.splasher.option.festivalsEnabled": "启用节假日文本",
 
-	"text.autoconfig.splasher.option.followsClientLanguage": "跟随客户端语言",
+	"text.autoconfig.splasher.option.followsClientLanguage"         : "跟随客户端语言",
 	"text.autoconfig.splasher.option.followsClientLanguage.@Tooltip": "让闪烁文本本地化，否则除各语言的欢迎文本外所有闪烁文本都将为英文",
 
 	"text.autoconfig.splasher.option.debugInfoEnabled": "打印调试信息",

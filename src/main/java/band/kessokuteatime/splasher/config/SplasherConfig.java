@@ -1,8 +1,11 @@
 package band.kessokuteatime.splasher.config;
 
+import band.kessokuteatime.splasher.Splasher;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.clothconfig2.gui.entries.SelectionListEntry;
+import org.jetbrains.annotations.NotNull;
 
 @Config(name = "splasher")
 public class SplasherConfig implements ConfigData {
@@ -24,9 +27,9 @@ public class SplasherConfig implements ConfigData {
 
 	@ConfigEntry.Category("texts")
 	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-	public Source source = Source.VANILLA;
+	public Source source = Source.VANILLA_AND_CUSTOM;
 
-	public enum RandomRate {
+	public enum RandomRate implements SelectionListEntry.Translatable {
 		NEVER(false, false),
 		ON_RELOAD(true, false),
 		ON_CLICK(false, true),
@@ -47,13 +50,18 @@ public class SplasherConfig implements ConfigData {
 		public boolean onClick() {
 			return click;
 		}
+
+		@Override
+		public @NotNull String getKey() {
+			return "config." + Splasher.ID + ".texts.random_rate." + toString().toLowerCase();
+		}
 	}
 
-	public enum Source {
+	public enum Source implements SelectionListEntry.Translatable {
 		VANILLA(true, false),
 		CUSTOM(false, true),
 		VANILLA_AND_CUSTOM(true, true),
-		DEFAULT(false, false);
+		NONE(false, false);
 
 		private final boolean vanilla;
 		private final boolean custom;
@@ -68,6 +76,11 @@ public class SplasherConfig implements ConfigData {
 		}
 		public boolean custom() {
 			return custom;
+		}
+
+		@Override
+		public @NotNull String getKey() {
+			return "config." + Splasher.ID + ".texts.source." + toString().toLowerCase();
 		}
 	}
 }
