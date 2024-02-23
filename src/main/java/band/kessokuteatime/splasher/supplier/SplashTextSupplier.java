@@ -24,14 +24,14 @@ public class SplashTextSupplier {
 			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
 		}
 
-		String language = !Splasher.CONFIG.followClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
+		String language = !Splasher.CONFIG.followsClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();
 
-		if (Splasher.CONFIG.splashMode.isVanilla()) customSplashTexts.addAll(splashTexts);
-		if (Splasher.CONFIG.splashMode.isCustom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
+		if (Splasher.CONFIG.source.vanilla()) customSplashTexts.addAll(splashTexts);
+		if (Splasher.CONFIG.source.custom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
 
 		if (customSplashTexts.isEmpty()) {
-			if (Splasher.CONFIG.splashMode.isVanilla()){
+			if (Splasher.CONFIG.source.vanilla()){
 				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
 			}
 			Splasher.LOGGER.error("Empty stack!");
@@ -43,30 +43,30 @@ public class SplashTextSupplier {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 
-		if (Splasher.CONFIG.enableFestivals) {
+		if (Splasher.CONFIG.festivalsEnabled) {
 			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
-				return getXmasSplash(Splasher.CONFIG.followClientLanguage);
+				return getXmasSplash(Splasher.CONFIG.followsClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
-				return getNewYearSplash(Splasher.CONFIG.followClientLanguage);
+				return getNewYearSplash(Splasher.CONFIG.followsClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
-				return getHalloweenSplash(Splasher.CONFIG.followClientLanguage);
+				return getHalloweenSplash(Splasher.CONFIG.followsClientLanguage);
 			}
 
 			if (session != null && random == 42) {
-				return getPlayerSplash(Splasher.CONFIG.followClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
+				return getPlayerSplash(Splasher.CONFIG.followsClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
 			}
 		}
 
-		if (Splasher.CONFIG.splashMode.isVanilla() && random <= splashTexts.size()) {
-			if (Splasher.CONFIG.followClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
+		if (Splasher.CONFIG.source.vanilla() && random <= splashTexts.size()) {
+			if (Splasher.CONFIG.followsClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
 			else return customSplashTexts.get(random);
 		}
 
-		if (Splasher.CONFIG.splashMode.isCustom()) return customSplashTexts.get(random);
+		if (Splasher.CONFIG.source.custom()) return customSplashTexts.get(random);
 
 		return null;
 	}

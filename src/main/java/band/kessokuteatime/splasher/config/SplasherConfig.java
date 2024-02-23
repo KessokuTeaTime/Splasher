@@ -1,67 +1,35 @@
 package band.kessokuteatime.splasher.config;
 
-import band.kessokuteatime.splasher.Splasher;
-import net.fabricmc.loader.api.FabricLoader;
-import net.krlite.pierced.annotation.Comment;
-import net.krlite.pierced.annotation.Silent;
-import net.krlite.pierced.annotation.Table;
-import net.krlite.pierced.config.Pierced;
-import net.krlite.pierced.core.EnumLocalizable;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-import java.io.File;
+@Config(name = "splasher")
+public class SplasherConfig implements ConfigData {
+	public boolean splashTextsEnabled = true;
+	public boolean festivalsEnabled = true;
+	public boolean followsClientLanguage = true;
 
-public class SplasherConfig extends Pierced {
-	@Silent
-	private static final File file = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID + ".toml").toFile();
+	public boolean debugInfoEnabled = false;
 
-	public SplasherConfig() {
-		super(SplasherConfig.class, file);
-		load();
-	}
-
-	public boolean enableSplashTexts = true;
-	public boolean enableFestivals = true;
-	public boolean followClientLanguage = true;
-
-	/* Debug */
-	@Table("debug")
-	@Comment("Show debug info")
-	public boolean debugInfo = false;
-
-	/* Splash */
-	@Table("splash")
-	@Comment("Make splash texts a little colorful")
+	@ConfigEntry.Category("texts")
 	public boolean colorful = false;
 
-	@Table("splash")
-	@Comment("Moves splash texts to the left")
+	@ConfigEntry.Category("texts")
 	public boolean lefty = false;
 
-	@Table("splash")
-	@Comment("Controls the splash text random rate")
-	@Comment
-	@Comment("Never  - Never reload splash texts")
-	@Comment("Reload - Reload after reloading resources")
-	@Comment("Click  - Reload when clicking on the splash text")
-	@Comment("Both   - Reload both at reloading and clicking")
+	@ConfigEntry.Category("texts")
 	public RandomRate randomRate = RandomRate.BOTH;
 
-	@Table("splash")
+	@ConfigEntry.Category("texts")
+	public Source source = Source.VANILLA;
 
-	@Comment("Controls the splash text contents")
-	@Comment
-	@Comment("Disabled - Disable splash texts")
-	@Comment("Vanilla  - Show only vanilla splash texts")
-	@Comment("Custom   - Show only custom splash texts")
-	@Comment("Both     - Show both vanilla and custom splash texts")
-	public SplashMode splashMode = SplashMode.VANILLA;
-
-	public enum RandomRate implements EnumLocalizable {
-		NEVER(false, false, "Never"),
-		BOTH(true, true, "Both"),
-		ON_RELOAD(true, false, "Reload"),
-		ON_CLICK(false, true, "Click"),
-		JEB(false, false, "Jens Bergensten");
+	public enum RandomRate {
+		NEVER(false, false, "never"),
+		ON_RELOAD(true, false, "reload"),
+		ON_CLICK(false, true, "click"),
+		BOTH(true, true, "reload and click"),
+		JEB(false, false, "jeb");
 
 		private final boolean reload;
 		private final boolean click;
@@ -81,36 +49,36 @@ public class SplasherConfig extends Pierced {
 		}
 
 		@Override
-		public String getLocalizedName() {
+		public String toString() {
 			return name;
 		}
 	}
 
-	public enum SplashMode implements EnumLocalizable {
-		VANILLA(true, false, "Vanilla"),
-		BOTH(true, true, "Both"),
-		CUSTOM(false, true, "Custom"),
-		DEFAULT(false, false, "Disabled");
+	public enum Source {
+		VANILLA(true, false, "vanilla"),
+		CUSTOM(false, true, "custom"),
+		BOTH(true, true, "vanilla and custom"),
+		DEFAULT(false, false, "disabled");
 
 		private final boolean vanilla;
 		private final boolean custom;
 		private final String name;
 
-		SplashMode(boolean vanilla, boolean custom, String name) {
+		Source(boolean vanilla, boolean custom, String name) {
 			this.vanilla = vanilla;
 			this.custom = custom;
 			this.name = name;
 		}
 
-		public boolean isVanilla() {
+		public boolean vanilla() {
 			return vanilla;
 		}
-		public boolean isCustom() {
+		public boolean custom() {
 			return custom;
 		}
 
 		@Override
-		public String getLocalizedName() {
+		public String toString() {
 			return name;
 		}
 	}

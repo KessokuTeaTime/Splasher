@@ -1,6 +1,8 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
@@ -23,8 +25,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ModInitializer {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
-	public static final SplasherConfig CONFIG = new SplasherConfig();
-	private static final AtomicBoolean shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	public static final SplasherConfig CONFIG;
+	private static final AtomicBoolean shouldSplash;
+
+	static {
+		AutoConfig.register(SplasherConfig.class, Toml4jConfigSerializer::new);
+		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class).getConfig();
+		shouldSplash = new AtomicBoolean(CONFIG.randomRate == SplasherConfig.RandomRate.JEB);
+	}
 
 	record Node(double x, double y) {
 		public double getCross(Node p1, Node p2) {
@@ -73,8 +81,6 @@ public class Splasher implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CONFIG.save();
-
 		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
 
 		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
@@ -105,7 +111,7 @@ public class Splasher implements ModInitializer {
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
-		return CONFIG.enableSplashTexts && new Rect(
+		return CONFIG.splashTextsEnabled && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
 		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
