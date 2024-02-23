@@ -6,8 +6,8 @@ plugins {
 	alias(libs.plugins.fabric.loom)
 }
 
-group = libs.versions.maven.group
-version = libs.versions.mod
+group = libs.versions.maven.group.get()
+version = libs.versions.mod.get()
 
 base {
 	archivesName.set(libs.versions.archives.name)
