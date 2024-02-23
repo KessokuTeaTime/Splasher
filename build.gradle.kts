@@ -7,7 +7,7 @@ plugins {
 }
 
 group = libs.versions.maven.group.get()
-version = libs.versions.mod.get()
+version = "${libs.versions.minecraft.get()}-${libs.versions.mod.get()}"
 
 base {
 	archivesName.set(libs.versions.archives.name)
