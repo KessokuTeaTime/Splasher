@@ -30,7 +30,7 @@ public class Splasher implements ClientModInitializer {
 
 	static {
 		AutoConfig.register(SplasherConfig.class, Toml4jConfigSerializer::new);
-		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class).getConfig();
+		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class).get();
 	}
 
 	record Node(double x, double y) {
