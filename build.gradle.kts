@@ -40,6 +40,8 @@ java {
 
 tasks {
 	processResources {
+		inputs.property("version", libs.versions.mod.get())
+
 		filesMatching("fabric.mod.json") {
 			expand(mapOf("version" to libs.versions.mod.get()))
 		}
