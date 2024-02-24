@@ -3,7 +3,7 @@
   "id": "splasher",
   "version": "${version}",
 
-  "name": "Splasher",
+  "name": "Splasher!",
   "description": "Why don't splash? Splasher is a mod which makes splash texts fully customizable.",
   "authors": [
     "Kessoku Tea Time"
@@ -23,7 +23,7 @@
       "band.kessokuteatime.splasher.Splasher"
     ],
     "modmenu": [
-      "band.kessokuteatime.splasher.config.SplasherModMenuIntegration"
+      "band.kessokuteatime.splasher.config.modmenu.SplasherModMenuIntegration"
     ]
   },
   "mixins": [

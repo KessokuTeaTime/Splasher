@@ -1,5 +1,6 @@
-package band.kessokuteatime.splasher.config;
+package band.kessokuteatime.splasher.config.modmenu;
 
+import band.kessokuteatime.splasher.config.SplasherConfig;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;

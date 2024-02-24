@@ -20,7 +20,7 @@ public class SplashTextColorer {
 	private void colorSplashText(DrawContext context, TextRenderer textRenderer, String text, int xCentered, int y, int color) {
 		context.drawCenteredTextWithShadow(
 				textRenderer, Splasher.getFormattedSplashText(text),
-				xCentered, y, Splasher.CONFIG.colorful ? Splasher.getColor() : color
+				xCentered, y, Splasher.CONFIG.texts.colorful ? Splasher.getColor() : color
 		);
 	}
 }

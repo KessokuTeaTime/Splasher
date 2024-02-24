@@ -1,9 +1,10 @@
 {
+	"modmenu.descriptionTranslation.splasher": "为什么不闪烁呢？通过Splasher，你可以完全自定义Minecraft标题旁的闪烁文本。",
+
 	"config.splasher.texts.random_rate.never"              : "从不",
 	"config.splasher.texts.random_rate.on_reload"          : "重新加载页面时",
 	"config.splasher.texts.random_rate.on_click"           : "点击时",
 	"config.splasher.texts.random_rate.on_reload_and_click": "重新加载页面和点击时",
-	"config.splasher.texts.random_rate.jeb"                : "Jens Bergensten",
 
 	"config.splasher.texts.source.vanilla"           : "仅原版",
 	"config.splasher.texts.source.custom"            : "仅自定义",
@@ -11,7 +12,6 @@
 	"config.splasher.texts.source.none"              : "无",
 
 	"text.autoconfig.splasher.category.default": "通用",
-	"text.autoconfig.splasher.category.texts"  : "文字",
 
 	"text.autoconfig.splasher.option.splashTextsEnabled": "启用闪烁文本",
 
@@ -22,15 +22,15 @@
 
 	"text.autoconfig.splasher.option.debugInfoEnabled": "打印调试信息",
 
-	"text.autoconfig.splasher.option.colorful": "多彩的闪烁文本",
+	"text.autoconfig.splasher.category.texts": "文字",
 
-	"text.autoconfig.splasher.option.lefty": "放置在标题左侧",
+	"text.autoconfig.splasher.option.texts.colorful": "多彩的闪烁文本",
 
-	"text.autoconfig.splasher.option.randomRate": "随机生成闪烁文本的时机",
+	"text.autoconfig.splasher.option.texts.lefty": "放置在标题左侧",
 
-	"text.autoconfig.splasher.option.source": "闪烁文本来源",
+	"text.autoconfig.splasher.option.texts.randomRate": "随机生成闪烁文本的时机",
 
-	"modmenu.descriptionTranslation.splasher": "为什么不闪烁呢？通过Splasher，你可以完全自定义Minecraft标题旁的闪烁文本。",
+	"text.autoconfig.splasher.option.texts.source": "闪烁文本来源",
 
 	"festival.splasher.x_mas"    : "圣诞快乐！",
 	"festival.splasher.new_year" : "新年快乐！",

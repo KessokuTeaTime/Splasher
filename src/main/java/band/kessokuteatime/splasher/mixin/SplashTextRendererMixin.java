@@ -21,7 +21,7 @@ class MinecraftClientTrigger {
     @Inject(method = "setScreen", at = @At("TAIL"))
     private void trigger(Screen screen, CallbackInfo ci) {
         if (screen instanceof TitleScreen) {
-            if ((Splasher.CONFIG.randomRate.onReload() && Splasher.initialized)) Splasher.push();
+            if ((Splasher.CONFIG.texts.randomRate.onReload() && Splasher.initialized)) Splasher.push();
             else if (!Splasher.initialized) Splasher.initialized = true;
         }
     }
@@ -45,12 +45,12 @@ public class SplashTextRendererMixin {
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V"), index = 0)
     private float translateX(float x) {
-        return Splasher.CONFIG.lefty ? MinecraftClient.getInstance().getWindow().getScaledWidth() - x : x;
+        return Splasher.CONFIG.texts.lefty ? MinecraftClient.getInstance().getWindow().getScaledWidth() - x : x;
     }
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/RotationAxis;rotationDegrees(F)Lorg/joml/Quaternionf;"))
     private float rotate(float angle) {
-        return Splasher.CONFIG.lefty ? -angle : angle;
+        return Splasher.CONFIG.texts.lefty ? -angle : angle;
     }
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;scale(FFF)V"), index = 0)

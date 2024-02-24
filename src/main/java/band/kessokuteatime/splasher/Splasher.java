@@ -69,7 +69,7 @@ public class Splasher implements ClientModInitializer {
 	}
 
 	public static boolean shouldSplash() {
-		return CONFIG.randomRate == SplasherConfig.RandomRate.JEB || shouldSplash.getAndSet(false);
+		return CONFIG.texts.randomRate == SplasherConfig.RandomRate.JEB || shouldSplash.getAndSet(false);
 	}
 
 	// Splash text data
@@ -90,7 +90,7 @@ public class Splasher implements ClientModInitializer {
 							if (isBouncedLoaded)
 								mouseY -= Bounced.primaryPos();
 
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.randomRate.onClick()) {
+							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.texts.randomRate.onClick()) {
 								push();
 								playClickingSound();
 							}
@@ -106,14 +106,14 @@ public class Splasher implements ClientModInitializer {
 
 	public static boolean isMouseHovering(double width, double mouseX, double mouseY) {
 		// Public so other mods can use
-		return isMouseHovering(new Node(width / 2.0 + (CONFIG.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
+		return isMouseHovering(new Node(width / 2.0 + (CONFIG.texts.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
 		return CONFIG.splashTextsEnabled && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
-		).rotate(origin, CONFIG.lefty ? 20 : -20).contains(mouse);
+		).rotate(origin, CONFIG.texts.lefty ? 20 : -20).contains(mouse);
 	}
 
 	public static void updateSize(float width, float height) {
@@ -122,7 +122,7 @@ public class Splasher implements ClientModInitializer {
 	}
 
 	public static void updateFormatting(ArrayList<Formatting> formattings, int color) {
-		if (CONFIG.colorful) {
+		if (CONFIG.texts.colorful) {
 			Splasher.color = color;
 			if (formattings != null) {
 				Splasher.formattings.clear();

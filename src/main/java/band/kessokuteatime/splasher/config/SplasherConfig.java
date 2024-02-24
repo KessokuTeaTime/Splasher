@@ -15,19 +15,18 @@ public class SplasherConfig implements ConfigData {
 	public boolean followsClientLanguage = false;
 	public boolean debugInfoEnabled = false;
 
+	@ConfigEntry.Gui.TransitiveObject
 	@ConfigEntry.Category("texts")
-	public boolean colorful = false;
+	public Texts texts = new Texts();
 
-	@ConfigEntry.Category("texts")
-	public boolean lefty = false;
-
-	@ConfigEntry.Category("texts")
-	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-	public RandomRate randomRate = RandomRate.ON_RELOAD_AND_CLICK;
-
-	@ConfigEntry.Category("texts")
-	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-	public Source source = Source.VANILLA_AND_CUSTOM;
+	public static class Texts {
+		public boolean colorful = false;
+		public boolean lefty = false;
+		@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+		public RandomRate randomRate = RandomRate.ON_RELOAD_AND_CLICK;
+		@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+		public Source source = Source.VANILLA_AND_CUSTOM;
+	}
 
 	public enum RandomRate implements SelectionListEntry.Translatable {
 		NEVER(false, false),
