@@ -19,14 +19,14 @@ public class SplashTextSupplier {
 	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
 		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
 
-		String language = !Splasher.CONFIG.followsClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
+		String language = !Splasher.CONFIG.get().followsClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();
 
-		if (Splasher.CONFIG.texts.source.vanilla()) customSplashTexts.addAll(splashTexts);
-		if (Splasher.CONFIG.texts.source.custom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
+		if (Splasher.CONFIG.get().texts.source.vanilla()) customSplashTexts.addAll(splashTexts);
+		if (Splasher.CONFIG.get().texts.source.custom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
 
 		if (customSplashTexts.isEmpty()) {
-			if (Splasher.CONFIG.texts.source.vanilla()){
+			if (Splasher.CONFIG.get().texts.source.vanilla()){
 				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
 			}
 			Splasher.LOGGER.error("Empty stack!");
@@ -38,30 +38,30 @@ public class SplashTextSupplier {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 
-		if (Splasher.CONFIG.festivalsEnabled) {
+		if (Splasher.CONFIG.get().festivalsEnabled) {
 			if (calendar.get(Calendar.MONTH) + 1 == 12 && calendar.get(Calendar.DATE) == 24) {
-				return getXmasSplash(Splasher.CONFIG.followsClientLanguage);
+				return getXmasSplash(Splasher.CONFIG.get().followsClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 1 && calendar.get(Calendar.DATE) == 1) {
-				return getNewYearSplash(Splasher.CONFIG.followsClientLanguage);
+				return getNewYearSplash(Splasher.CONFIG.get().followsClientLanguage);
 			}
 
 			if (calendar.get(Calendar.MONTH) + 1 == 10 && calendar.get(Calendar.DATE) == 31) {
-				return getHalloweenSplash(Splasher.CONFIG.followsClientLanguage);
+				return getHalloweenSplash(Splasher.CONFIG.get().followsClientLanguage);
 			}
 
 			if (session != null && random == 42) {
-				return getPlayerSplash(Splasher.CONFIG.followsClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
+				return getPlayerSplash(Splasher.CONFIG.get().followsClientLanguage, session.getUsername().toUpperCase(Locale.ROOT));
 			}
 		}
 
-		if (Splasher.CONFIG.texts.source.vanilla() && random <= splashTexts.size()) {
-			if (Splasher.CONFIG.followsClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
+		if (Splasher.CONFIG.get().texts.source.vanilla() && random <= splashTexts.size()) {
+			if (Splasher.CONFIG.get().followsClientLanguage) return Text.translatable("splash.minecraft." + random).getString();
 			else return customSplashTexts.get(random);
 		}
 
-		if (Splasher.CONFIG.texts.source.custom()) return customSplashTexts.get(random);
+		if (Splasher.CONFIG.get().texts.source.custom()) return customSplashTexts.get(random);
 
 		return null;
 	}

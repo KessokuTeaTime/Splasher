@@ -2,6 +2,7 @@ package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
 import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
@@ -25,12 +26,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Splasher implements ClientModInitializer {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
-	public static final SplasherConfig CONFIG;
+	public static final ConfigHolder<SplasherConfig> CONFIG;
 	private static final AtomicBoolean shouldSplash = new AtomicBoolean(true);
 
 	static {
 		AutoConfig.register(SplasherConfig.class, Toml4jConfigSerializer::new);
-		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class).get();
+		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class);
 	}
 
 	record Node(double x, double y) {
@@ -69,7 +70,7 @@ public class Splasher implements ClientModInitializer {
 	}
 
 	public static boolean shouldSplash() {
-		return CONFIG.texts.randomRate == SplasherConfig.RandomRate.JEB || shouldSplash.getAndSet(false);
+		return CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB || shouldSplash.getAndSet(false);
 	}
 
 	// Splash text data
@@ -90,7 +91,7 @@ public class Splasher implements ClientModInitializer {
 							if (isBouncedLoaded)
 								mouseY -= Bounced.primaryPos();
 
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.texts.randomRate.onClick()) {
+							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.get().texts.randomRate.onClick()) {
 								push();
 								playClickingSound();
 							}
@@ -106,14 +107,14 @@ public class Splasher implements ClientModInitializer {
 
 	public static boolean isMouseHovering(double width, double mouseX, double mouseY) {
 		// Public so other mods can use
-		return isMouseHovering(new Node(width / 2.0 + (CONFIG.texts.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
+		return isMouseHovering(new Node(width / 2.0 + (CONFIG.get().texts.lefty ? -123 : 123), 69 - 6), new Node(mouseX, mouseY));
 	}
 
 	static boolean isMouseHovering(Node origin, Node mouse) {
-		return CONFIG.splashTextsEnabled && new Rect(
+		return CONFIG.get().splashTextsEnabled && new Rect(
 				origin.append(new Node(-width / 2, -height / 2)),
 				origin.append(new Node(width / 2, height / 2))
-		).rotate(origin, CONFIG.texts.lefty ? 20 : -20).contains(mouse);
+		).rotate(origin, CONFIG.get().texts.lefty ? 20 : -20).contains(mouse);
 	}
 
 	public static void updateSize(float width, float height) {
@@ -122,7 +123,7 @@ public class Splasher implements ClientModInitializer {
 	}
 
 	public static void updateFormatting(ArrayList<Formatting> formattings, int color) {
-		if (CONFIG.texts.colorful) {
+		if (CONFIG.get().texts.colorful) {
 			Splasher.color = color;
 			if (formattings != null) {
 				Splasher.formattings.clear();

@@ -33,17 +33,17 @@ public abstract class SplashTextResourceSupplierReplacer {
 	private void get(CallbackInfoReturnable<SplashTextRenderer> cir) {
 		if (!Splasher.initialized) return;
 		
-		boolean enabled = Splasher.CONFIG.splashTextsEnabled, localized = Splasher.CONFIG.followsClientLanguage;
-		SplasherConfig.Source source = Splasher.CONFIG.texts.source;
+		boolean enabled = Splasher.CONFIG.get().splashTextsEnabled, localized = Splasher.CONFIG.get().followsClientLanguage;
+		SplasherConfig.Source source = Splasher.CONFIG.get().texts.source;
 
 		if (!enabled || (!source.vanilla() && !source.custom())) {
 			// Has nothing
 			cir.setReturnValue(null);
-			if (Splasher.CONFIG.debugInfoEnabled) Splasher.LOGGER.warn("Splash mode: " + source.name());
+			if (Splasher.CONFIG.get().debugInfoEnabled) Splasher.LOGGER.warn("Splash mode: " + source.name());
 			return;
 		}
 
-		if (Splasher.CONFIG.texts.colorful) {
+		if (Splasher.CONFIG.get().texts.colorful) {
 			// Update color and formatting before everything
 			double formatting = new Random().nextDouble(1);
 			Splasher.updateFormatting(FormattingType.getFormatting(formatting), new Random().nextInt(0xFFFFFF));
@@ -52,14 +52,14 @@ public abstract class SplashTextResourceSupplierReplacer {
 		if (source.vanilla() && !source.custom() && !localized) {
 			// Pure vanilla
 			cir.cancel();
-			if (Splasher.CONFIG.debugInfoEnabled) Splasher.LOGGER.info("Splash mode: " + source.name() + " (raw)");
+			if (Splasher.CONFIG.get().debugInfoEnabled) Splasher.LOGGER.info("Splash mode: " + source.name() + " (raw)");
 			return;
 		}
 
 		String splashText = SplashTextSupplier.getSplashes(session, splashTexts);
 		cir.setReturnValue(new SplashTextRenderer(splashText == null ? "" : splashText));
 
-		if (Splasher.CONFIG.debugInfoEnabled && !(Splasher.CONFIG.texts.randomRate == SplasherConfig.RandomRate.JEB)) {
+		if (Splasher.CONFIG.get().debugInfoEnabled && !(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
 			if (localized) Splasher.LOGGER.info("Splash mode: " + source.name());
 			else Splasher.LOGGER.info("Splash mode: " + source.name() + " (raw)");
 
