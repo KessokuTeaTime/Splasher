@@ -1,13 +1,13 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
+import dev.architectury.event.EventResult;
+import dev.architectury.event.events.client.ClientGuiEvent;
+import dev.architectury.event.events.client.ClientScreenInputEvent;
+import dev.architectury.platform.forge.EventBuses;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import band.kessokuteatime.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -16,6 +16,14 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraftforge.client.ConfigScreenHandler;
+import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.network.NetworkConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +31,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Splasher implements ClientModInitializer {
+@Mod(Splasher.ID)
+public class Splasher {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 	public static final ConfigHolder<SplasherConfig> CONFIG;
@@ -79,14 +88,25 @@ public class Splasher implements ClientModInitializer {
 	private static float height = 0, width = 0;
 	public static boolean initialized = false;
 
-	@Override
-	public void onInitializeClient() {
-		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
+	public Splasher() {
+		ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+		ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> {
+			Splasher.CONFIG.load();
+            return AutoConfig.getConfigScreen(SplasherConfig.class, screen).get();
+        }));
+		EventBuses.registerModEventBus(Bounced.ID, FMLJavaModLoadingContext.get().getModEventBus());
+		if (FMLLoader.getDist().isClient()) {
+			this.onInitializeClient();
+		}
+	}
 
-		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+	public void onInitializeClient() {
+		boolean isBouncedLoaded = ModList.get().isLoaded("bounced");
+
+		ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
 			if (screen instanceof TitleScreen) {
-				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {
+				ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
+							double scaledWidth = screenAccess.getScreen().width;
 							// Linkage with Bounced
 							if (isBouncedLoaded)
 								mouseY -= Bounced.primaryPos();
@@ -95,7 +115,8 @@ public class Splasher implements ClientModInitializer {
 								push();
 								playClickingSound();
 							}
-						});
+                    return EventResult.pass();
+                });
 			}
 		});
 	}

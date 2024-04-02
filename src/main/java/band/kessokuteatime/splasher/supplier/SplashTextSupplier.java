@@ -2,11 +2,11 @@ package band.kessokuteatime.splasher.supplier;
 
 import band.kessokuteatime.splasher.Splasher;
 import band.kessokuteatime.splasher.base.FormattingType;
-import net.fabricmc.loader.api.FabricLoader;
 import band.kessokuteatime.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.Session;
 import net.minecraft.text.Text;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +17,7 @@ public class SplashTextSupplier {
 	private static int lastRandomIndex = -1;
 
 	@Nullable public static String getSplashes(Session session, List<String> splashTexts) {
-		Path path = FabricLoader.getInstance().getConfigDir().resolve(Splasher.ID);
+		Path path = FMLPaths.CONFIGDIR.get().resolve(Splasher.ID);
 
 		String language = !Splasher.CONFIG.get().followsClientLanguage ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage();
 		List<String> customSplashTexts = Lists.newArrayList();

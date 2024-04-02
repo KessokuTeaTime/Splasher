@@ -3,14 +3,17 @@ plugins {
 	java
 	idea
 	`maven-publish`
-	alias(libs.plugins.fabric.loom)
+	alias(libs.plugins.architectury.loom)
 }
 
 group = libs.versions.maven.group.get()
 version = "${libs.versions.minecraft.get()}-${libs.versions.mod.get()}"
+base.archivesName.set("${libs.versions.archives.name}-forge")
 
-base {
-	archivesName.set(libs.versions.archives.name)
+loom {
+	forge {
+		mixinConfig("splasher.mixins.json")
+	}
 }
 
 repositories {
@@ -23,11 +26,11 @@ repositories {
 
 dependencies {
 	minecraft(libs.minecraft)
-	mappings(libs.yarn)
-	modImplementation(libs.bundles.fabric)
+	mappings(libs.yarn) { artifact { classifier = "v2" } }
+	forge(libs.forge)
+	modApi(libs.architectury.api)
 
 	modApi(libs.cloth.config)
-	modApi(libs.modmenu)
 	modCompileOnly(libs.bounced)
 }
 
@@ -42,7 +45,7 @@ tasks {
 	processResources {
 		inputs.property("version", libs.versions.mod.get())
 
-		filesMatching("fabric.mod.json") {
+		filesMatching("META-INF/mods.toml") {
 			expand(mapOf("version" to libs.versions.mod.get()))
 		}
 	}

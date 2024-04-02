@@ -1,6 +1,4 @@
 {
-	"modmenu.descriptionTranslation.splasher": "为什么不闪烁呢？通过Splasher，你可以完全自定义Minecraft标题旁的闪烁文本。",
-
 	"config.splasher.texts.random_rate.never"              : "从不",
 	"config.splasher.texts.random_rate.on_reload"          : "重新加载页面时",
 	"config.splasher.texts.random_rate.on_click"           : "点击时",
