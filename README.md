@@ -2,6 +2,6 @@
 
 ![Banner](https://github.com/KessokuTeaTime/Splasher/blob/artwork/banner.png)
 
-### Splasher for Fabric `1.20~1.20.3`
+### Splasher for Fabric `1.20~1.20.2`
 
 **Customize Minecraft's Splash Texts at Your Will!**
