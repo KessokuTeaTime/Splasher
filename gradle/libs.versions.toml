@@ -1,7 +1,7 @@
 [versions]
 maven-group = "band.kessokuteatime"
 archives-name = "splasher"
-mod = "6.0.4"
+mod = "6.0.3"
 
 minecraft = "1.20.4"
 yarn = "1.20.4+build.3"
