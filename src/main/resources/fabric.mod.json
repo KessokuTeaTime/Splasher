@@ -3,7 +3,7 @@
   "id": "splasher",
   "version": "${version}",
 
-  "name": "Splasher!",
+  "name": "${display.name}",
   "description": "Why don't splash? Splasher is a mod which makes splash texts fully customizable.",
   "authors": [
     "Kessoku Tea Time"
