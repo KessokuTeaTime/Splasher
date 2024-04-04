@@ -1,15 +1,12 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
-import dev.architectury.event.EventResult;
-import dev.architectury.event.events.client.ClientGuiEvent;
-import dev.architectury.event.events.client.ClientScreenInputEvent;
-import dev.architectury.platform.forge.EventBuses;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import band.kessokuteatime.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvents;
@@ -17,11 +14,13 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraftforge.client.ConfigScreenHandler;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.network.NetworkConstants;
 import org.slf4j.Logger;
@@ -94,7 +93,6 @@ public class Splasher {
 			Splasher.CONFIG.load();
             return AutoConfig.getConfigScreen(SplasherConfig.class, screen).get();
         }));
-		EventBuses.registerModEventBus(Bounced.ID, FMLJavaModLoadingContext.get().getModEventBus());
 		if (FMLLoader.getDist().isClient()) {
 			this.onInitializeClient();
 		}
@@ -102,21 +100,25 @@ public class Splasher {
 
 	public void onInitializeClient() {
 		boolean isBouncedLoaded = ModList.get().isLoaded("bounced");
+		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-		ClientGuiEvent.INIT_POST.register((screen, screenAccess) -> {
+		forgeEventBus.<ScreenEvent.Init.Post>addListener(screenInitEvent -> {
+			Screen screen = screenInitEvent.getScreen();
 			if (screen instanceof TitleScreen) {
-				ClientScreenInputEvent.MOUSE_CLICKED_POST.register((client, currentScreen, mouseX, mouseY, button) -> {
-							double scaledWidth = screenAccess.getScreen().width;
-							// Linkage with Bounced
-							if (isBouncedLoaded)
-								mouseY -= Bounced.primaryPos();
+				forgeEventBus.<ScreenEvent.MouseButtonPressed.Post>addListener(screenMousePressedEvent -> {
+					double mouseX = screenMousePressedEvent.getMouseX();
+					double mouseY = screenMousePressedEvent.getMouseY();
+					double scaledWidth = screen.width;
 
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.get().texts.randomRate.onClick()) {
-								push();
-								playClickingSound();
-							}
-                    return EventResult.pass();
-                });
+					// Linkage with Bounced
+					if (isBouncedLoaded)
+						mouseY -= Bounced.primaryPos();
+
+					if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.get().texts.randomRate.onClick()) {
+						push();
+						playClickingSound();
+					}
+				});
 			}
 		});
 	}
