@@ -13,16 +13,15 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.network.NetworkConstants;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.IExtensionPoint;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,7 +87,7 @@ public class Splasher {
 	public static boolean initialized = false;
 
 	public Splasher() {
-		ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+		ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> IExtensionPoint.DisplayTest.IGNORESERVERONLY, (a, b) -> true));
 		ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> {
 			Splasher.CONFIG.load();
             return AutoConfig.getConfigScreen(SplasherConfig.class, screen).get();
@@ -100,12 +99,12 @@ public class Splasher {
 
 	public void onInitializeClient() {
 		boolean isBouncedLoaded = ModList.get().isLoaded("bounced");
-		IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+		IEventBus forgeEventBus = NeoForge.EVENT_BUS;
 
-		forgeEventBus.<ScreenEvent.Init.Post>addListener(screenInitEvent -> {
+		forgeEventBus.addListener(ScreenEvent.Init.Post.class, screenInitEvent -> {
 			Screen screen = screenInitEvent.getScreen();
 			if (screen instanceof TitleScreen) {
-				forgeEventBus.<ScreenEvent.MouseButtonPressed.Post>addListener(screenMousePressedEvent -> {
+				forgeEventBus.addListener(ScreenEvent.MouseButtonPressed.Post.class, screenMousePressedEvent -> {
 					double mouseX = screenMousePressedEvent.getMouseX();
 					double mouseY = screenMousePressedEvent.getMouseY();
 					double scaledWidth = screen.width;

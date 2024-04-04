@@ -4,9 +4,9 @@ import band.kessokuteatime.splasher.Splasher;
 import band.kessokuteatime.splasher.base.FormattingType;
 import band.kessokuteatime.splasher.loader.SplashTextLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Session;
+import net.minecraft.client.session.Session;
 import net.minecraft.text.Text;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.neoforged.fml.loading.FMLPaths;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.Nullable;
 

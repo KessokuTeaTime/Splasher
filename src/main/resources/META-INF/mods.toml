@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[46,)"
+loaderVersion = "[1,)"
 license = "GPL-3.0"
 
 [[mods]]
@@ -13,16 +13,19 @@ Why Don't Splash?
 '''
 logoFile = "icon.png"
 
+[[mixins]]
+config = "splasher.mixins.json"
+
 [[dependencies.splasher]]
-modId = "forge"
-mandatory = true
-versionRange = "[46,)"
+modId = "neoforge"
+type = "required"
+versionRange = "[20.3,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.splasher]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20,)"
+type = "required"
+versionRange = "[1.20.3,1.20.4]"
 ordering = "NONE"
 side = "BOTH"
