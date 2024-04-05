@@ -6,7 +6,8 @@
   "name": "${display.name}",
   "description": "Why don't splash? Splasher is a mod which makes splash texts fully customizable.",
   "authors": [
-    "Kessoku Tea Time"
+    "Kessoku Tea Time",
+    "KrLite"
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/splasher",
