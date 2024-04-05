@@ -91,6 +91,14 @@ publisher {
 	gameVersions.set(listOf("1.20.3", "1.20.4"))
 	loaders.set(listOf("fabric", "quilt"))
 
+	modrinthDepends.required("fabric-api")
+	modrinthDepends.optional("bounced")
+	modrinthDepends.embedded()
+
+	curseDepends.required("fabric-api")
+	curseDepends.optional("bounced")
+	curseDepends.embedded()
+
 	displayName.set("${display.name} ${libs.versions.mod.get()} for ${display.loader} ${display.version}")
 
 	artifact.set(tasks.remapJar)
