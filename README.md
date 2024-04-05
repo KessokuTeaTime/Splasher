@@ -1,4 +1,4 @@
-### <p align=right>[Main Branch `←`](https://github.com/KessokuTeaTime/Splasher)&emsp;[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
+### <p align=right>[Main Branch `←`](https://github.com/KessokuTeaTime/Splasher)&emsp;[`→` CurseForge](https://www.curseforge.com/minecraft/mc-mods/splasher)&ensp;[`→` Modrinth](https://modrinth.com/mod/splasher)</p>
 
 ![Banner](https://github.com/KessokuTeaTime/Splasher/blob/artwork/banner.png)
 
