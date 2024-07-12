@@ -1,14 +1,14 @@
 use std::{fs::OpenOptions, path::Path};
 
 macro_rules! MC_VERSION {
-    () => { "1.20" };
+    () => { "1.21" };
 }
 
 mod info {
     pub const MOD_ID: &'static str = "splasher";
 
-    pub const SOURCE_FILE_PATH: &'static str = concat!(MC_VERSION!(), "/splashes.txt");
-    pub const TARGET_FILE_PATH: &'static str = concat!(MC_VERSION!(), "/en_us.json");
+    pub const SOURCE_FILE_PATH: &'static str = concat!["src/", MC_VERSION!(), "/splashes.txt"];
+    pub const TARGET_FILE_PATH: &'static str = concat!["src/", MC_VERSION!(), "/en_us.json"];
 
     pub const FESTIVALS: [Festival; 4] = [
         Festival {
