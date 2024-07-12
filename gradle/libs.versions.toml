@@ -1,7 +1,7 @@
 [versions]
 maven-group = "band.kessokuteatime"
 archives-name = "splasher"
-mod = "6.1.1"
+mod = "6.2.0"
 loader = "fabric"
 
 minecraft = "1.20.3"
@@ -14,6 +14,7 @@ modpublisher = "2.1.0"
 cloth-config = "13.0.121"
 modmenu = "9.0.0"
 bounced = "4.1.1-fabric1.20.3"
+night-auto-config = "1.0.3-fabric1.20"
 
 # id
 id-modrinth = "4yIZUuyx"
@@ -33,6 +34,7 @@ fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.r
 cloth-config = { group = "me.shedaniel.cloth", name = "cloth-config-fabric", version.ref = "cloth-config" }
 modmenu = { group = "com.terraformersmc", name = "modmenu", version.ref = "modmenu" }
 bounced = { group = "maven.modrinth", name = "bounced", version.ref = "bounced" }
+night-auto-config = { group = "com.github.KessokuTeaTime", name = "Night-Auto-Config", version.ref = "night-auto-config" }
 
 [plugins]
 fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }

@@ -1,9 +1,9 @@
 package band.kessokuteatime.splasher;
 
 import band.kessokuteatime.bounced.Bounced;
+import band.kessokuteatime.nightautoconfig.config.base.ConfigType;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
@@ -30,7 +30,7 @@ public class Splasher implements ClientModInitializer {
 	private static final AtomicBoolean shouldSplash = new AtomicBoolean(true);
 
 	static {
-		AutoConfig.register(SplasherConfig.class, Toml4jConfigSerializer::new);
+		AutoConfig.register(SplasherConfig.class, ConfigType.DEFAULT_COMMENTED::fileWatcherSerializer);
 		CONFIG = AutoConfig.getConfigHolder(SplasherConfig.class);
 	}
 
