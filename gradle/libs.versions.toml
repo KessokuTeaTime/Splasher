@@ -11,8 +11,8 @@ fabric-api = "0.83.0+1.20"
 fabric-loom = "1.6-SNAPSHOT"
 modpublisher = "2.1.0"
 
-cloth-config = "13.0.121"
-modmenu = "9.0.0"
+cloth-config = "11.1.118"
+modmenu = "7.2.2"
 bounced = "4.1.1-fabric1.20"
 night-auto-config = "1.0.3-fabric1.20"
 
