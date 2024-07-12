@@ -1,5 +1,3 @@
-### Changes
+### Maintenance Update
 
-- Unified publishing using **modpublisher.**
-- Jar name migrate: `{id}-{mcversion}-{modversion}` -> `{id}-{modversion}-{loader}{mcversion}`.
-- Tag name migrate: `{id}-{modversion}-mc{mcversion}` -> `{id}-{modversion}-{loader}{mcversion}`.
+- **Updated** to use [**Night Auto Config.**](https://github.com/KessokuTeaTime/Night-Auto-Config)
