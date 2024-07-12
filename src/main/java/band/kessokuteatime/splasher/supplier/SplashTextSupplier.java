@@ -25,12 +25,15 @@ public class SplashTextSupplier {
 		if (Splasher.CONFIG.get().texts.source.vanilla()) customSplashTexts.addAll(splashTexts);
 		if (Splasher.CONFIG.get().texts.source.custom()) customSplashTexts.addAll(new SplashTextLoader(path.resolve(language + ".txt").toFile()).load());
 
-		if (customSplashTexts.isEmpty()) {
-			if (Splasher.CONFIG.get().texts.source.vanilla()){
-				Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
+		if (Splasher.CONFIG.get().debugInfoEnabled) {
+			if (customSplashTexts.isEmpty()) {
+				if (Splasher.CONFIG.get().texts.source.vanilla()) {
+					Splasher.LOGGER.warn("Minecraft has no splash loaded. Check your data as if it may be broken.");
+				}
+
+				Splasher.LOGGER.error("Empty stack!");
+				return null;
 			}
-			Splasher.LOGGER.error("Empty stack!");
-			return null;
 		}
 
 		final int random = nextRandomIndex(customSplashTexts.size());

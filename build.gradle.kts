@@ -42,6 +42,8 @@ dependencies {
 	modApi(libs.cloth.config)
 	modApi(libs.modmenu)
 	modCompileOnly(libs.bounced)
+
+	modApi(libs.night.auto.config)
 }
 
 java {
