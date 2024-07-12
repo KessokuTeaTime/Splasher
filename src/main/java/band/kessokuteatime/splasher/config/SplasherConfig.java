@@ -17,18 +17,21 @@ import java.util.stream.Stream;
 
 @Config(name = "splasher")
 public class SplasherConfig implements ConfigData {
+	@ConfigEntry.Gui.Excluded
 	private transient final Supplier<Boolean> splashTextsEnabledProvider = () -> true;
 
 	@SerdeDefault(provider = "splashTextsEnabledProvider")
 	@SerdeComment(" Whether to show splash texts or not.")
 	public boolean splashTextsEnabled = splashTextsEnabledProvider.get();
 
+	@ConfigEntry.Gui.Excluded
 	private transient final Supplier<Boolean> festivalsEnabledProvider = () -> true;
 
 	@SerdeDefault(provider = "festivalsEnabledProvider")
 	@SerdeComment(" Whether to enable special splash texts on festivals or not.")
 	public boolean festivalsEnabled = festivalsEnabledProvider.get();
 
+	@ConfigEntry.Gui.Excluded
 	private transient final Supplier<Boolean> followsClientLanguageProvider = () -> false;
 
 	@SerdeDefault(provider = "followsClientLanguageProvider")
@@ -36,12 +39,14 @@ public class SplasherConfig implements ConfigData {
 	@ConfigEntry.Gui.Tooltip
 	public boolean followsClientLanguage = followsClientLanguageProvider.get();
 
+	@ConfigEntry.Gui.Excluded
 	private transient final Supplier<Boolean> debugInfoEnabledProvider = () -> false;
 
 	@SerdeDefault(provider = "debugInfoEnabledProvider")
 	@SerdeComment(" Whether to print the verbose debug info or not.")
 	public boolean debugInfoEnabled = debugInfoEnabledProvider.get();
 
+	@ConfigEntry.Gui.Excluded
 	private transient final Supplier<Texts> textsProvider = Texts::new;
 
 	@SerdeDefault(provider = "textsProvider")
@@ -50,18 +55,21 @@ public class SplasherConfig implements ConfigData {
 	public Texts texts = textsProvider.get();
 
 	public static class Texts {
+		@ConfigEntry.Gui.Excluded
 		private transient final Supplier<Boolean> colorfulProvider = () -> false;
 
 		@SerdeDefault(provider = "colorfulProvider")
 		@SerdeComment(" Whether to randomly tint and style the splash texts on reload or not.")
 		public boolean colorful = colorfulProvider.get();
 
+		@ConfigEntry.Gui.Excluded
 		private transient final Supplier<Boolean> leftyProvider = () -> false;
 
 		@SerdeDefault(provider = "leftyProvider")
 		@SerdeComment(" Whether to flip the splash texts to the left not.")
 		public boolean lefty = leftyProvider.get();
 
+		@ConfigEntry.Gui.Excluded
 		private transient final Supplier<RandomRate> randomRateProvider = () -> RandomRate.ON_RELOAD_AND_CLICK;
 
 		@SerdeDefault(provider = "randomRateProvider")
@@ -76,6 +84,7 @@ public class SplasherConfig implements ConfigData {
 		@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
 		public RandomRate randomRate = randomRateProvider.get();
 
+		@ConfigEntry.Gui.Excluded
 		private transient final Supplier<Source> sourceProvider = () -> Source.VANILLA_AND_CUSTOM;
 
 		@SerdeDefault(provider = "sourceProvider")
