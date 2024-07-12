@@ -35,14 +35,14 @@ public class SplashTextLoader {
 				return loadFromFile();
 			} catch (Exception exception) {
 				if (!(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
-					Splasher.LOGGER.debug("Failed to load custom splash texts: ", exception);
+					Splasher.LOGGER.error("Failed to load custom splash texts: ", exception);
 				}
 			}
 		}
 
 		if (Splasher.CONFIG.get().debugInfoEnabled) {
 			if (!(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
-				Splasher.LOGGER.error("Failed to load custom splash texts: File " + file.getName() + " not found.");
+                Splasher.LOGGER.error("Failed to load custom splash texts: File {} not found.", file.getName());
 			}
 		}
 		return new ArrayList<>();
