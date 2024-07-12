@@ -94,11 +94,11 @@ publisher {
 	loaders.set(listOf("fabric", "quilt"))
 	curseEnvironment.set("client")
 
-	modrinthDepends.required("fabric-api")
+	modrinthDepends.required("fabric-api", "nightautoconfig")
 	modrinthDepends.optional("bounced")
 	modrinthDepends.embedded()
 
-	curseDepends.required("fabric-api")
+	curseDepends.required("fabric-api", "nightautoconfig")
 	curseDepends.optional("bounced")
 	curseDepends.embedded()
 
