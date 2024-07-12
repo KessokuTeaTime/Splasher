@@ -39,7 +39,9 @@ public abstract class SplashTextResourceSupplierReplacer {
 		if (!enabled || (!source.vanilla() && !source.custom())) {
 			// Has nothing
 			cir.setReturnValue(null);
-			if (Splasher.CONFIG.get().debugInfoEnabled) Splasher.LOGGER.warn("Splash mode: " + source.name());
+			if (Splasher.CONFIG.get().debugInfoEnabled) {
+				Splasher.LOGGER.info("Splash mode: {}", source.name());
+			}
 			return;
 		}
 
@@ -52,22 +54,33 @@ public abstract class SplashTextResourceSupplierReplacer {
 		if (source.vanilla() && !source.custom() && !localized) {
 			// Pure vanilla
 			cir.cancel();
-			if (Splasher.CONFIG.get().debugInfoEnabled) Splasher.LOGGER.info("Splash mode: " + source.name() + " (raw)");
+			if (Splasher.CONFIG.get().debugInfoEnabled) {
+				Splasher.LOGGER.info("Splash mode: {} (raw)", source.name());
+			}
 			return;
 		}
 
 		String splashText = SplashTextSupplier.getSplashes(session, splashTexts);
 		cir.setReturnValue(new SplashTextRenderer(splashText == null ? "" : splashText));
 
-		if (Splasher.CONFIG.get().debugInfoEnabled && !(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
-			if (localized) Splasher.LOGGER.info("Splash mode: " + source.name());
-			else Splasher.LOGGER.info("Splash mode: " + source.name() + " (raw)");
+		if (Splasher.CONFIG.get().debugInfoEnabled) {
+			if (Splasher.CONFIG.get().debugInfoEnabled && !(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
+				if (localized) {
+					Splasher.LOGGER.info("Splash mode: {}", source.name());
+				} else {
+					Splasher.LOGGER.info("Splash mode: {} (raw)", source.name());
+				}
 
-			if (splashText != null) Splasher.LOGGER.info(
-					"Loaded splash: '" + splashText + "' in language "
-							+ (!localized ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage()) + "."
-			);
-			else Splasher.LOGGER.warn("Loaded empty splash.");
+				if (splashText != null) {
+                    Splasher.LOGGER.info(
+							"Loaded splash text: '{}' in language {}.",
+							splashText,
+							!localized ? "en_us" : MinecraftClient.getInstance().getLanguageManager().getLanguage()
+					);
+				} else {
+					Splasher.LOGGER.warn("Loaded empty splash text.");
+				}
+			}
 		}
 	}
 }
