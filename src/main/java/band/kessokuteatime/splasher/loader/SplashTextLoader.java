@@ -35,7 +35,7 @@ public class SplashTextLoader {
 				return loadFromFile();
 			} catch (Exception exception) {
 				if (!(Splasher.CONFIG.get().texts.randomRate == SplasherConfig.RandomRate.JEB)) {
-					Splasher.LOGGER.debug("Failed to load custom splash texts: ", exception);
+					Splasher.LOGGER.error("Failed to load custom splash texts: ", exception);
 				}
 			}
 		}
