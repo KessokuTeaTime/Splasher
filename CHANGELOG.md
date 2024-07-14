@@ -1,3 +1,3 @@
-### Maintenance Update
+### Fixes
 
-- **Updated** to use [**Night Auto Config.**](https://github.com/KessokuTeaTime/Night-Auto-Config)
+- **Updated** to **Night Auto Config** `1.0.4`.
