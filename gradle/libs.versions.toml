@@ -1,7 +1,7 @@
 [versions]
 maven-group = "band.kessokuteatime"
 archives-name = "splasher"
-mod = "6.2.2"
+mod = "6.2.3"
 loader = "fabric"
 
 minecraft = "1.20"
