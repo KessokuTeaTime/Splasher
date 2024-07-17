@@ -80,7 +80,7 @@ publisher {
 
 	versionType.set("release")
 	projectVersion.set(project.version.toString())
-	gameVersions.set(listOf("1.20.3", "1.20.4"))
+	gameVersions.set(listOf("1.21"))
 	loaders.set(listOf("fabric", "quilt"))
 	curseEnvironment.set("client")
 
