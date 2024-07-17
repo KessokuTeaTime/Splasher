@@ -1,7 +1,7 @@
 [versions]
 maven-group = "band.kessokuteatime"
 archives-name = "splasher"
-mod = "6.2.1"
+mod = "6.2.2"
 loader = "fabric"
 
 minecraft = "1.21"
@@ -13,8 +13,8 @@ modpublisher = "2.1.0"
 
 cloth-config = "15.0.127"
 modmenu = "11.0.1"
-bounced = "4.1.1-fabric1.21"
-night-auto-config = "1.0.4-fabric1.21"
+bounced = "4.1.2-fabric.1.21"
+night-auto-config = "1.0.5-fabric.1.21"
 
 # id
 id-modrinth = "4yIZUuyx"
