@@ -9,11 +9,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.clothconfig2.gui.entries.SelectionListEntry;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Config(name = "splasher")
 public class SplasherConfig implements ConfigData {
