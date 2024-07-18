@@ -29,11 +29,10 @@ dependencies {
 	mappings(libs.yarn) { artifact { classifier = "v2" } }
 	modImplementation(libs.bundles.fabric)
 
-	modApi(libs.cloth.config)
 	modApi(libs.modmenu)
-	modCompileOnly(libs.bounced)
-
 	modApi(libs.night.auto.config)
+
+	modCompileOnly(libs.bounced)
 }
 
 java {

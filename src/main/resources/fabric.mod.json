@@ -35,7 +35,6 @@
     "fabricloader": "*",
     "fabric-api": "*",
     "minecraft": ["~1.20.3", "~1.20.4", "~1.20.5", "~1.20.6"],
-    "cloth-config": "*",
     "nightautoconfig": "*"
   },
   "suggests": {
