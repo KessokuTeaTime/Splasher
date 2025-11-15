@@ -81,15 +81,15 @@ publisher {
 
 	versionType.set("release")
 	projectVersion.set(project.version.toString())
-	gameVersions.set(listOf("1.21"))
-	loaders.set(listOf("fabric", "quilt"))
+	gameVersions.set(listOf("1.21", "1.21.1"))
+	loaders.set(listOf("neoforge"))
 	curseEnvironment.set("client")
 
-	modrinthDepends.required("fabric-api", "night-auto-config")
+	modrinthDepends.required("night-auto-config")
 	modrinthDepends.optional("bounced")
 	modrinthDepends.embedded()
 
-	curseDepends.required("fabric-api", "night-auto-config")
+	curseDepends.required("night-auto-config")
 	curseDepends.optional("bounced")
 	curseDepends.embedded()
 
