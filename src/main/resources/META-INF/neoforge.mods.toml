@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "GPL-3.0"
+
+[[mods]]
+modId = "splasher"
+version = "${version}"
+displayName = "${display.name.get()}"
+displayURL = "https://github.com/KessokuTeaTime/Splasher"
+authors = "Kessoku Tea Time"
+description = '''
+Why don't splash? Splasher is a mod which makes splash texts fully customizable.
+'''
+logoFile = "assets/splasher/icon.png"
+
+[[mixins]]
+config = "splasher.mixins.json"
+
+[[dependencies.splasher]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.splasher]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"

@@ -4,18 +4,21 @@ import band.kessokuteatime.bounced.Bounced;
 import band.kessokuteatime.nightautoconfig.config.base.ConfigType;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import band.kessokuteatime.splasher.config.SplasherConfig;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +26,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Splasher implements ClientModInitializer {
+@Mod(Splasher.ID)
+public class Splasher {
 	public static final String NAME = "Splasher", ID = "splasher";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 	public static final ConfigHolder<SplasherConfig> CONFIG;
@@ -79,25 +83,33 @@ public class Splasher implements ClientModInitializer {
 	private static float height = 0, width = 0;
 	public static boolean initialized = false;
 
-	@Override
-	public void onInitializeClient() {
-		boolean isBouncedLoaded = FabricLoader.getInstance().isModLoaded("bounced");
+	public Splasher() {
+        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (modContainer, screen) -> {
+            CONFIG.load();
+            return AutoConfig.getConfigScreen(SplasherConfig.class, screen).get();
+        });
 
-		ScreenEvents.BEFORE_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-			if (screen instanceof TitleScreen) {
-				ScreenMouseEvents.beforeMouseClick(screen)
-						.register((currentScreen, mouseX, mouseY, button) -> {
-							// Linkage with Bounced
-							if (isBouncedLoaded)
-								mouseY -= Bounced.primaryPos();
+		boolean isBouncedLoaded = ModList.get().isLoaded("bounced");
 
-							if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.get().texts.randomRate.onClick()) {
-								push();
-								playClickingSound();
-							}
-						});
-			}
-		});
+        NeoForge.EVENT_BUS.addListener(ScreenEvent.Init.Post.class, screenInitEvent -> {
+            Screen screen = screenInitEvent.getScreen();
+            if (screen instanceof TitleScreen) {
+                NeoForge.EVENT_BUS.addListener(ScreenEvent.MouseButtonPressed.Post.class, screenMousePressedEvent -> {
+                    double mouseX = screenMousePressedEvent.getMouseX();
+                    double mouseY = screenMousePressedEvent.getMouseY();
+                    double scaledWidth = screen.width;
+
+                    // Linkage with Bounced
+                    if (isBouncedLoaded)
+                        mouseY -= Bounced.primaryPos();
+
+                    if (isMouseHovering(scaledWidth, mouseX, mouseY) && CONFIG.get().texts.randomRate.onClick()) {
+                        push();
+                        playClickingSound();
+                    }
+                });
+            }
+        });
 	}
 
 	public static void playClickingSound() {

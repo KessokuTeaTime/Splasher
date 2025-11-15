@@ -3,8 +3,8 @@ plugins {
 	java
 	idea
 	`maven-publish`
-	alias(libs.plugins.fabric.loom)
-	alias(libs.plugins.modpublisher)
+    alias(libs.plugins.architectury.loom)
+    alias(libs.plugins.modpublisher)
 }
 
 val display = libs.versions.display
@@ -21,15 +21,17 @@ repositories {
 	maven { url = uri("https://jitpack.io") }
 	maven { url = uri("https://api.modrinth.com/maven") }
 	maven { url = uri("https://maven.shedaniel.me/") } // Cloth Config
-	maven { url = uri("https://maven.terraformersmc.com/releases/") } // Mod Menu
+    maven { url = uri("https://maven.neoforged.net/releases/") }
 }
 
 dependencies {
 	minecraft(libs.minecraft)
-	mappings(libs.yarn) { artifact { classifier = "v2" } }
-	modImplementation(libs.bundles.fabric)
+    mappings(loom.layered {
+        mappings(variantOf(libs.yarn) { classifier("v2") })
+        mappings(libs.yarn.patch)
+    })
+    neoForge(libs.neoforge)
 
-	modApi(libs.modmenu)
 	modApi(libs.night.auto.config)
 
 	modCompileOnly(libs.bounced)
@@ -44,7 +46,7 @@ java {
 
 tasks {
 	processResources {
-		filesMatching("fabric.mod.json") {
+		filesMatching("META-INF/neoforge.mods.toml") {
 			expand(mapOf(
 					"version" to libs.versions.mod.get(),
 					"display" to display
