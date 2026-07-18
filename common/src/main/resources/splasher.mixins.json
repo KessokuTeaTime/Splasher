@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "band.kessokuteatime.splasher.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "ResourceReloader",
+    "SplashManagerMixin",
+    "SplashRendererMixin",
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -18,7 +18,7 @@ Splasher supports custom splash texts to append, or replace the original ones.
 
 Custom splash texts are `.txt` files stored under `.minecraft/config/splasher/` and should be named the same as your target language (`en_us.txt` etc.).
 
-In these files, every single splash takes a single line, and `§ Formatting Code` is under supported, the same as the Minecraft `splashes.txt` under directory `.minecraft/assets/minecraft/texts/`.
+In these files, every splash takes a single line. Legacy `§` formatting codes are supported.
 
 ## Configuring Splasher
 
@@ -30,6 +30,10 @@ Every option is well documented, and you can achieve different effects by changi
 - Only enabling custom splashes
 - Enabling both original and custom splashes, and not following the client language
 - And more...
+
+## Compatibility
+
+**Splasher** supports Minecraft 26.2 on Fabric and NeoForge, requires Java 25 and Cloth Config, and offers optional Mod Menu integration on Fabric. It remains compatible with [Bounced](https://modrinth.com/mod/bounced), including accurate click detection while the title is animated.
 
 ## License
 

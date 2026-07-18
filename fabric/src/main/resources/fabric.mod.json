@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "splasher",
+  "version": "${version}",
+  "name": "${displayName}",
+  "description": "Makes Minecraft's splash texts fully customizable.",
+  "authors": [
+    "Kessoku Tea Time",
+    "KrLite"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/splasher",
+    "sources": "https://github.com/KessokuTeaTime/Splasher",
+    "issues": "https://github.com/KessokuTeaTime/Splasher/issues"
+  },
+  "license": "GPL-3.0-only",
+  "icon": "assets/splasher/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "band.kessokuteatime.splasher.fabric.SplasherFabric"
+    ],
+    "modmenu": [
+      "band.kessokuteatime.splasher.fabric.SplasherModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "splasher.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "minecraft": "${fabricMinecraftVersionRange}",
+    "java": ">=${javaVersion}",
+    "cloth-config": ">=${clothConfigVersion}"
+  },
+  "suggests": {
+    "bounced": ">=${bouncedVersion}"
+  }
+}

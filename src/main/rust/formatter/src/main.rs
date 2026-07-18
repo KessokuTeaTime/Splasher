@@ -1,7 +1,7 @@
 use std::{fs::OpenOptions, path::Path};
 
 macro_rules! MC_VERSION {
-    () => { "1.21" };
+    () => { "26.2" };
 }
 
 mod info {
@@ -74,6 +74,12 @@ mod formatter {
         line
     }
 
+    fn java_hash(line: &str) -> i32 {
+        line.encode_utf16().fold(0, |hash, character| {
+            hash.wrapping_mul(31).wrapping_add(character as i32)
+        })
+    }
+
     pub fn format(file_in: File, mut file_out: File) {
         use crate::info::*;
 
@@ -99,7 +105,7 @@ mod formatter {
             let line = validate_line(line.unwrap().as_str());
             let line = line.trim();
 
-            if line.is_empty() {
+            if line.is_empty() || java_hash(line) == 125_780_783 {
                 continue;
             }
 
