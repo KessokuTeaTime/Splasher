@@ -2,7 +2,7 @@
 
 ## 6.2.4
 
-- Updated for Minecraft 26.2 and Java 25.
+- Updated for Minecraft 26.1 through 26.1.2 and Java 25.
 - Added Fabric and NeoForge support through Architectury.
 - Replaced Night Auto Config with direct Cloth Config while preserving the existing TOML layout.
 - Ported splash selection, rendering, formatting, and clicking to Minecraft's component-based extracted GUI renderer.

@@ -33,7 +33,7 @@ Every option is well documented, and you can achieve different effects by changi
 
 ## Compatibility
 
-**Splasher** supports Minecraft 26.2 on Fabric and NeoForge, requires Java 25 and Cloth Config, and offers optional Mod Menu integration on Fabric. It remains compatible with [Bounced](https://modrinth.com/mod/bounced), including accurate click detection while the title is animated.
+**Splasher** supports Minecraft 26.1 through 26.1.2 on Fabric and NeoForge, requires Java 25 and Cloth Config, and offers optional Mod Menu integration on Fabric. It remains compatible with [Bounced](https://modrinth.com/mod/bounced), including accurate click detection while the title is animated.
 
 ## License
 

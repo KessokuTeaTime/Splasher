@@ -34,7 +34,7 @@ public abstract class TitleScreenMixin {
 		Splasher.beginFrame();
 		boolean splashVisible = !Minecraft.getInstance().options.hideSplashTexts().get();
 		if (splashVisible && Splasher.shouldRefreshSplash()) {
-			splash = Minecraft.getInstance().gui.splashManager().getSplash();
+			splash = Minecraft.getInstance().getSplashManager().getSplash();
 		}
 	}
 

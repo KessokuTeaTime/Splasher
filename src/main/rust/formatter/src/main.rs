@@ -1,7 +1,7 @@
 use std::{fs::OpenOptions, path::Path};
 
 macro_rules! MC_VERSION {
-    () => { "26.2" };
+    () => { "26.1.2" };
 }
 
 mod info {
